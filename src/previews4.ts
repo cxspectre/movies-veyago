@@ -20,6 +20,7 @@ const FORMAT_NAMES = ['wide', 'tall'] as const;
 export const previews4: readonly PreviewSpec[] = [
   ...endlessPreviews,
   ...popupPreviews,
+  ...(require('./popup/effects/previews') as typeof import('./popup/effects/previews')).effectsPreviews,
   ...FORMAT_NAMES.map((format) => ({
     id: `Master4-${format}`,
     component: MasterFilm4,
