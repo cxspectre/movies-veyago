@@ -1,12 +1,15 @@
 // render.ts — resumable chunked render of one composition to an H.264 file.
-// usage: npx tsx tools/render.ts <CompositionId> --out=out/name.mp4 [--scale=2] [--chunk=300 | --slots] [--force] [--crf=14] [--concurrency=4]
+// usage: npx tsx tools/render.ts <CompositionId> --out=out/name.mp4 [--scale=2] [--chunk=300 | --slots | --slots4] [--force] [--crf=14] [--concurrency=4] [--gl=swangle|angle|egl|vulkan|default]
+// FILM_GL sets the default renderer (angle); --gl overrides it.
 // Chunks land in out/chunks/<CompositionId>-s<scale>/; unchanged chunks are skipped, so re-rendering one changed module is cheap.
 import {bundle} from '@remotion/bundler';
 import {openBrowser, renderMedia, selectComposition} from '@remotion/renderer';
 import {execFileSync} from 'node:child_process';
 import {existsSync, mkdirSync, rmSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
+import {resolveGl} from './glFlag';
 import {SLOTS, sec} from '../src/film';
+import {SLOTS4} from '../src/film4';
 
 const [compId, ...flags] = process.argv.slice(2);
 if (!compId) {
@@ -19,6 +22,9 @@ const has = (name: string): boolean => flags.includes(`--${name}`);
 type Range = {from: number; to: number; name: string};
 
 const chunkRanges = (total: number): Range[] => {
+  if (has('slots4')) {
+    return SLOTS4.map((s) => ({from: sec(s.start), to: Math.min(sec(s.end) - 1, total - 1), name: s.id}));
+  }
   if (has('slots')) {
     return SLOTS.map((s) => ({from: sec(s.start), to: Math.min(sec(s.end) - 1, total - 1), name: s.id}));
   }
@@ -40,7 +46,7 @@ const main = async (): Promise<void> => {
   mkdirSync(path.dirname(out), {recursive: true});
 
   const serveUrl = await bundle({entryPoint: path.resolve('src/index.ts')});
-  const browser = await openBrowser('chrome', {chromiumOptions: {gl: 'angle'}});
+  const browser = await openBrowser('chrome', {chromiumOptions: {gl: resolveGl(flags)}});
   const composition = await selectComposition({serveUrl, id: compId, puppeteerInstance: browser});
   const ranges = chunkRanges(composition.durationInFrames);
   const parts: string[] = [];

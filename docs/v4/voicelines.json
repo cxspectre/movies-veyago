@@ -1,0 +1,322 @@
+{
+  "source": "docs/SCRIPT-10MIN-v4.md",
+  "note": "startMaster is the script timestamp (seconds) of the nearest preceding cue; real timing comes from the recorded takes. Word counts split on whitespace, hyphenated words count once.",
+  "totals": {
+    "FOUNDER": {
+      "words": 215,
+      "scriptApprox": 290,
+      "delta": -75,
+      "lines": 16
+    },
+    "MAKER": {
+      "words": 260,
+      "scriptApprox": 330,
+      "delta": -70,
+      "lines": 15
+    },
+    "MAYA": {
+      "words": 65,
+      "scriptApprox": 110,
+      "delta": -45,
+      "lines": 5
+    }
+  },
+  "lines": [
+    {
+      "id": "line-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "line",
+      "text": "This is the story of one app. From a no, to a launch, to a binder for everyone you call family.",
+      "startMaster": 7,
+      "words": 21
+    },
+    {
+      "id": "mayasHouse-maya-01",
+      "voice": "MAYA",
+      "chapterId": "mayasHouse",
+      "text": "Some weeks I'm the mom, the daughter, and the one who knows where everything is.",
+      "startMaster": 34,
+      "words": 15
+    },
+    {
+      "id": "mayasHouse-maya-02",
+      "voice": "MAYA",
+      "chapterId": "mayasHouse",
+      "text": "My dad's insurance. The kids' passports. And Sam's car registration, because he's in Lisbon for a year and I'm the one he trusts.",
+      "startMaster": 41,
+      "words": 23
+    },
+    {
+      "id": "mayasHouse-founder-03",
+      "voice": "FOUNDER",
+      "chapterId": "mayasHouse",
+      "text": "We wanted to build something for her. But first, we had to fail at something else.",
+      "startMaster": 58,
+      "words": 16
+    },
+    {
+      "id": "theNo-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "theNo",
+      "text": "Our first app was turned down twice. It wasn't different enough. Apple was right.",
+      "startMaster": 75,
+      "words": 14
+    },
+    {
+      "id": "theNo-founder-02",
+      "voice": "FOUNDER",
+      "chapterId": "theNo",
+      "text": "So we stopped resubmitting and held on to the one thing that was good.",
+      "startMaster": 85,
+      "words": 14
+    },
+    {
+      "id": "theNo-founder-03",
+      "voice": "FOUNDER",
+      "chapterId": "theNo",
+      "text": "On the twenty-first of September, we started again.",
+      "startMaster": 103,
+      "words": 8
+    },
+    {
+      "id": "filterMachine-maker-01",
+      "voice": "MAKER",
+      "chapterId": "filterMachine",
+      "text": "Before we had one idea, we built the filter that every idea had to pass.",
+      "startMaster": 115,
+      "words": 15
+    },
+    {
+      "id": "filterMachine-maker-02",
+      "voice": "MAKER",
+      "chapterId": "filterMachine",
+      "text": "Useful for years. Not something the phone already does. Private by design. Buildable in weeks, not years. And a business from day one.",
+      "startMaster": 122,
+      "words": 23
+    },
+    {
+      "id": "filterMachine-founder-03",
+      "voice": "FOUNDER",
+      "chapterId": "filterMachine",
+      "text": "One idea made it through all five. We started with the hardest version: looking after a parent.",
+      "startMaster": 150,
+      "words": 17
+    },
+    {
+      "id": "researchBoard-maker-01",
+      "voice": "MAKER",
+      "chapterId": "researchBoard",
+      "text": "Next, we stopped guessing.",
+      "startMaster": 170,
+      "words": 4
+    },
+    {
+      "id": "researchBoard-maker-02",
+      "voice": "MAKER",
+      "chapterId": "researchBoard",
+      "text": "We searched the store like a tired person at eleven at night. We read the one-star reviews. And every form and rule in the app comes from whoever publishes it. States, Medicare, the FTC.",
+      "startMaster": 174,
+      "words": 34
+    },
+    {
+      "id": "researchBoard-maker-03",
+      "voice": "MAKER",
+      "chapterId": "researchBoard",
+      "text": "Six building blocks. Everything the app does is one of them, or a mix of them.",
+      "startMaster": 215,
+      "words": 16
+    },
+    {
+      "id": "nameAndLook-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "nameAndLook",
+      "text": "For a few days it was called On Behalf. Then we found a better word.",
+      "startMaster": 235,
+      "words": 15
+    },
+    {
+      "id": "nameAndLook-founder-02",
+      "voice": "FOUNDER",
+      "chapterId": "nameAndLook",
+      "text": "Provisum. Latin for provided for. What you want everyone you love to be.",
+      "startMaster": 240,
+      "words": 13
+    },
+    {
+      "id": "nameAndLook-maker-03",
+      "voice": "MAKER",
+      "chapterId": "nameAndLook",
+      "text": "Then the look. Calm, because people open this app on hard days.",
+      "startMaster": 248,
+      "words": 12
+    },
+    {
+      "id": "nameAndLook-maker-04",
+      "voice": "MAKER",
+      "chapterId": "nameAndLook",
+      "text": "Every screen was checked at the biggest text sizes. When something broke, we redesigned the screen, not the text.",
+      "startMaster": 255,
+      "words": 19
+    },
+    {
+      "id": "engineRoom-maker-01",
+      "voice": "MAKER",
+      "chapterId": "engineRoom",
+      "text": "Native Swift, for iPhone, Apple Watch and widgets. Nothing in between.",
+      "startMaster": 290,
+      "words": 11
+    },
+    {
+      "id": "engineRoom-maker-02",
+      "voice": "MAKER",
+      "chapterId": "engineRoom",
+      "text": "Everything belongs to a binder, and a binder belongs to a person: your dad, your daughter, yourself, your partner, a friend, even the dog.",
+      "startMaster": 306,
+      "words": 24
+    },
+    {
+      "id": "engineRoom-maker-03",
+      "voice": "MAKER",
+      "chapterId": "engineRoom",
+      "text": "Every date from every source joins one list and gets the reminder that fits it. Passports get nine, six and three months. A bill gets the day before.",
+      "startMaster": 318,
+      "words": 28
+    },
+    {
+      "id": "engineRoom-maker-04",
+      "voice": "MAKER",
+      "chapterId": "engineRoom",
+      "text": "There is no Veyago server. Your data lives on your phone and in your own iCloud. Sharing goes straight to the people you invite.",
+      "startMaster": 332,
+      "words": 24
+    },
+    {
+      "id": "engineRoom-maker-05",
+      "voice": "MAKER",
+      "chapterId": "engineRoom",
+      "text": "The emergency card is encrypted on your iPhone before it goes anywhere.",
+      "startMaster": 346,
+      "words": 12
+    },
+    {
+      "id": "engineRoom-founder-06",
+      "voice": "FOUNDER",
+      "chapterId": "engineRoom",
+      "text": "We carried the engine over from our first app, and rebuilt everything around it.",
+      "startMaster": 352,
+      "words": 14
+    },
+    {
+      "id": "launch-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "launch",
+      "text": "Seven days after the first sketch, App Review said yes.",
+      "startMaster": 365,
+      "words": 10
+    },
+    {
+      "id": "launch-founder-02",
+      "voice": "FOUNDER",
+      "chapterId": "launch",
+      "text": "We launched in the United States, where Veyago does business, with its states' forms and Medicare built in.",
+      "startMaster": 375,
+      "words": 18
+    },
+    {
+      "id": "launch-founder-03",
+      "voice": "FOUNDER",
+      "chapterId": "launch",
+      "text": "On day one we got the price wrong. On day two we fixed it.",
+      "startMaster": 387,
+      "words": 14
+    },
+    {
+      "id": "launch-founder-04",
+      "voice": "FOUNDER",
+      "chapterId": "launch",
+      "text": "Then we looked at what we'd built, and at who we'd left out.",
+      "startMaster": 400,
+      "words": 13
+    },
+    {
+      "id": "launch-maya-05",
+      "voice": "MAYA",
+      "chapterId": "launch",
+      "text": "It was never only my dad.",
+      "startMaster": 410,
+      "words": 6
+    },
+    {
+      "id": "village-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "village",
+      "text": "Version one was a binder for a parent. Nobody looks after just one person.",
+      "startMaster": 415,
+      "words": 14
+    },
+    {
+      "id": "village-maya-02",
+      "voice": "MAYA",
+      "chapterId": "village",
+      "text": "Sam's car, Dad's medications, the kids' passports. Same place. Same calm.",
+      "startMaster": 428,
+      "words": 11,
+      "note": "over the flight"
+    },
+    {
+      "id": "village-maker-03",
+      "voice": "MAKER",
+      "chapterId": "village",
+      "text": "And the biggest change: no more forms. Provisum asks one question at a time.",
+      "startMaster": 478,
+      "words": 14
+    },
+    {
+      "id": "paperToGlass-maker-01",
+      "voice": "MAKER",
+      "chapterId": "paperToGlass",
+      "text": "Every person gets the documents, dates and packets that fit them. A child's binder isn't a parent's.",
+      "startMaster": 515,
+      "words": 17
+    },
+    {
+      "id": "paperToGlass-founder-02",
+      "voice": "FOUNDER",
+      "chapterId": "paperToGlass",
+      "text": "Everything we drew.",
+      "startMaster": 538,
+      "words": 3
+    },
+    {
+      "id": "paperToGlass-maker-03",
+      "voice": "MAKER",
+      "chapterId": "paperToGlass",
+      "text": "Built natively. Tested at every text size.",
+      "startMaster": 538,
+      "words": 7
+    },
+    {
+      "id": "paperToGlass-maya-04",
+      "voice": "MAYA",
+      "chapterId": "paperToGlass",
+      "text": "And it's all on my phone. Not on anyone's server.",
+      "startMaster": 538,
+      "words": 10
+    },
+    {
+      "id": "providedFor-founder-01",
+      "voice": "FOUNDER",
+      "chapterId": "providedFor",
+      "text": "Provisum. It's Latin for provided for. For everyone you call family.",
+      "startMaster": 582,
+      "words": 11
+    }
+  ],
+  "mismatches": [
+    "Counted spoken words are FOUNDER 215, MAKER 260, MAYA 65 (540 in all), against the script's own totals of about 290 / 330 / 110 (730). The totals table in the script is about 26 percent higher than the lines it sits under.",
+    "At a read pace of about 150 words a minute the counted lines run roughly FOUNDER 1:26, MAKER 1:44, MAYA 0:26, against the script's 2:10 / 2:20 / 0:50.",
+    "Either the totals are rough and should be corrected to the counted figures, or lines are missing from the script. Owner or director to decide; this file follows the lines as written.",
+    "Lines that share one cue in the script (8:58 Everything we drew / Built natively / And it's all on my phone) share the same startMaster; the recorded takes decide the order and the gaps.",
+    "Two lines in chapter 4 and chapter 9 are spoken over a list or a flight; startMaster is the cue that opens that block."
+  ]
+}

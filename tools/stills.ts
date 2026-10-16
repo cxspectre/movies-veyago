@@ -1,10 +1,12 @@
 // stills.ts — render many stills of one composition with a single bundle + browser, then tile a contact sheet.
-// usage: npx tsx tools/stills.ts <CompositionId> <scale> <frame,frame,...> [--sheet=out/sheet.png] [--cols=4]
+// usage: npx tsx tools/stills.ts <CompositionId> <scale> <frame,frame,...> [--sheet=out/sheet.png] [--cols=4] [--gl=swangle|angle|egl|vulkan|default]
+// FILM_GL sets the default renderer (angle); --gl overrides it.
 import {bundle} from '@remotion/bundler';
 import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
 import {execFileSync} from 'node:child_process';
 import {mkdirSync} from 'node:fs';
 import path from 'node:path';
+import {resolveGl} from './glFlag';
 
 const [compId, scaleArg, framesArg, ...flags] = process.argv.slice(2);
 if (!compId || !scaleArg || !framesArg) {
@@ -19,7 +21,7 @@ mkdirSync(outDir, {recursive: true});
 
 const main = async (): Promise<void> => {
   const serveUrl = await bundle({entryPoint: path.resolve('src/index.ts')});
-  const browser = await openBrowser('chrome', {chromiumOptions: {gl: 'angle'}});
+  const browser = await openBrowser('chrome', {chromiumOptions: {gl: resolveGl(flags)}});
   const composition = await selectComposition({serveUrl, id: compId, puppeteerInstance: browser});
   const files: string[] = [];
   for (const frame of frames) {
