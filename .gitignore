@@ -1,20 +1,16 @@
 # dependencies and environments
-node_modules/
-.venv/
+/node_modules/
+/.venv/
 
 # renders and rendered audio (regenerable; far too big for git)
-out/
-audio/
+/out/
+/audio/
 *.wav
 *.aiff
 
 # downloaded sample libraries and caches
-tools/music/.vendor/
-tools/music/.cache/
+/tools/music/.vendor/
+/tools/music/.cache/
 
 # editor/OS noise
 .DS_Store
-
-# The 10-minute story film's scripts stay local while this repo is public.
-# Remove this line when the repo is private or the story is cleared for release.
-docs/SCRIPT-10MIN*.md

@@ -22,4 +22,4 @@ zsh tools/checkRules.sh                   # identity and asset rules, run before
 `node_modules/`, `.venv/`, `out/` (renders), `audio/` (rendered stems, music, voice and foley WAVs) and the music sample library under `tools/music/.vendor/`. Sound is generated on a Mac; see `tools/music`, `tools/vo` and `tools/foley`.
 
 ## Status
-The 2:40 launch film "Provided For" (16:9 master, 0:45 vertical, 0:15 teasers) is built. A 10-minute story film is next.
+The 2:40 launch film "Provided For" (16:9 master, 0:45 vertical, 0:15 teasers) is built. The 10-minute story film (v4) is in production: see `docs/v4/PLAN.md` and `docs/SCRIPT-10MIN-v4.md`; stage-0 briefs are in `docs/v4/briefs/`.
