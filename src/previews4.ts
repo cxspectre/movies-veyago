@@ -6,6 +6,8 @@ import type {PreviewSpec} from './previewTypes';
 import {characterPreviews} from './characters/previews';
 import {endlessPreviews} from './endless/previews';
 import {popupPreviews} from './popup/previews';
+import {kitPreviews} from './kit/previews';
+import {effectsPreviews} from './popup/effects/previews';
 
 const FORMAT_NAMES = ['wide', 'tall'] as const;
 
@@ -20,6 +22,8 @@ const FORMAT_NAMES = ['wide', 'tall'] as const;
 export const previews4: readonly PreviewSpec[] = [
   ...endlessPreviews,
   ...popupPreviews,
+  ...kitPreviews,
+  ...effectsPreviews,
   ...FORMAT_NAMES.map((format) => ({
     id: `Master4-${format}`,
     component: MasterFilm4,

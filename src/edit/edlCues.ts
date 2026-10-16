@@ -27,6 +27,18 @@ const SFX_NAMES: Record<SfxName, true> = {
   coin_clink: true,
   bubble_pop: true,
   title_in: true,
+  fold: true,
+  scissors: true,
+  crumple: true,
+  stamp: true,
+  string: true,
+  pin: true,
+  odometer: true,
+  train: true,
+  plane: true,
+  rocket: true,
+  marble_run: true,
+  padlock: true,
 };
 const isSfxName = (name: string): name is SfxName => Object.hasOwn(SFX_NAMES, name);
 

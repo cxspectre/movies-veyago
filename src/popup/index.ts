@@ -8,3 +8,4 @@ export {houseSpec, HouseArt, MAYAS_HOUSE, villageHouse, type HouseData} from './
 export {crumpleSpec, CRUMPLE_LETTER, EngineArt, LetterArt, type CrumpleData} from './presets/crumple';
 export {FILTER_MACHINE, MachineArt, machineSpec, type MachineData} from './presets/machine';
 export {ROCKET, RocketArt, rocketSpec, type RocketData} from './presets/rocket';
+export * from './effects';

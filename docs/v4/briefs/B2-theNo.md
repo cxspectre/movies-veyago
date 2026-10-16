@@ -1,0 +1,5 @@
+# B2: chapter 3, `theNo` 1:15-1:55 (cloud, Sonnet Medium, CAP $10)
+
+Read `docs/v4/briefs/B-common.md` first, then BIBLE4 section 5.3 and the script's "3. The no".
+
+Build `src/chapters/theNo/` with the A3 effects in `src/popup/effects` (read their README): two letters draw themselves and "Rejected" circles itself on each; `NumberRoll` 4.3(a) and the "Design - Spam" label (only the words the claims sheet verifies, the rest drawn placeholders flagged for the owner); the letters crumple into a ball (`CrumpleBall`) that unfolds (`UnfoldFromBall`) into a cutaway drawing of an engine with gears labelled storage, sync, reminders, export; the super "Keep the engine. Find a new reason."; the paper scissors (`ScissorsCut`) cut the drawing in two, the engine slides away labelled "keep", the old name, idea and purpose slide the other way and fade, blurred so nothing is legible; a calendar page (`PageDrop`) drops in with 21 circled and a `NumberRoll` "21 September 2026" (the date is flagged as needing the owner's confirmation in the claims sheet: build it, mark it in your report); the engine is carried along the pencil line to the next region. FOUNDER voice.
