@@ -59,7 +59,7 @@ function parseSilence(text: string): Silence {
   return {start: a, end: b};
 }
 
-const cueEnd = (c: Cue): number => c.t + (c.kind === 'hit' ? 1 : c.dur);
+const cueEnd = (c: Cue): number => c.t + (c.kind === 'hit' ? 1 + (c.dur ?? 0) : c.dur);
 
 function main(argv: readonly string[]): void {
   const args = parseArgs(argv, FLAGS);
