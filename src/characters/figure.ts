@@ -3,7 +3,7 @@
 // erase from their end back to the shared anchor over 6 frames, then redraw from it over 9). Pure.
 import {handPath, handPolyline, jitter, seedOf, type Ink, type SketchSpec, type StrokeSpec, type Untimed, type XY, sequence, stroke} from '../paper';
 import {DESIGNS} from './designs';
-import {ACCENT_ID, BODY_ID, FACE_ID, type CharacterDesign, type CharacterId, type Figure, type Polyline, type PoseId, type Segment} from './types';
+import {ACCENT_ID, BODY_ID, FACE_ID, PROP_ID, type CharacterDesign, type CharacterId, type Figure, type Polyline, type PoseId, type Segment} from './types';
 
 /** BIBLE4 §4: a swap is 0.5 s; the figure boils at 0.5 px, re-seeded every 8 frames. */
 export const SWAP = {frames: 15, eraseFrames: 6, drawFrames: 9} as const;
@@ -38,6 +38,7 @@ export type Placed = {
   readonly body: readonly Segment[];
   readonly face: readonly Polyline[];
   readonly accent: readonly Polyline[];
+  readonly prop: readonly Polyline[];
   readonly design: CharacterDesign;
 };
 
@@ -70,6 +71,7 @@ export const placeFigure = (character: CharacterId, pose: PoseId, o: FigureOptio
     body: fig.body.map((seg) => ({name: seg.name, pts: transform(seg.pts, seg.name, fig.wobble)})),
     face: fig.face.map((f, i) => ({...f, pts: transform(f.pts, `face-${i}`, fig.wobble * 0.5)})),
     accent: fig.accent.map((a, i) => ({...a, pts: transform(a.pts, `accent-${i}`, fig.wobble * 0.5)})),
+    prop: (fig.prop ?? []).map((a, i) => ({...a, pts: transform(a.pts, `prop-${i}`, fig.wobble * 0.7)})),
   };
 };
 
@@ -86,6 +88,10 @@ const bodyPath = (segments: readonly Segment[], seed: number): string => pathOf(
 
 const accentPath = (accent: readonly Polyline[], seed: number): string => accent.map((a, i) => pathOf(a, seed + i)).filter((d) => d.length > 0).join(' ');
 
+/** Props (the chair, the bed) are drawings, so they are graphite whoever sits on them (BIBLE4 §3 rule 2). */
+const PROP_INK: Ink = 'graphite';
+const PROP_WIDTH = 0.8;
+
 const widthOf = (d: CharacterDesign, scale: number): number => d.lineWidth * scale;
 
 /** The character as untimed strokes (body, face strokes, accent) for anyone composing a bigger page. */
@@ -97,6 +103,7 @@ export const figureItems = (character: CharacterId, pose: PoseId, o: FigureOptio
   const seed = seedOf(prefix);
   return [
     stroke(`${prefix}-${BODY_ID}`, bodyPath(f.body, seed), {ink, width: w, rough: o.rough ?? false}),
+    stroke(`${prefix}-${PROP_ID}`, accentPath(f.prop, seed + 61), {ink: PROP_INK, width: w * PROP_WIDTH, rough: o.rough ?? false}),
     ...f.face.map((pl, i) => stroke(`${prefix}-${FACE_ID}-${i}`, pathOf(pl, seed + 11 + i), {ink, width: w * FACE_WIDTH, pressure: 0.9})),
     stroke(`${prefix}-${ACCENT_ID}`, accentPath(f.accent, seed + 41), {ink: 'accent', width: w * ACCENT_WIDTH}),
   ].filter((s) => s.d.length > 0);
@@ -152,6 +159,8 @@ export const swapSpec = (character: CharacterId, from: PoseId, to: PoseId, s: nu
   const {erase, draw} = swapPhase(s);
   const range = changedRange(a, b);
   const [i0, i1] = range ?? [b.body.length, b.body.length - 1];
+  const propMoved = a.prop.length !== b.prop.length || !a.prop.every((pl, i) => samePts(pl.pts, b.prop[i]?.pts ?? []));
+  const propOf = (p: Placed, pr: number, tag: string): readonly StrokeSpec[] => timed(`${prefix}-${tag}-prop`, accentPath(p.prop, seed + 61), PROP_INK, w * PROP_WIDTH, pr);
   const faceMoved = !a.face.every((pl, i) => samePts(pl.pts, b.face[i]?.pts ?? [])) || a.face.length !== b.face.length;
   const faceOf = (p: Placed, pr: number, tag: string): readonly StrokeSpec[] => [
     ...p.face.flatMap((pl, i) => timed(`${prefix}-${tag}-face-${i}`, pathOf(pl, seed + 11 + i), ink, w * FACE_WIDTH, pr, 0.9)),
@@ -162,6 +171,7 @@ export const swapSpec = (character: CharacterId, from: PoseId, to: PoseId, s: nu
     ...timed(`${prefix}-old`, bodyPath(a.body.slice(i0, i1 + 1), seed + 2), ink, w, 1 - erase),
     ...timed(`${prefix}-new`, bodyPath(b.body.slice(i0, i1 + 1), seed + 3), ink, w, draw),
     ...timed(`${prefix}-suffix`, bodyPath(b.body.slice(i1 + 1), seed + 4), ink, w, 1),
+    ...(propMoved ? [...propOf(a, 1 - erase, 'old'), ...propOf(b, draw, 'new')] : propOf(b, 1, 'held')),
     ...(faceMoved ? [...faceOf(a, 1 - erase, 'old'), ...faceOf(b, Math.max(0, (draw - FACE_AFTER) / (1 - FACE_AFTER)), 'new')] : faceOf(b, 1, 'held')),
   ];
   return {id: prefix, strokes, labels: [], progress: SWAP_U};
@@ -171,7 +181,7 @@ export type Bounds = {readonly x0: number; readonly y0: number; readonly x1: num
 
 /** Bounding box of placed figures (sheet px), grown by `margin`. */
 export const boundsOf = (figures: readonly Placed[], margin: number): Bounds => {
-  const pts = figures.flatMap((f) => [...f.body.flatMap((s) => s.pts), ...f.face.flatMap((p) => p.pts), ...f.accent.flatMap((p) => p.pts)]);
+  const pts = figures.flatMap((f) => [...f.body.flatMap((s) => s.pts), ...f.face.flatMap((p) => p.pts), ...f.accent.flatMap((p) => p.pts), ...f.prop.flatMap((p) => p.pts)]);
   const xs = pts.map((p) => p[0]);
   const ys = pts.map((p) => p[1]);
   return {x0: Math.min(...xs) - margin, y0: Math.min(...ys) - margin, x1: Math.max(...xs) + margin, y1: Math.max(...ys) + margin};
