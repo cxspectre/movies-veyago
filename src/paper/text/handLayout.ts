@@ -2,10 +2,10 @@
 // plans the pen's path and pacing through each glyph. Pure: uses generated metrics, never the DOM.
 import {hash01, hashSigned, seedOf} from '../geometry/noise';
 import type {MarkPoint, GlyphMark} from '../marks/types';
-import type {HandFaceKey, LabelSpec} from '../types';
+import type {HandFaceKey, Ink, LabelSpec} from '../types';
 import {type FaceMetrics, type GlyphMetric, HAND_METRICS} from './handMetrics';
 
-export const DEFAULT_FACE: Record<'graphite' | 'accent', HandFaceKey> = {graphite: 'caveat-500', accent: 'caveat-500'};
+export const DEFAULT_FACE: Record<Ink, HandFaceKey> = {graphite: 'caveat-500', accent: 'caveat-500', sepia: 'caveat-500'};
 export const LINE_HEIGHT = 1.12;
 
 const SIZE_JITTER = 0.035;

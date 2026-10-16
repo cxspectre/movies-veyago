@@ -137,3 +137,10 @@ to `PaperSheet` and `GraphiteSketch` (both default to 0).
 `castShadow(lamp, {height})` gives a layered CSS box-shadow for anything `height` px above the desk (paper ~6, a
 lifted sticky ~20-46, a cup ~60); `shadowOffset(lamp, height)` for your own shadows. Change `azimuth` per shot if
 needed; the baked paper relief assumes upper-left light (invisible at normal viewing distance).
+
+## Sepia (v4, Maya's ink)
+
+`Ink` is `'graphite' | 'accent' | 'sepia'`. Sepia (`INK4.sepia`, #7A4A2A, BIBLE4 §3) deposits into the blue channel and
+develops with graphite's physics (`SEPIA_LOOK`); the rough pass is the same pencil at lower pressure, so it comes out as
+the lighter sepia the bible asks for. Graphite and accent take exactly the v1 code path, so v1 pages render unchanged.
+`LightSketch` takes `sepiaColor` for sepia strokes in the void. Sepia is Maya's only: `src/characters` uses it.

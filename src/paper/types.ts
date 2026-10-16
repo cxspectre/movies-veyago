@@ -1,7 +1,8 @@
 // types.ts — data model for hand-drawn pages. A sketch is DATA (strokes + labels) so the same drawing can be
 // rendered as graphite on paper (Acts 1-2) and re-rendered as hairlines of light (Act 3, the transition).
 
-export type Ink = 'graphite' | 'accent';
+/** 'sepia' is Maya's ink (BIBLE4 §3): the same pencil physics as graphite, warm brown. */
+export type Ink = 'graphite' | 'accent' | 'sepia';
 
 export type StrokeSpec = {
   id: string;

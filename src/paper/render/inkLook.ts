@@ -1,6 +1,7 @@
 // inkLook.ts — how deposited graphite / coloured pencil turns into visible pixels on the paper tooth.
-// Deposit is stored per pixel in one 8-bit channel (graphite = R, accent = G), accumulated additively.
+// Deposit is stored per pixel in one 8-bit channel (graphite = R, accent = G, sepia = B), accumulated additively.
 import {COLORS} from '../../film';
+import {INK4} from '../../beats4';
 import type {Ink} from '../types';
 
 /** One unit of deposit (a single movement at full pressure) is stored as DEPOSIT_UNIT/255 of the channel. */
@@ -52,7 +53,17 @@ export const ACCENT_LOOK: InkLook = {
   build: 1,
 };
 
-export const LOOKS: Record<Ink, InkLook> = {graphite: GRAPHITE_LOOK, accent: ACCENT_LOOK};
+/** Maya's sepia (BIBLE4 §3): a warm brown pencil with graphite's physics, a touch softer on the tooth. */
+export const SEPIA_LOOK: InkLook = {
+  rgb: onPaper(INK4.sepia),
+  reach: 0.74,
+  soft: 0.17,
+  minOpacity: 0.24,
+  maxOpacity: 0.76,
+  build: 0.95,
+};
+
+export const LOOKS: Record<Ink, InkLook> = {graphite: GRAPHITE_LOOK, accent: ACCENT_LOOK, sepia: SEPIA_LOOK};
 
 const smooth = (a: number, b: number, x: number): number => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));

@@ -1,5 +1,5 @@
 // deposit.ts — lays every visible mark down as "deposit" into an opaque-black canvas with additive blending:
-// graphite accumulates in the red channel, the accent pencil in green. develop.ts turns it into pixels.
+// graphite accumulates in the red channel, the accent pencil in green, the sepia pencil in blue. develop.ts turns it into pixels.
 import {SAMPLE_STEP} from '../geometry/path';
 import {hash01, wobble} from '../geometry/noise';
 import {markProgress} from '../marks/compile';
@@ -32,7 +32,9 @@ const DOT_SPACING_PER_WIDTH = 4.4;
 
 const channel = (ink: Ink, alpha: number): string => {
   const a = Math.max(0, Math.min(1, alpha)).toFixed(4);
-  return ink === 'graphite' ? `rgba(255,0,0,${a})` : `rgba(0,255,0,${a})`;
+  if (ink === 'graphite') return `rgba(255,0,0,${a})`;
+  if (ink === 'sepia') return `rgba(0,0,255,${a})`;
+  return `rgba(0,255,0,${a})`;
 };
 
 const unitAlpha = (deposit: number): number => (deposit * DEPOSIT_UNIT) / 255;
