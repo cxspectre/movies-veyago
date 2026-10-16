@@ -3,6 +3,7 @@
 // VO engineers (see audio/foley/README.md, "Levels").
 
 import type {SfxName} from '../../../src/audio/cues';
+import {HIT_TARGET_LUFS_M_V4} from '../../foley4/levels4';
 
 /** Reference: VO is mixed to about -18 LUFS short-term while speaking (web master around -16 LUFS integrated). */
 export const VO_REFERENCE_LUFS_S = -18;
@@ -26,6 +27,7 @@ export const HIT_TARGET_LUFS_M: {readonly [K in SfxName]: number} = {
   coin_clink: -34,
   bubble_pop: -36,
   title_in: -34,
+  ...HIT_TARGET_LUFS_M_V4,
 };
 
 /** Continuous kinds: max momentary loudness of the calibration reference (stroke at pressure 0.6, 2 s). */
