@@ -1,0 +1,14 @@
+# S1-B: the line characters and the Maya style test (cloud, Opus or Fable, effort high, cap about $20)
+
+Read first: `CONTRACT.md` (section 13 especially), `docs/v4/PLAN.md`, `docs/v4/BIBLE4.md` sections 3 (inks) and 4 (the character design sheet, pose list, flipbook swaps) and the chapter beat sheets where characters appear (5.2, 5.8, 5.9, 5.10), `src/paper/README.md` and `src/paper/types.ts` (the v1 pencil engine and its `StrokeSpec`), `src/beats4.ts` (`INK4`), `src/desk/hands/` (how the v1 hands were drawn: what worked, what read as awkward).
+
+Branch `claude/s1b-characters`, open a PR to `main`. Cloud rules: stills only, no WebGL needed, never commit `package-lock.json`, no sub-agents. Stop at the cap and report.
+
+This is the film's biggest art risk and the owner's Gate 1 is the look of Maya: spend your effort on drawing quality, not on plumbing.
+
+## Deliver (in `src/characters/**`, plus an additive edit to `src/paper/types.ts` and the renderer for the sepia ink)
+1. **Sepia ink** in the engine: extend the `Ink` type additively with `'sepia'` (hex `#7A4A2A`, see BIBLE4 section 3) and make the graphite renderer draw it with the same pencil physics as graphite and accent. Do not break the existing inks (the v1 sketches must render identically).
+2. **`<LineCharacter>`**: a character as a **continuous line** (one path per pose, no filled faces, a 3-5 stroke face with no pupils, a mitten loop for hands, one hook for the feet), drawn on by the pencil engine with pressure variation, plus **pose swapping** as a flipbook redraw (a 2-4 pose swap redraws the changed part, not a crossfade) per BIBLE4 section 4. Props: character id, pose id, draw progress, ink, scale. Seated and standing scales per the design sheet.
+3. **The seven characters**: Maya (sepia), Dad, Leo, Mia, Jonas, Sam, Biscuit the dog, each with the silhouette, height and ONE accent detail from the design sheet, and the poses the chapters need (Maya especially: sitting at the kitchen table, naming papers, a wobbling line, looking up from the window, in the doorway, tapping Invite as a tiny figure, and so on: read the beat sheets).
+4. **Style test for Gate 1**: register `CharacterSheet-wide` (all seven, standing, evenly lit on paper) and `Maya-poses-wide` (Maya in at least five poses, plus one swap mid-redraw) in `src/desk/previews.ts`-style fashion via a new `src/characters/previews.ts` that you add to `src/previews4.ts`. Render them at scale 2 into `out/review/s1b/`, LOOK at them at full resolution and iterate at least three times. Faces and anatomy must read as warm, simple and assured: no clip-art, no wobbly nervousness, no anatomy that looks wrong. If after honest rounds a character does not work, say which and why, do not hide it.
+5. `src/characters/README.md` (API, how to add a pose) and the usual checks: `npx tsc --noEmit`, `zsh tools/checkRules.sh`.
