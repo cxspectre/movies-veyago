@@ -14,9 +14,15 @@ import * as village from './village';
 import * as paperToGlass from './paperToGlass';
 import * as providedFor from './providedFor';
 
-/** What a chapter folder exports: the component, its COMPLETE foley cue list (module-local seconds) and extra previews. */
+/**
+ * What a chapter folder exports: the component, its COMPLETE foley cue list (module-local seconds) and extra previews.
+ * Chapters built on the kit (src/kit/README.md) also export `Art` (sheet space) and `Overlay` (screen space), so the
+ * integrator can put every chapter on one sheet.
+ */
 export type ChapterModule = {
   Chapter: React.FC;
+  Art?: React.FC;
+  Overlay?: React.FC;
   cues?: ModuleCues;
   previews?: readonly PreviewSpec[];
 };

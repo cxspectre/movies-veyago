@@ -21,14 +21,15 @@ mkdirSync(outDir, {recursive: true});
 
 const main = async (): Promise<void> => {
   const serveUrl = await bundle({entryPoint: path.resolve('src/index.ts')});
-  const browser = await openBrowser('chrome', {chromiumOptions: {gl: resolveGl(flags)}});
+  const browser = await openBrowser('chrome', {browserExecutable: process.env.FILM_BROWSER ?? null, chromiumOptions: {gl: resolveGl(flags)}});
   const composition = await selectComposition({serveUrl, id: compId, puppeteerInstance: browser});
   const files: string[] = [];
   for (const frame of frames) {
     const output = path.join(outDir, `f${String(frame).padStart(5, '0')}.png`);
+    const began = Date.now();
     await renderStill({composition, serveUrl, frame, output, scale, puppeteerInstance: browser, imageFormat: 'png'});
     files.push(output);
-    console.log('still', output);
+    console.log('still', output, `${Date.now() - began} ms`);
   }
   await browser.close({silent: true});
   const sheet = flag('sheet');
