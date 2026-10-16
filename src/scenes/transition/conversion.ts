@@ -112,7 +112,8 @@ const byStroke = marksByStroke();
 /** Every stroke and label of the page, in drawing order, with its conversion start. */
 export const STROKE_CLOCKS: readonly StrokeClock[] = ordered.map((s, i) => ({
   id: s.id,
-  ink: s.ink,
+  // The v1 pages are graphite and accent only; any other ink converts as graphite hairlines.
+  ink: s.ink === 'accent' ? 'accent' : 'graphite',
   start: conversionStart(i, ordered.length),
   region: regionOf(s.id),
   offPhone: isOffPhone(byStroke.get(s.id) ?? []),

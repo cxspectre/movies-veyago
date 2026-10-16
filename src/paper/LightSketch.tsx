@@ -25,6 +25,8 @@ export type LightSketchProps = {
   /** Core hairline colour (default COLORS.glassWhite) and the accent strokes' colour (default: same as color). */
   readonly color?: string;
   readonly accentColor?: string;
+  /** The sepia strokes' colour (Maya in the light, BIBLE4 §3; default: same as color). */
+  readonly sepiaColor?: string;
   /** 0 = bare hairlines, 1 = default glow, >1 brighter halo. */
   readonly glow?: number;
   /** Core hairline width in sketch px (default 1.1). */
@@ -114,6 +116,7 @@ export const LightSketch: React.FC<LightSketchProps> = ({
   revealOf,
   color = COLORS.glassWhite,
   accentColor,
+  sepiaColor,
   glow = 1,
   coreWidth = 1.1,
   includeRough = false,
@@ -135,7 +138,7 @@ export const LightSketch: React.FC<LightSketchProps> = ({
         const reveal = revealOf ? revealOf(m.strokeId, u) : fallback(m.strokeId, u);
         const local = localOf(m, u, reveal, spans.get(m.strokeId));
         if (local <= 0) return null;
-        const c = m.ink === 'accent' ? (accentColor ?? color) : color;
+        const c = m.ink === 'accent' ? (accentColor ?? color) : m.ink === 'sepia' ? (sepiaColor ?? color) : color;
         return m.kind === 'path' ? (
           <PathLight key={i} m={m} local={local} color={c} glow={glow} core={coreWidth} flare={tipFlare} />
         ) : (
