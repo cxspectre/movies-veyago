@@ -60,8 +60,9 @@ const continuousGain = (key: ContinuousKey): number =>
     continuousVoice(key, REFERENCE_DUR[key], createRng(CALIBRATION_SEED), 0, DEFAULT_PRESSURE),
   );
 
+// The reference take always uses the default dur/rate: a longer fold or a faster roll keeps the family's gain.
 const hitGain = (name: SfxName, opts: HitOptions): number =>
-  calibrated(`hit:${name}:${opts.snapHz ?? 'default'}`, HIT_TARGET_LUFS_M[name], () => SFX[name].render(createRng(CALIBRATION_SEED), 0, opts));
+  calibrated(`hit:${name}:${opts.snapHz ?? 'default'}`, HIT_TARGET_LUFS_M[name], () => SFX[name].render(createRng(CALIBRATION_SEED), 0, {snapHz: opts.snapHz}));
 
 /** A hit, fully calibrated (cue gain is a linear multiplier on top). */
 export function renderHit(name: SfxName, seed: number, opts: {pan?: number; gain?: number} & HitOptions = {}): Rendered {
@@ -96,7 +97,7 @@ export function renderCue(cue: Cue, opts: HitOptions = {}): Rendered {
   const seed = cueSeed(cue);
   switch (cue.kind) {
     case 'hit':
-      return renderHit(cue.name, seed, {pan: cue.pan, gain: cue.gain, snapHz: opts.snapHz});
+      return renderHit(cue.name, seed, {pan: cue.pan, gain: cue.gain, snapHz: opts.snapHz, dur: cue.dur, rate: cue.rate});
     case 'stroke':
       return renderContinuous((cue.tool ?? 'pencil') as StrokeTool, cue.dur, seed, {pressure: cue.pressure});
     case 'erase':

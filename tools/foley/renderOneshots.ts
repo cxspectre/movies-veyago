@@ -17,7 +17,7 @@ import {num, one, parseArgs} from './render/args';
 import {ONESHOT_CEILING_DBTP, type ContinuousKey} from './render/levels';
 import {renderContinuous, renderHit, type Rendered} from './render/sound';
 import {calibratedRoomTone} from './render/stem';
-import {SFX, SFX_NAMES, type Family} from './sounds/registry';
+import {SFX, SFX_NAMES_V1, type Family} from './sounds/registry';
 
 const DEFAULT_OUT = 'audio/foley/oneshots';
 const DEFAULT_VARIANTS = 3;
@@ -72,7 +72,7 @@ function save(dir: string, base: Omit<CatalogEntry, 'file' | 'duration' | 'peak'
 }
 
 function renderHits(dir: string, variants: number, snapHz: number | undefined): CatalogEntry[] {
-  return SFX_NAMES.flatMap((name: SfxName) =>
+  return SFX_NAMES_V1.flatMap((name: SfxName) =>
     Array.from({length: variants}, (_, v) =>
       save(dir, {name, kind: 'hit', family: SFX[name].family, variant: v + 1, description: SFX[name].description}, renderHit(name, hashSeed('oneshot', name, v + 1), {snapHz})),
     ),
