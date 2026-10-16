@@ -1,0 +1,447 @@
+{
+ "_comment": "DEMO cue list in MASTER seconds for testing renderCues end to end. Not the film's authoritative cues (those come from the sketches' cues() via the integrator).",
+ "lengthSec": 160,
+ "silences": [
+  {
+   "start": 113,
+   "end": 115,
+   "fadeOutMs": 3
+  }
+ ],
+ "cues": [
+  {
+   "kind": "stroke",
+   "t": 0.8,
+   "dur": 4.6,
+   "pressure": 0.55
+  },
+  {
+   "kind": "stroke",
+   "t": 6.2,
+   "dur": 0.622,
+   "pressure": 0.4877122934811255
+  },
+  {
+   "kind": "stroke",
+   "t": 7.265,
+   "dur": 0.333,
+   "pressure": 0.5839705010766723
+  },
+  {
+   "kind": "stroke",
+   "t": 7.913,
+   "dur": 0.317,
+   "pressure": 0.576858933297355
+  },
+  {
+   "kind": "stroke",
+   "t": 8.397,
+   "dur": 0.749,
+   "pressure": 0.46746385589365474
+  },
+  {
+   "kind": "stroke",
+   "t": 9.336,
+   "dur": 0.738,
+   "pressure": 0.6567130311680095
+  },
+  {
+   "kind": "stroke",
+   "t": 10.28,
+   "dur": 0.507,
+   "pressure": 0.6068583056013973
+  },
+  {
+   "kind": "stroke",
+   "t": 11.363,
+   "dur": 0.914,
+   "pressure": 0.549170118662695
+  },
+  {
+   "kind": "stroke",
+   "t": 12.866,
+   "dur": 0.304,
+   "pressure": 0.6646171147621698
+  },
+  {
+   "kind": "stroke",
+   "t": 13.45,
+   "dur": 0.416,
+   "pressure": 0.4794480595195921
+  },
+  {
+   "kind": "stroke",
+   "t": 14.155,
+   "dur": 1.189,
+   "pressure": 0.49518159498098435
+  },
+  {
+   "kind": "stroke",
+   "t": 15.755,
+   "dur": 0.985,
+   "pressure": 0.5430993856814328
+  },
+  {
+   "kind": "stroke",
+   "t": 17.136,
+   "dur": 0.322,
+   "pressure": 0.4649002924915582
+  },
+  {
+   "kind": "stroke",
+   "t": 17.701,
+   "dur": 1.032,
+   "pressure": 0.5568980764173507
+  },
+  {
+   "kind": "stroke",
+   "t": 19.025,
+   "dur": 0.923,
+   "pressure": 0.5632960940926939
+  },
+  {
+   "kind": "hit",
+   "t": 10.5,
+   "name": "tick"
+  },
+  {
+   "kind": "hit",
+   "t": 13.5,
+   "name": "tick"
+  },
+  {
+   "kind": "hit",
+   "t": 17.0,
+   "name": "tick"
+  },
+  {
+   "kind": "hit",
+   "t": 19.0,
+   "name": "tick"
+  },
+  {
+   "kind": "hit",
+   "t": 20.0,
+   "name": "pencil_down"
+  },
+  {
+   "kind": "hit",
+   "t": 22.0,
+   "name": "cup_down"
+  },
+  {
+   "kind": "hit",
+   "t": 27.0,
+   "name": "sticky_press"
+  },
+  {
+   "kind": "hit",
+   "t": 27.4,
+   "name": "sticky_smooth"
+  },
+  {
+   "kind": "slide",
+   "t": 37.4,
+   "dur": 0.6,
+   "pan": -0.3
+  },
+  {
+   "kind": "stroke",
+   "t": 38,
+   "dur": 0.759,
+   "pressure": 0.5232289532166459
+  },
+  {
+   "kind": "stroke",
+   "t": 39.032,
+   "dur": 0.62,
+   "pressure": 0.7125412486720286
+  },
+  {
+   "kind": "stroke",
+   "t": 39.971,
+   "dur": 0.43,
+   "pressure": 0.7440524542477747
+  },
+  {
+   "kind": "stroke",
+   "t": 40.536,
+   "dur": 0.534,
+   "pressure": 0.6771422788695748
+  },
+  {
+   "kind": "stroke",
+   "t": 41.216,
+   "dur": 0.591,
+   "pressure": 0.4617621771142313
+  },
+  {
+   "kind": "stroke",
+   "t": 42.108,
+   "dur": 0.812,
+   "pressure": 0.6219077820832152
+  },
+  {
+   "kind": "slide",
+   "t": 43.4,
+   "dur": 0.6,
+   "pan": 0.3
+  },
+  {
+   "kind": "stroke",
+   "t": 44,
+   "dur": 0.472,
+   "pressure": 0.5550535163157505
+  },
+  {
+   "kind": "stroke",
+   "t": 44.721,
+   "dur": 0.838,
+   "pressure": 0.47062888482205817
+  },
+  {
+   "kind": "stroke",
+   "t": 45.687,
+   "dur": 0.416,
+   "pressure": 0.6591126203480785
+  },
+  {
+   "kind": "stroke",
+   "t": 46.222,
+   "dur": 0.785,
+   "pressure": 0.5428822129528125
+  },
+  {
+   "kind": "stroke",
+   "t": 47.28,
+   "dur": 0.745,
+   "pressure": 0.5836922301752765
+  },
+  {
+   "kind": "stroke",
+   "t": 48.34,
+   "dur": 0.91,
+   "pressure": 0.5541015767065351
+  },
+  {
+   "kind": "slide",
+   "t": 49.4,
+   "dur": 0.6,
+   "pan": 0.3
+  },
+  {
+   "kind": "stroke",
+   "t": 50,
+   "dur": 0.334,
+   "pressure": 0.4851287383445196
+  },
+  {
+   "kind": "stroke",
+   "t": 50.452,
+   "dur": 0.815,
+   "pressure": 0.48880206660560527
+  },
+  {
+   "kind": "stroke",
+   "t": 51.441,
+   "dur": 0.513,
+   "pressure": 0.7114265922378898
+  },
+  {
+   "kind": "stroke",
+   "t": 52.078,
+   "dur": 0.559,
+   "pressure": 0.6148319727432112
+  },
+  {
+   "kind": "stroke",
+   "t": 53.002,
+   "dur": 0.855,
+   "pressure": 0.7091953409095546
+  },
+  {
+   "kind": "stroke",
+   "t": 54.041,
+   "dur": 0.532,
+   "pressure": 0.5576313495994875
+  },
+  {
+   "kind": "stroke",
+   "t": 54.939,
+   "dur": 0.966,
+   "pressure": 0.4952762717373327
+  },
+  {
+   "kind": "hit",
+   "t": 58.5,
+   "name": "ruler_tap"
+  },
+  {
+   "kind": "hit",
+   "t": 60.5,
+   "name": "coin_clink"
+  },
+  {
+   "kind": "hit",
+   "t": 62.5,
+   "name": "key_clink"
+  },
+  {
+   "kind": "hit",
+   "t": 67.0,
+   "name": "bubble_pop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 67.5,
+   "name": "bubble_pop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 68.0,
+   "name": "bubble_pop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 68.5,
+   "name": "bubble_pop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 69.0,
+   "name": "bubble_pop",
+   "gain": 0.8
+  },
+  {
+   "kind": "erase",
+   "t": 64.0,
+   "dur": 1.0
+  },
+  {
+   "kind": "stroke",
+   "t": 72.0,
+   "dur": 2.5,
+   "pressure": 0.5,
+   "tool": "pen"
+  },
+  {
+   "kind": "stroke",
+   "t": 75.0,
+   "dur": 0.6,
+   "pressure": 0.85
+  },
+  {
+   "kind": "stroke",
+   "t": 76.0,
+   "dur": 2.4,
+   "pressure": 0.5,
+   "tool": "pen"
+  },
+  {
+   "kind": "hit",
+   "t": 79.0,
+   "name": "pen_cap"
+  },
+  {
+   "kind": "hit",
+   "t": 80.5,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 81.25,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 82.0,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 82.75,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 83.5,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "hit",
+   "t": 84.25,
+   "name": "paper_drop",
+   "gain": 0.8
+  },
+  {
+   "kind": "sweep",
+   "t": 91.0,
+   "dur": 3.0
+  },
+  {
+   "kind": "hit",
+   "t": 101.0,
+   "name": "snap"
+  },
+  {
+   "kind": "hit",
+   "t": 103.0,
+   "name": "snap"
+  },
+  {
+   "kind": "hit",
+   "t": 105.0,
+   "name": "snap"
+  },
+  {
+   "kind": "hit",
+   "t": 107.0,
+   "name": "snap"
+  },
+  {
+   "kind": "hit",
+   "t": 108.0,
+   "name": "card_flip"
+  },
+  {
+   "kind": "hit",
+   "t": 110.0,
+   "name": "wallet_slide"
+  },
+  {
+   "kind": "hit",
+   "t": 115.0,
+   "name": "title_in"
+  },
+  {
+   "kind": "sweep",
+   "t": 141.0,
+   "dur": 2.0
+  },
+  {
+   "kind": "hit",
+   "t": 146.0,
+   "name": "phone_down"
+  },
+  {
+   "kind": "hit",
+   "t": 150.5,
+   "name": "pencil_down",
+   "gain": 0.7
+  },
+  {
+   "kind": "hit",
+   "t": 158.0,
+   "name": "pencil_click"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Veyago wordmark">
+  <title>Veyago</title>
+  <!-- Transparent background — for use on any dark surface -->
+  <text
+    x="20"
+    y="58"
+    font-family="'Syne', 'Arial Black', sans-serif"
+    font-weight="700"
+    font-size="52"
+    letter-spacing="-2.5"
+    fill="#F2F4F7"
+  >veyag<tspan fill="#D4C9A8">o</tspan></text>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "_comment": "Room-tone bed silences (MASTER seconds): black open, the whole glass world 1:33-2:25, the end. Render with --room-tone-only.",
+ "lengthSec": 160,
+ "cues": [],
+ "silences": [
+  {
+   "start": 0,
+   "end": 0.6,
+   "fadeInMs": 1500
+  },
+  {
+   "start": 93,
+   "end": 145,
+   "fadeOutMs": 2500,
+   "fadeInMs": 800
+  },
+  {
+   "start": 159.8,
+   "end": 160,
+   "fadeOutMs": 1300
+  }
+ ]
+}

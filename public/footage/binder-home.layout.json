@@ -1,0 +1,1181 @@
+{
+ "source": "Provisum 1.2 (release/1.2), Simulator iPhone 17 Pro, iOS 27.0; AXe describe-ui accessibility frames",
+ "appearance": "dark",
+ "still": "binder-home.png",
+ "screen": {
+  "wPt": 402.0,
+  "hPt": 874.0,
+  "scale": 3,
+  "wPx": 1206,
+  "hPx": 2622
+ },
+ "safeArea": {
+  "top": 62.0,
+  "bottom": 34.0,
+  "left": 0,
+  "right": 0
+ },
+ "statusBar": {
+  "x": 0.0,
+  "y": 0.0,
+  "w": 402.0,
+  "h": 54.0
+ },
+ "dynamicIsland": {
+  "x": 138.5,
+  "y": 11.0,
+  "w": 125.0,
+  "h": 37.0
+ },
+ "homeIndicator": {
+  "x": 134.0,
+  "y": 861.0,
+  "w": 134.0,
+  "h": 5.0
+ },
+ "tabBar": {
+  "x": 0,
+  "y": 791,
+  "w": 402,
+  "h": 83
+ },
+ "tabBarCapsule": {
+  "x": 21,
+  "y": 791,
+  "w": 360,
+  "h": 62
+ },
+ "notes": [
+  "Frames are points, origin top-left of the screen; multiply by 3 for the PNG/video pixels.",
+  "The home scrolls: elements with onFirstScreen=false are below the fold in the still.",
+  "The tab bar floats over content (Liquid Glass); content under it is visible through it.",
+  "statusBar, dynamicIsland and homeIndicator are iOS standard geometry for this device, not read from the app; simctl stills do not draw the home indicator, so it is absent from the PNGs and videos.",
+  "Helper chips are a horizontal strip: chips past x=402 are off screen to the right.",
+  "glassFrame (toolbar items) is the drawn Liquid Glass circle/capsule; frame is the tap target.",
+  "The -still.png (simctl screenshot) has no Dynamic Island; the videos and their posters show the black Dynamic Island pill (dynamicIsland frame). Everything else is pixel-identical.",
+  "Dock buttons: the 52 pt circle sits at the top-centre of the frame, the label under it.",
+  "binder-home.png and binder-home-dark-still.png are the same image."
+ ],
+ "elements": [
+  {
+   "kind": "binderSwitcher",
+   "label": "Binder: Mom. Switch binder",
+   "id": null,
+   "frame": {
+    "x": 20,
+    "y": 66,
+    "w": 63.7,
+    "h": 36
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 66,
+    "w": 63.7,
+    "h": 36
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "EH",
+     "x": 26,
+     "y": 69,
+     "w": 30,
+     "h": 30
+    }
+   ],
+   "glassFrame": {
+    "x": 16.0,
+    "y": 62.0,
+    "w": 71.7,
+    "h": 44.0
+   }
+  },
+  {
+   "kind": "navTitle",
+   "label": "Mom",
+   "id": null,
+   "frame": {
+    "x": 181,
+    "y": 73.7,
+    "w": 40,
+    "h": 20.7
+   },
+   "clippedFrame": {
+    "x": 181,
+    "y": 73.7,
+    "w": 40,
+    "h": 20.7
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "navButton",
+   "label": "Search",
+   "id": null,
+   "frame": {
+    "x": 290,
+    "y": 66,
+    "w": 36,
+    "h": 36
+   },
+   "clippedFrame": {
+    "x": 290,
+    "y": 66,
+    "w": 36,
+    "h": 36
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [],
+   "glassFrame": {
+    "x": 286.0,
+    "y": 62.0,
+    "w": 44.0,
+    "h": 44.0
+   }
+  },
+  {
+   "kind": "navButton",
+   "label": "Add",
+   "id": "plus",
+   "frame": {
+    "x": 346,
+    "y": 66,
+    "w": 36,
+    "h": 36
+   },
+   "clippedFrame": {
+    "x": 346,
+    "y": 66,
+    "w": 36,
+    "h": 36
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [],
+   "glassFrame": {
+    "x": 342.0,
+    "y": 62.0,
+    "w": 44.0,
+    "h": 44.0
+   }
+  },
+  {
+   "kind": "headline",
+   "label": "Next up \u00b7 1 of 2",
+   "id": "home.headline",
+   "frame": {
+    "x": 20.0,
+    "y": 144,
+    "w": 103,
+    "h": 18
+   },
+   "clippedFrame": {
+    "x": 20.0,
+    "y": 144,
+    "w": 103.0,
+    "h": 18
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "link",
+   "label": "1 more in Deadlines",
+   "id": "home.attention.more",
+   "frame": {
+    "x": 230,
+    "y": 132,
+    "w": 152,
+    "h": 42
+   },
+   "clippedFrame": {
+    "x": 230,
+    "y": 132,
+    "w": 152,
+    "h": 42
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "1 more in Deadlines",
+     "x": 230,
+     "y": 144,
+     "w": 138.7,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "nextUpCard",
+   "label": "Tomorrow, Cardiology follow-up, Tomorrow at 10:30\u202fAM \u00b7 Dr. Alan Brooks \u00b7 David is on it",
+   "id": null,
+   "frame": {
+    "x": 21,
+    "y": 174,
+    "w": 360,
+    "h": 137
+   },
+   "clippedFrame": {
+    "x": 21,
+    "y": 174,
+    "w": 360,
+    "h": 137
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Tomorrow",
+     "x": 21,
+     "y": 174,
+     "w": 249,
+     "h": 64.7
+    },
+    {
+     "text": "Cardiology follow-up",
+     "x": 21,
+     "y": 242.7,
+     "w": 216.3,
+     "h": 26.3
+    },
+    {
+     "text": "Tomorrow at 10:30\u202fAM \u00b7 Dr. Alan Brooks \u00b7 David is on it",
+     "x": 21,
+     "y": 273,
+     "w": 340,
+     "h": 38
+    }
+   ]
+  },
+  {
+   "kind": "nextUpAction",
+   "label": "Done: Cardiology follow-up",
+   "id": null,
+   "frame": {
+    "x": 21,
+    "y": 348,
+    "w": 244,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 21,
+    "y": 348,
+    "w": 244,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Done",
+     "x": 21,
+     "y": 348,
+     "w": 244,
+     "h": 54
+    }
+   ]
+  },
+  {
+   "kind": "nextUpAction",
+   "label": "Snooze Cardiology follow-up",
+   "id": null,
+   "frame": {
+    "x": 273,
+    "y": 348,
+    "w": 108,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 273,
+    "y": 348,
+    "w": 108,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Snooze",
+     "x": 273,
+     "y": 348,
+     "w": 108,
+     "h": 54
+    }
+   ]
+  },
+  {
+   "kind": "pageIndicator",
+   "label": "Page 1 of 2",
+   "id": null,
+   "frame": {
+    "x": 186,
+    "y": 414,
+    "w": 30,
+    "h": 6
+   },
+   "clippedFrame": {
+    "x": 186,
+    "y": 414,
+    "w": 30,
+    "h": 6
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "sectionHeader",
+   "label": "LATER",
+   "id": null,
+   "frame": {
+    "x": 20.0,
+    "y": 440,
+    "w": 44,
+    "h": 14.3
+   },
+   "clippedFrame": {
+    "x": 20.0,
+    "y": 440,
+    "w": 44.0,
+    "h": 14.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "laterRow",
+   "label": "Spectrum, Due in 3 days",
+   "id": null,
+   "frame": {
+    "x": 20,
+    "y": 458.3,
+    "w": 362,
+    "h": 36
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 458.3,
+    "w": 362,
+    "h": 36.0
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Sun 18",
+     "x": 20,
+     "y": 467.3,
+     "w": 50.7,
+     "h": 18
+    },
+    {
+     "text": "Spectrum",
+     "x": 102,
+     "y": 467.3,
+     "w": 67,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "laterRow",
+   "label": "AEP Ohio, Due in 9 days",
+   "id": null,
+   "frame": {
+    "x": 20,
+    "y": 498.3,
+    "w": 362,
+    "h": 36.0
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 498.3,
+    "w": 362,
+    "h": 36.0
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Sat 24",
+     "x": 20,
+     "y": 507.3,
+     "w": 47,
+     "h": 18.0
+    },
+    {
+     "text": "AEP Ohio",
+     "x": 102,
+     "y": 507.3,
+     "w": 64,
+     "h": 18.0
+    }
+   ]
+  },
+  {
+   "kind": "laterRow",
+   "label": "Buick Encore registration, Expires in 12 days",
+   "id": null,
+   "frame": {
+    "x": 20,
+    "y": 538.3,
+    "w": 362,
+    "h": 36
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 538.3,
+    "w": 362,
+    "h": 36.0
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Tue 27",
+     "x": 20,
+     "y": 547.3,
+     "w": 49.3,
+     "h": 18
+    },
+    {
+     "text": "Buick Encore registration",
+     "x": 102,
+     "y": 547.3,
+     "w": 171.7,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "dockButton",
+   "label": "Emergency",
+   "id": "emergency.entry",
+   "frame": {
+    "x": 20,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Emergency",
+     "x": 20,
+     "y": 610.7,
+     "w": 69.3,
+     "h": 70.3
+    }
+   ]
+  },
+  {
+   "kind": "dockButton",
+   "label": "Family",
+   "id": "dock.person.2",
+   "frame": {
+    "x": 93.3,
+    "y": 610.7,
+    "w": 69.0,
+    "h": 70.3
+   },
+   "clippedFrame": {
+    "x": 93.3,
+    "y": 610.7,
+    "w": 69.0,
+    "h": 70.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Family",
+     "x": 93.3,
+     "y": 610.7,
+     "w": 69.0,
+     "h": 70.3
+    }
+   ]
+  },
+  {
+   "kind": "dockButton",
+   "label": "Bills",
+   "id": "bills.entry.home",
+   "frame": {
+    "x": 166.3,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "clippedFrame": {
+    "x": 166.3,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Bills",
+     "x": 166.3,
+     "y": 610.7,
+     "w": 69.3,
+     "h": 70.3
+    }
+   ]
+  },
+  {
+   "kind": "dockButton",
+   "label": "Packets",
+   "id": "packets.entry.home",
+   "frame": {
+    "x": 239.7,
+    "y": 610.7,
+    "w": 69.0,
+    "h": 70.3
+   },
+   "clippedFrame": {
+    "x": 239.7,
+    "y": 610.7,
+    "w": 69.0,
+    "h": 70.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Packets",
+     "x": 239.7,
+     "y": 610.7,
+     "w": 69.0,
+     "h": 70.3
+    }
+   ]
+  },
+  {
+   "kind": "dockButton",
+   "label": "More",
+   "id": "more.entry.home",
+   "frame": {
+    "x": 312.7,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "clippedFrame": {
+    "x": 312.7,
+    "y": 610.7,
+    "w": 69.3,
+    "h": 70.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "More",
+     "x": 312.7,
+     "y": 610.7,
+     "w": 69.3,
+     "h": 70.3
+    }
+   ]
+  },
+  {
+   "kind": "sectionHeader",
+   "label": "HELPERS",
+   "id": null,
+   "frame": {
+    "x": 20.0,
+    "y": 701.7,
+    "w": 63.3,
+    "h": 14.3
+   },
+   "clippedFrame": {
+    "x": 20.0,
+    "y": 701.7,
+    "w": 63.3,
+    "h": 14.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "helperChip",
+   "label": "Still right?",
+   "id": "helper.checkUp",
+   "frame": {
+    "x": 20,
+    "y": 724,
+    "w": 127.7,
+    "h": 44
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 724,
+    "w": 127.7,
+    "h": 44
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Still right?",
+     "x": 20,
+     "y": 724,
+     "w": 127.7,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "helperChip",
+   "label": "Go through the mail",
+   "id": "helper.mail",
+   "frame": {
+    "x": 155.7,
+    "y": 724,
+    "w": 194.0,
+    "h": 44
+   },
+   "clippedFrame": {
+    "x": 155.7,
+    "y": 724,
+    "w": 194.0,
+    "h": 44
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": [
+    {
+     "text": "Go through the mail",
+     "x": 155.7,
+     "y": 724,
+     "w": 194.0,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "helperChip",
+   "label": "Things to add",
+   "id": "helper.things",
+   "frame": {
+    "x": 357.7,
+    "y": 724,
+    "w": 151.7,
+    "h": 44
+   },
+   "clippedFrame": {
+    "x": 357.7,
+    "y": 724,
+    "w": 44.3,
+    "h": 44
+   },
+   "onFirstScreen": true,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Things to add",
+     "x": 357.7,
+     "y": 724,
+     "w": 151.7,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "helperChip",
+   "label": "Paperwork helper",
+   "id": "helper.paperwork",
+   "frame": {
+    "x": 517.3,
+    "y": 724,
+    "w": 179,
+    "h": 44
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Paperwork helper",
+     "x": 517.3,
+     "y": 724,
+     "w": 179,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "helperChip",
+   "label": "Back from the hospital",
+   "id": "helper.hospital",
+   "frame": {
+    "x": 704.3,
+    "y": 724,
+    "w": 213.3,
+    "h": 44
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Back from the hospital",
+     "x": 704.3,
+     "y": 724,
+     "w": 213.3,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "sectionHeader",
+   "label": "IN THIS BINDER",
+   "id": null,
+   "frame": {
+    "x": 20.0,
+    "y": 788,
+    "w": 110,
+    "h": 14.3
+   },
+   "clippedFrame": {
+    "x": 20.0,
+    "y": 788,
+    "w": 110.0,
+    "h": 14.3
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "glanceCard",
+   "label": "Bills due this month, Next: Spectrum \u00b7 Sun 18, $488.67",
+   "id": "glance.bills",
+   "frame": {
+    "x": 20,
+    "y": 810.3,
+    "w": 362,
+    "h": 64.3
+   },
+   "clippedFrame": {
+    "x": 20,
+    "y": 810.3,
+    "w": 362,
+    "h": 63.7
+   },
+   "onFirstScreen": true,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Bills due this month",
+     "x": 76,
+     "y": 822.3,
+     "w": 156,
+     "h": 20.3
+    },
+    {
+     "text": "$488.67",
+     "x": 278.7,
+     "y": 832.3,
+     "w": 69.7,
+     "h": 20.3
+    },
+    {
+     "text": "Next: Spectrum \u00b7 Sun 18",
+     "x": 76,
+     "y": 844.7,
+     "w": 165.7,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "glanceCard",
+   "label": "Papers, 14",
+   "id": "glance.papers",
+   "frame": {
+    "x": 20,
+    "y": 882.7,
+    "w": 115.3,
+    "h": 121.7
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "14",
+     "x": 32,
+     "y": 932.7,
+     "w": 37,
+     "h": 33.7
+    },
+    {
+     "text": "Papers",
+     "x": 32,
+     "y": 974.3,
+     "w": 47.3,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "glanceCard",
+   "label": "People, 8",
+   "id": "glance.people",
+   "frame": {
+    "x": 143.3,
+    "y": 882.7,
+    "w": 115.3,
+    "h": 121.7
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "8",
+     "x": 155.3,
+     "y": 932.7,
+     "w": 18.7,
+     "h": 33.7
+    },
+    {
+     "text": "People",
+     "x": 155.3,
+     "y": 974.3,
+     "w": 47,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "glanceCard",
+   "label": "To-dos, 0",
+   "id": "glance.todos",
+   "frame": {
+    "x": 266.7,
+    "y": 882.7,
+    "w": 115.3,
+    "h": 121.7
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "0",
+     "x": 278.7,
+     "y": 932.7,
+     "w": 18.7,
+     "h": 33.7
+    },
+    {
+     "text": "To-dos",
+     "x": 278.7,
+     "y": 974.3,
+     "w": 48.7,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "row",
+   "label": "Paid first-half property tax, Payment \u00b7 3 days ago, Log",
+   "id": null,
+   "frame": {
+    "x": 20,
+    "y": 1012.3,
+    "w": 362,
+    "h": 64.3
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Paid first-half property tax",
+     "x": 76,
+     "y": 1024.3,
+     "w": 210,
+     "h": 20.3
+    },
+    {
+     "text": "Log",
+     "x": 322,
+     "y": 1035.5,
+     "w": 26.3,
+     "h": 18
+    },
+    {
+     "text": "Payment \u00b7 3 days ago",
+     "x": 76,
+     "y": 1046.7,
+     "w": 146.7,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "sectionHeader",
+   "label": "FAMILY",
+   "id": null,
+   "frame": {
+    "x": 20.0,
+    "y": 1096.7,
+    "w": 51,
+    "h": 14.3
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": []
+  },
+  {
+   "kind": "familyCard",
+   "label": "You, Claire and David have access \u00b7 1 invite waiting, Nothing new from them lately.",
+   "id": "home.family.activity",
+   "frame": {
+    "x": 20,
+    "y": 1119,
+    "w": 362,
+    "h": 92
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "D",
+     "x": 32,
+     "y": 1133,
+     "w": 34,
+     "h": 34
+    },
+    {
+     "text": "C",
+     "x": 56,
+     "y": 1133,
+     "w": 34,
+     "h": 34
+    },
+    {
+     "text": "You, Claire and David have access \u00b7 1 invite waiting",
+     "x": 102,
+     "y": 1131,
+     "w": 245.7,
+     "h": 38
+    },
+    {
+     "text": "Nothing new from them lately.",
+     "x": 32,
+     "y": 1181,
+     "w": 205,
+     "h": 18
+    }
+   ]
+  },
+  {
+   "kind": "sectionHeader",
+   "label": "Set up Mom's binder",
+   "id": null,
+   "frame": {
+    "x": 92,
+    "y": 1247,
+    "w": 187.3,
+    "h": 24
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": []
+  },
+  {
+   "kind": "row",
+   "label": "Collapse setup",
+   "id": "chevron.up",
+   "frame": {
+    "x": 326,
+    "y": 1243,
+    "w": 44,
+    "h": 44
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": []
+  },
+  {
+   "kind": "row",
+   "label": "Add or get one: Healthcare proxy or advance directive",
+   "id": null,
+   "frame": {
+    "x": 36,
+    "y": 1351,
+    "w": 330,
+    "h": 164.3
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "Healthcare proxy or advance directive",
+     "x": 88,
+     "y": 1363,
+     "w": 160.7,
+     "h": 42.3
+    },
+    {
+     "text": "Who decides, and what Mom wants, if they can't say.",
+     "x": 88,
+     "y": 1407.3,
+     "w": 264,
+     "h": 38
+    },
+    {
+     "text": "Add or get one",
+     "x": 88,
+     "y": 1455.3,
+     "w": 155.3,
+     "h": 48
+    }
+   ]
+  },
+  {
+   "kind": "row",
+   "label": "7 done",
+   "id": null,
+   "frame": {
+    "x": 36,
+    "y": 1531.3,
+    "w": 86,
+    "h": 44
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": [
+    {
+     "text": "7 done",
+     "x": 36,
+     "y": 1531.3,
+     "w": 86,
+     "h": 44
+    }
+   ]
+  },
+  {
+   "kind": "row",
+   "label": "Hide this card",
+   "id": null,
+   "frame": {
+    "x": 281.7,
+    "y": 1545.7,
+    "w": 84.3,
+    "h": 15.7
+   },
+   "clippedFrame": null,
+   "onFirstScreen": false,
+   "fullyVisible": false,
+   "texts": []
+  },
+  {
+   "kind": "tabBarTab",
+   "label": "Binder",
+   "id": null,
+   "frame": {
+    "x": 25,
+    "y": 795,
+    "w": 96,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 25,
+    "y": 795,
+    "w": 96,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "tabBarTab",
+   "label": "Documents",
+   "id": null,
+   "frame": {
+    "x": 110.3,
+    "y": 795,
+    "w": 96,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 110.3,
+    "y": 795,
+    "w": 96.0,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "tabBarTab",
+   "label": "Deadlines",
+   "id": null,
+   "frame": {
+    "x": 195.7,
+    "y": 795,
+    "w": 96.0,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 195.7,
+    "y": 795,
+    "w": 96.0,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  },
+  {
+   "kind": "tabBarTab",
+   "label": "People",
+   "id": null,
+   "frame": {
+    "x": 281,
+    "y": 795,
+    "w": 96,
+    "h": 54
+   },
+   "clippedFrame": {
+    "x": 281,
+    "y": 795,
+    "w": 96,
+    "h": 54
+   },
+   "onFirstScreen": true,
+   "fullyVisible": true,
+   "texts": []
+  }
+ ]
+}

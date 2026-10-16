@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Veyago app icon">
+  <title>Veyago Icon</title>
+  <!-- App icon square with rounded corners -->
+  <rect width="200" height="200" fill="#09111F" rx="44"/>
+  <!-- V-path: ascending arms from bottom-left and bottom-right, meeting at apex -->
+  <path
+    d="M52 148 L100 60 L148 148"
+    stroke="#F2F4F7"
+    stroke-width="11"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  <!-- Parchment compass dot at the apex -->
+  <circle cx="100" cy="60" r="13" fill="#D4C9A8"/>
+</svg>

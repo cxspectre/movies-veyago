@@ -1,0 +1,43 @@
+{
+  "name": "provisum-film",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Provided For - the Provisum 2 film (16:9 master, 9:16 cut-downs)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/caladea": "^5.3.0",
+    "@fontsource/caveat": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/kalam": "^5.3.0",
+    "@fontsource/patrick-hand": "^5.3.0",
+    "@fontsource/reenie-beanie": "^5.3.0",
+    "@react-three/fiber": "^9.8.2",
+    "@remotion/bundler": "^4.0.535",
+    "@remotion/cli": "^4.0.535",
+    "@remotion/fonts": "^4.0.535",
+    "@remotion/media-utils": "^4.0.535",
+    "@remotion/noise": "^4.0.535",
+    "@remotion/paths": "^4.0.535",
+    "@remotion/renderer": "^4.0.535",
+    "@remotion/shapes": "^4.0.535",
+    "@remotion/three": "^4.0.535",
+    "@remotion/transitions": "^4.0.535",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.535",
+    "three": "^0.186.1",
+    "typescript": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/fontkit": "^2.0.9",
+    "fontkit": "^2.0.4",
+    "sharp": "^0.35.5",
+    "tsx": "^4.23.15"
+  }
+}
