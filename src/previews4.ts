@@ -3,6 +3,7 @@ import {MASTER4_SECONDS, SLOTS4, slotFrames4} from './film4';
 import {CHAPTERS} from './chapters/registry';
 import {MasterFilm4} from './MasterFilm4';
 import type {PreviewSpec} from './previewTypes';
+import {popupPreviews} from './popup/previews';
 
 const FORMAT_NAMES = ['wide', 'tall'] as const;
 
@@ -12,6 +13,7 @@ const FORMAT_NAMES = ['wide', 'tall'] as const;
  *   Chapter-<id>-wide / -tall       each chapter alone (module-local frames)
  */
 export const previews4: readonly PreviewSpec[] = [
+  ...popupPreviews,
   ...FORMAT_NAMES.map((format) => ({
     id: `Master4-${format}`,
     component: MasterFilm4,
