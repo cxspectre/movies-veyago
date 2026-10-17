@@ -158,6 +158,7 @@ const City: React.FC<{t: number}> = ({t}) => {
   if (t < from || out <= 0) return null;
   return (
     <>
+      <div style={{position: 'absolute', inset: 0, opacity: out * smooth((t - from) / (to - from)), background: 'radial-gradient(ellipse at 50% 50%, rgba(70,84,130,0.55) 0%, rgba(30,36,60,0.35) 45%, rgba(11,11,12,0) 78%)'}} />
       {CITY.map((src, i) => {
         const order = (i * 7) % CITY.length; // a scatter, like windows lighting up
         const k = smooth((t - from - (order / CITY.length) * (to - from) * 0.7) / ((to - from) * 0.3));
@@ -168,7 +169,7 @@ const City: React.FC<{t: number}> = ({t}) => {
           <Img
             key={src.id}
             src={staticFile(src.src)}
-            style={{position: 'absolute', left: x0 + c * (w + gap), top: y0 + r * (h + gap), width: w, height: h, borderRadius: 5, objectFit: 'cover', opacity: k * out * 0.92, boxShadow: '0 0 10px rgba(110,139,255,0.12)'}}
+            style={{position: 'absolute', left: x0 + c * (w + gap), top: y0 + r * (h + gap), width: w, height: h, borderRadius: 5, objectFit: 'cover', opacity: k * out, boxShadow: '0 0 18px rgba(150,175,255,0.32)', filter: 'brightness(1.18)'}}
           />
         );
       })}

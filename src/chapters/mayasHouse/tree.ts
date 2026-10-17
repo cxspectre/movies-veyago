@@ -7,10 +7,10 @@ import {measureHand} from '../../paper/text/handLayout';
 import {NODE_R, PLANE, TREE, TREE_LINES, treeLand, type TreeNodeId} from './layout';
 
 /** The page's box (sheet px). */
-export const TREE_BOX = {x: 4960, y: 2830, w: 1360, h: 600} as const;
+export const TREE_BOX = {x: 4700, y: 2700, w: 1800, h: 780} as const;
 /** The page runs from the first flight to the plane's label. */
 export const TREE_WINDOW = {from: B.tree.from, to: B.plane + 1.5} as const;
-const LABEL_SIZE = 30;
+const LABEL_SIZE = 56;
 const FACE = 'patrick-400' as const;
 
 const fr = (t: number): number => (t - TREE_WINDOW.from) / (TREE_WINDOW.to - TREE_WINDOW.from);
@@ -60,7 +60,7 @@ for (const n of TREE) {
     from: fr(land),
     to: fr(land + 0.5),
   });
-  labels.push(centredLabel(`name-${n.id}`, n.label, cx, cy + NODE_R + 34, land + 0.4, land + 0.9));
+  labels.push(centredLabel(`name-${n.id}`, n.label, cx, cy + NODE_R + 58, land + 0.4, land + 0.9));
 }
 
 // The family lines: Dad to Maya, Maya and Jonas, and down to the children and the dog.

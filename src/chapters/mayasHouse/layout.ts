@@ -33,8 +33,9 @@ export const HOUSE = {
 } as const;
 
 // Maya at the table. Her sit-A forearm rests 153 px above her ground point, so the table top is there.
-export const MAYA = {ground: [5480, 4450] as Point, scale: 1} as const;
-export const TABLE = {x: 4880, w: 560, top: 4297, ground: 4450} as const;
+// C5: scaled 1.45 (line weight scales with it: 3.2 px) so she reads at the 0.55 working zoom; the forearm is 153 * 1.45 above the ground.
+export const MAYA = {ground: [5600, 4450] as Point, scale: 1.45} as const;
+export const TABLE = {x: 4880, w: 680, top: 4228, ground: 4450} as const;
 
 export type PaperId = 'form' | 'passportB' | 'passportA' | 'box' | 'registration' | 'insurance' | 'letterB' | 'letterA';
 export type FlyingId = Exclude<PaperId, 'box'>;
@@ -100,15 +101,15 @@ export const LIFT_SECONDS = 1.2;
 export const STORM = {centre: [5420, 3990] as Point, squash: 0.42, blendIn: 1.0} as const;
 
 // The family tree (sheet px): circles r 55 and labels below; Biscuit's node is a kennel.
-export const NODE_R = 55;
+export const NODE_R = 70;
 export type TreeNode = {readonly id: TreeNodeId; readonly label: string; readonly at: Point; readonly character: 'dad' | 'jonas' | 'maya' | 'leo' | 'mia' | 'biscuit'};
 export const TREE: readonly TreeNode[] = [
-  {id: 'dad', label: 'Dad', at: [5400, 2930], character: 'dad'},
-  {id: 'jonas', label: 'Jonas', at: [5160, 3100], character: 'jonas'},
-  {id: 'maya', label: 'Maya', at: [5640, 3100], character: 'maya'},
-  {id: 'leo', label: 'Leo', at: [5110, 3270], character: 'leo'},
-  {id: 'mia', label: 'Mia', at: [5400, 3270], character: 'mia'},
-  {id: 'biscuit', label: 'Biscuit', at: [5690, 3270], character: 'biscuit'},
+  {id: 'dad', label: 'Dad', at: [5400, 2900], character: 'dad'},
+  {id: 'jonas', label: 'Jonas', at: [5040, 3090], character: 'jonas'},
+  {id: 'maya', label: 'Maya', at: [5760, 3090], character: 'maya'},
+  {id: 'leo', label: 'Leo', at: [4900, 3300], character: 'leo'},
+  {id: 'mia', label: 'Mia', at: [5400, 3300], character: 'mia'},
+  {id: 'biscuit', label: 'Biscuit', at: [5900, 3300], character: 'biscuit'},
 ];
 /** The order the papers fly to the tree (B.tree.stagger apart), and how long each flight takes (a keynote move). */
 export const TREE_ORDER: readonly TreeNodeId[] = B.tree.nodes.map((n) => n.toLowerCase() as TreeNodeId);
@@ -119,7 +120,7 @@ export const treeLand = (id: TreeNodeId): number => treeFlightStart(id) + TREE_F
 export const TREE_LINES = {from: Math.max(...TREE_ORDER.map(treeLand)), to: B.tree.to - 0.5} as const;
 
 /** Sam's plane: where it folds (sheet px), its heading (deg), the label under it, and its size against the registration (1.6: about 130 px, so it reads at z 0.55). */
-export const PLANE = {at: [6110, 2880] as Point, heading: -14, label: 'Sam, Lisbon', fold: 0.8, scale: 1.6} as const;
+export const PLANE = {at: [6270, 2860] as Point, heading: -14, label: 'Sam, Lisbon', fold: 0.8, scale: 1.6} as const;
 /** The registration rides the dotted branch out to the plane while the branch draws. */
 export const REG_TO_PLANE = {from: B.branch.from, to: B.plane} as const;
 
