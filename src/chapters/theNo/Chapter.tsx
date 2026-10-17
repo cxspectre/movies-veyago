@@ -136,13 +136,20 @@ const Card: React.FC<{t: number}> = ({t}) => {
   );
 };
 
+/** A roll is faded in over its own turn, so its zeroed wheels ("00 September 0000") are never seen at full strength. */
+const Emerge: React.FC<{t: number; start: number; duration: number; children: React.ReactNode}> = ({t, start, duration, children}) => (
+  <div style={{position: 'absolute', left: 0, top: 0, width: 0, height: 0, overflow: 'visible', opacity: smooth((t - start) / (duration * 0.7))}}>{children}</div>
+);
+
 export const Art: React.FC = () => {
   const {t} = useChapter(ID);
   const [cx, cy] = local(CALENDAR.centre);
   return (
     <>
       <Letters t={t} />
-      <NumberRoll to={B.guideline.text} start={B.guideline.at} duration={1} at={[GUIDELINE_AT[0] - 12, GUIDELINE_AT[1]]} align="right" size={64} hold={B.crumple.from - 0.5 - B.guideline.at - 1} fadeOut={0.5} />
+      <Emerge t={t} start={B.guideline.at} duration={1}>
+        <NumberRoll to={B.guideline.text} start={B.guideline.at} duration={1} fadeIn={0} at={[GUIDELINE_AT[0] - 12, GUIDELINE_AT[1]]} align="right" size={64} hold={B.crumple.from - 0.5 - B.guideline.at - 1} fadeOut={0.5} />
+      </Emerge>
       <GuidelineNote t={t} />
       <Card t={t} />
       <Super {...superFromBeat(SUPERS.theNo[0]!, {sheet: SUPER_AT, align: 'centre'})} />
@@ -151,7 +158,9 @@ export const Art: React.FC = () => {
           <PageDrop time={t} start={B.calendar.drop} fall={B.calendar.land - B.calendar.drop} month="September 2026" days={30} firstWeekday={1} circled={21} circleAt={B.calendar.circle} />
         </div>
       ) : null}
-      <NumberRoll to={B.calendar.date.text} start={B.calendar.date.at} duration={1} at={DATE_ROLL} align="centre" size={56} />
+      <Emerge t={t} start={B.calendar.date.at} duration={1}>
+        <NumberRoll to={B.calendar.date.text} start={B.calendar.date.at} duration={1} fadeIn={0} at={DATE_ROLL} align="centre" size={56} />
+      </Emerge>
     </>
   );
 };

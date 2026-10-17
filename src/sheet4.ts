@@ -197,7 +197,9 @@ const visitKeys = (): readonly CameraKey[] =>
 const WIDE: Record<ChapterId, readonly CameraKey[]> = {
   line: [
     key(0.0, [200, 4000], 1.6),
-    key(1.0, 'head', 1.2, 'easeInOutSine', [300, 0]),
+    // The camera holds still while the first super is written, so "Every app starts as a line." is whole in frame.
+    key(1.0, [900, 4000], 1.2, 'easeInOutSine'),
+    key(6.0, [900, 4000], 1.2),
     key(7.0, 'head', 1.0, 'easeInOutSine', [300, 0]),
     key(18.0, [3200, 4000], 1.0),
     key(22.0, FAR_CENTRE, FAR_ZOOM.wide, 'easeInOutQuint'),
@@ -213,7 +215,8 @@ const WIDE: Record<ChapterId, readonly CameraKey[]> = {
   ],
   theNo: [
     key(0.0, [8600, 4000], 0.9),
-    key(9.0, [9000, 3950], 0.9, 'easeInOutSine'),
+    key(1.0, [9000, 3950], 0.9, 'easeInOutSine'),
+    key(9.0, [9000, 3950], 0.9),
     key(27.5, [9000, 3950], 0.9),
     key(30.0, [9000, 3600], 0.75, 'easeInOutSine'),
     key(36.0, [9000, 3600], 0.75),
@@ -301,9 +304,10 @@ const WIDE: Record<ChapterId, readonly CameraKey[]> = {
 type TallOverride = {t: number; centre?: Point; zoom?: number};
 
 const TALL_OVERRIDES: Partial<Record<ChapterId, readonly TallOverride[]>> = {
-  line: [{t: 22.0, zoom: FAR_ZOOM.tall}, {t: 26.0, zoom: FAR_ZOOM.tall}],
+  line: [{t: 1.0, centre: [770, 4000], zoom: 0.95}, {t: 6.0, centre: [770, 4000], zoom: 0.95}, {t: 22.0, zoom: FAR_ZOOM.tall}, {t: 26.0, zoom: FAR_ZOOM.tall}, {t: 30.0, zoom: 0.7}],
+  theNo: [{t: 1.0, zoom: 0.8}, {t: 9.0, zoom: 0.8}, {t: 27.5, zoom: 0.8}],
   researchBoard: [{t: 47.0, centre: [16700, 4100], zoom: 0.6}, {t: 61.0, centre: [16700, 4100], zoom: 0.6}],
-  mayasHouse: [{t: 31.0, centre: [5400, 3500], zoom: 0.5}, {t: 40.0, centre: [5400, 3500], zoom: 0.5}],
+  mayasHouse: [{t: 0.0, zoom: 0.7}, {t: 28.0, zoom: 0.7}, {t: 31.0, centre: [5400, 3500], zoom: 0.5}, {t: 40.0, centre: [5400, 3500], zoom: 0.5}],
   nameAndLook: [{t: 23.0, zoom: 1.9}, {t: 50.0, zoom: 1.9}],
   engineRoom: [
     {t: 7.0, zoom: 0.75}, {t: 16.0, zoom: 0.75}, {t: 18.0, zoom: 0.75}, {t: 42.0, zoom: 0.75},

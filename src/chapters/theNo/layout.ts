@@ -7,7 +7,7 @@ const ORIGIN: Point = [R.centre[0] - R.size[0] / 2, R.centre[1] - R.size[1] / 2]
 /** Sheet px -> region-local px (what plain elements in the Art use). */
 export const local = (p: Point): Point => [p[0] - ORIGIN[0], p[1] - ORIGIN[1]];
 
-export const LETTER = {w: 460, h: 600, radius: 180, centres: [[8640, 4000], [9360, 4000]] as const, tilt: [-3, 2] as const};
+export const LETTER = {w: 460, h: 600, radius: 180, centres: [[8660, 4000], [9340, 4000]] as const, tilt: [-3, 2] as const};
 export const BALL_AT: Point = [9000, 4000];
 
 /** The drawing that unfolds from the ball and that the scissors cut: old panel on the left, the engine on the right. */
@@ -33,12 +33,12 @@ export const GEAR_DEG_PER_S = 6;
 export const UNFOLD = {duration: 2.0, fade: 1.0};
 
 /** The split: right half (the engine) slides right, the left half (old name, idea, purpose) left and fades. */
-export const SPLIT = {right: 150, left: -320, slideDur: 1.0};
+export const SPLIT = {right: 60, left: -320, slideDur: 1.0};
 /** Card centre of the right half's piece after the slide: where the carry starts. */
 export const PIECE_CENTRE_X = CARD.centre[0] - CARD.w / 2 + (CARD.cutX + CARD.w) / 2 + SPLIT.right;
 
 export const CALENDAR = {w: 520, h: 600, centre: [9000, 3200] as Point};
-export const DATE_ROLL: Point = [9000, 3650];
+export const DATE_ROLL: Point = [9000, 3600];
 export const GUIDELINE_AT: Point = [9000, 4500];
 export const SUPER_AT: Point = [9000, 3500];
 
