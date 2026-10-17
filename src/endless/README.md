@@ -38,7 +38,7 @@ A finished region never re-runs the pencil canvas. Region PNGs are 2x and **trim
 FILM_GL=swangle npx tsx tools/renderSheetLod.ts [chapterId | far-rough | far-done ...]
 ```
 
-It stills `SheetRegionAlpha-<id>` (scale 2) and `SheetFarAlpha-<variant>` (scale 1) from `lodImages.tsx`. Today those draw the **placeholder marks** (`chapterMark.tsx`); chapter owners make `RegionAlpha`/`FarAlpha` draw their finished chapter and re-run it. `paperToGlass` has no area and no image.
+It stills `SheetRegionAlpha-<id>` (scale 2) and `SheetFarAlpha-<variant>` (scale 1) from `lodImages.tsx`. `RegionAlpha` draws each chapter's `Art` held on its last frame; `far-done` is composed by the tool from the region PNGs; sizes and the exact command: `docs/v4/LOD.md`. `paperToGlass` has no area and no image.
 
 ## Compositions and proofs
 
