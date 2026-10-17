@@ -10,6 +10,7 @@ import {compileSketch} from '../paper/marks/compile';
 import {PencilCanvas} from '../paper/render/PencilCanvas';
 import type {SketchSpec} from '../paper/types';
 import {REGIONS} from '../sheet4';
+import {glimpseSpecFor} from '../chapters/line/glimpses';
 import {SheetContext} from './sheetContext';
 
 /** The mark's drawing surface in mark px, and where it sits (its top-left) in sheet px. */
@@ -83,7 +84,9 @@ export const ChapterMark: React.FC<{id: ChapterId; finished?: boolean}> = ({id, 
 
 /** The glimpse of a region, region-local, for the far image. */
 export const Glimpse: React.FC<{id: ChapterId}> = ({id}) => {
-  const marks = useMemo(() => compileSketch(glimpseSpec(id)), [id]);
+  // Chapter 1's own sketches are drawn by the line; it has no glimpse (the line is visible at every zoom).
+  const marks = useMemo(() => compileSketch(glimpseSpecFor(id) ?? glimpseSpec(id)), [id]);
   const r = REGIONS[id];
+  if (id === 'line') return null;
   return <PencilCanvas marks={marks} progress={1} width={r.size[0]} height={r.size[1]} density={0.5} />;
 };
