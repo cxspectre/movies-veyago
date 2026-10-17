@@ -7,7 +7,7 @@ import {engineRoom as B} from '../../beats4';
 import {COLORS} from '../../film';
 import {DEFAULT_LAMP, castShadow, handLine, handRect} from '../../paper';
 import {Layer, clamp01, easeInOutCubic, smooth} from '../nameAndLook/draw';
-import {FLOOR_LABELS, FLOOR_Y, LABEL_X, PHONE, PHONE_TL, REGION_SIZE, toRegion} from './layout';
+import {READ, FLOOR_LABELS, FLOOR_Y, LABEL_X, PHONE, PHONE_TL, REGION_SIZE, toRegion} from './layout';
 
 /**
  * The outline as SVG, not a pencil page: at the overview zoom (0.45) a 3 px engine line develops below the paper's
@@ -87,7 +87,7 @@ const FloorLines: React.FC<{t: number}> = ({t}) => {
         const [lx, ly] = toRegion([LABEL_X, l.y]);
         const a = smooth((lk - i * 0.25) / 0.4);
         return a > 0 ? (
-          <text key={l.text} x={lx} y={ly} textAnchor="end" fontSize={30} fill={COLORS.graphite} opacity={a * 0.9} style={{fontFamily: 'Patrick Hand'}}>
+          <text key={l.text} x={lx} y={ly} textAnchor="end" fontSize={READ.floor} fill={COLORS.graphite} opacity={a * 0.9} style={{fontFamily: 'Patrick Hand'}}>
             {l.text}
           </text>
         ) : null;

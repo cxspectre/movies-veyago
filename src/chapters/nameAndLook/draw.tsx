@@ -72,7 +72,7 @@ export const Layer: React.FC<{children: React.ReactNode; opacity?: number}> = ({
  * A real clip (or still) in a rounded phone-shaped window, in its parent's px. The clip's second `playFrom` (default
  * the manifest's hotStart) shows at module second `start`. Video decodes only when the sheet is near; else the poster.
  */
-export const ClipWindow: React.FC<{source: ScreenSource; start: number; t: number; x: number; y: number; w: number; h: number; radius?: number; playFrom?: number; style?: React.CSSProperties}> = ({
+export const ClipWindow: React.FC<{source: ScreenSource; start: number; t: number; x: number; y: number; w: number; h: number; radius?: number; playFrom?: number; style?: React.CSSProperties; children?: React.ReactNode}> = ({
   source,
   start,
   t,
@@ -83,6 +83,7 @@ export const ClipWindow: React.FC<{source: ScreenSource; start: number; t: numbe
   radius = 22,
   playFrom,
   style,
+  children,
 }) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -100,6 +101,7 @@ export const ClipWindow: React.FC<{source: ScreenSource; start: number; t: numbe
       ) : (
         <Img src={staticFile(source.poster)} style={media} />
       )}
+      {children}
     </div>
   );
 };
