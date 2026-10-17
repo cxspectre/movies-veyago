@@ -37,6 +37,27 @@ const SetDownPencil: React.FC = () => {
   return <Pencil kind="graphite" x={x} y={y} yaw={PENCIL.yaw} pxPerMm={PENCIL.pxPerMm} shadow="lying" hover={hoverAt(t)} opacity={fade} />;
 };
 
+/** Set to an image path (staticFile) when the owner supplies the real Veyago mark; null draws the placeholder. */
+export const markSource: string | null = null;
+
+/** The Veyago mark, centred on `cx`. PLACEHOLDER: a plainly drawn caret in a rounded square (CLAIMS G39). Swap by setting `markSource`. */
+const VeyagoMark: React.FC<{cx: number; top: number; size: number; opacity: number}> = ({cx, top, size, opacity}) =>
+  markSource ? (
+    <image href={markSource} x={cx - size / 2} y={top} width={size} height={size} opacity={opacity} />
+  ) : (
+    <g opacity={0.85 * opacity}>
+      <rect x={cx - size / 2} y={top} width={size} height={size} rx={size * 0.22} fill={COLORS.graphite} />
+      <polyline
+        points={`${cx - size * 0.22},${top + size * 0.62} ${cx},${top + size * 0.36} ${cx + size * 0.22},${top + size * 0.62}`}
+        fill="none"
+        stroke={COLORS.paper}
+        strokeWidth={size * 0.09}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </g>
+  );
+
 /** The end card, on the paper (v1 type: DM Sans 700 title, 500 line, the Veyago mark, then Caladea italic). */
 const EndCard: React.FC = () => {
   const {t, isTall} = useChapter('providedFor');
@@ -58,18 +79,7 @@ const EndCard: React.FC = () => {
       <text x={cx} y={lineY} textAnchor="middle" opacity={line} fill={COLORS.graphiteSoft} fontFamily={FONTS.super} fontWeight={500} fontSize={c.lineSize}>
         {CARD.line}
       </text>
-      {/* PLACEHOLDER mark: a plainly drawn caret in a rounded square. The owner supplies or confirms the real Veyago mark. */}
-      <g opacity={0.85 * mark}>
-        <rect x={cx - c.markSize / 2} y={markY} width={c.markSize} height={c.markSize} rx={c.markSize * 0.22} fill={COLORS.graphite} />
-        <polyline
-          points={`${cx - c.markSize * 0.22},${markY + c.markSize * 0.62} ${cx},${markY + c.markSize * 0.36} ${cx + c.markSize * 0.22},${markY + c.markSize * 0.62}`}
-          fill="none"
-          stroke={COLORS.paper}
-          strokeWidth={c.markSize * 0.09}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
+      <VeyagoMark cx={cx} top={markY} size={c.markSize} opacity={mark} />
       <text x={cx} y={camY} textAnchor="middle" opacity={cambria} fill={COLORS.graphite} fontFamily={FONTS.closing} fontStyle="italic" fontWeight={400} fontSize={c.cambriaSize}>
         {CARD.cambria}
       </text>

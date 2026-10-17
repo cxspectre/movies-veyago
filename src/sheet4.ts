@@ -174,6 +174,8 @@ const key = (t: number, centre: Point | 'head', zoom: number, easing: EasingName
 
 /** The far view: the whole 40 000 px width in frame. */
 export const FAR_ZOOM = {wide: 0.048, tall: 0.027} as const;
+/** Chapter 11's retrospective zoom: each chapter's drawing is 140-200 px tall wide. */
+const RETRO_ZOOM = {wide: 0.14, tall: 0.2} as const;
 const FAR_CENTRE: Point = [20000, 4000];
 
 /** Chapter 9's nine visits: flight start (local), the house centre, the flight length. Each holds 3.0 s at zoom 5. */
@@ -291,6 +293,10 @@ const WIDE: Record<ChapterId, readonly CameraKey[]> = {
   paperToGlass: [key(0.0, [27600, 3380], 2.0), key(80.0, [27600, 3380], 2.0)],
   providedFor: [
     key(0.0, [27600, 3380], 2.0),
+    // the retrospective: pull back to a readable mid zoom, ride the head, then travel the line back to the first chapter
+    key(2.5, [29500, 3900], RETRO_ZOOM.wide, 'easeInOutCubic'),
+    key(4.0, [32000, 3950], RETRO_ZOOM.wide, 'easeInOutSine'),
+    key(10.0, [3000, 4000], RETRO_ZOOM.wide, 'easeInOutSine'),
     key(11.0, FAR_CENTRE, FAR_ZOOM.wide, 'easeInOutQuint'),
     key(12.0, FAR_CENTRE, FAR_ZOOM.wide),
     key(15.0, [37800, 4000], 1.0, 'easeInOutCubic'),
@@ -315,6 +321,7 @@ const TALL_OVERRIDES: Partial<Record<ChapterId, readonly TallOverride[]>> = {
   ],
   village: [{t: 55.0, centre: [28100, 3200], zoom: 0.7}, {t: 63.0, centre: [28100, 3200], zoom: 0.7}],
   providedFor: [
+    {t: 2.5, zoom: RETRO_ZOOM.tall}, {t: 4.0, zoom: RETRO_ZOOM.tall}, {t: 10.0, zoom: RETRO_ZOOM.tall},
     {t: 11.0, zoom: FAR_ZOOM.tall}, {t: 12.0, zoom: FAR_ZOOM.tall},
     {t: 21.0, centre: [37900, 3950]}, {t: 30.0, centre: [37900, 3950]},
   ],

@@ -113,7 +113,8 @@ export const NotificationCard: React.FC<{t: number; format: FormatName; size: Si
       style={{
         position: 'absolute',
         left: cx - w / 2,
-        top: top + 0.06 * (INVITE[format].far.height * size.height) + (1 - k) * 14,
+        // above the phone, never across it
+        top: top - h - 0.02 * size.height + (1 - k) * 14,
         width: w,
         height: h,
         borderRadius: 22,
