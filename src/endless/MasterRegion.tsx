@@ -13,8 +13,11 @@ import {REGION_IMAGE_CROP} from './lodManifest';
 import {SheetContext, useSheet} from './sheetContext';
 import {stateAt} from './timeline';
 
-/** Chapters whose public/tex/sheet/<id>.png shows the finished chapter (not the placeholder mark). None yet. */
-export const FINAL_REGION_IMAGES: ReadonlySet<ChapterId> = new Set<ChapterId>([]);
+/** Chapters whose public/tex/sheet/<id>.png shows the finished chapter (its Art held on its last frame; docs/v4/LOD.md).
+ * `line` has none (it draws nothing on paper: the pencil line itself is live) and `paperToGlass` has no region. */
+export const FINAL_REGION_IMAGES: ReadonlySet<ChapterId> = new Set<ChapterId>([
+  'mayasHouse', 'theNo', 'filterMachine', 'researchBoard', 'nameAndLook', 'engineRoom', 'launch', 'village', 'providedFor',
+]);
 
 /** Below this zoom a finished region is not mounted (the far image carries it). */
 export const FROZEN_MIN_ZOOM = LOD.far;
