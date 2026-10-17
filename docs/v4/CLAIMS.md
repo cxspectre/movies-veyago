@@ -140,3 +140,51 @@ Times are the script's chapter-map times (master time). Ch = chapter number.
 4. B23, B24, B22: the Data Not Collected label, the encrypted card claim and Family CloudKit in Production, which must match the build that ships.
 5. B35, B36: which countries count as five, and what "A4" means.
 6. A19: whether 2.0 is live before the film is published.
+
+
+## G. Claims audit 2026-10-17 (D3): on-screen strings found in code that had no row
+
+Source column gives the file the string is drawn from. All rows UNCONFIRMED until the owner answers (see `docs/v4/QA1.md` part 3). "Wording" rows are editorial; "Fact" rows state something about the app, the company or the world.
+
+| # | String / number on screen | Where | Source line | Kind | Status |
+|---|---|---|---|---|---|
+| G1 | "Every app starts as a line." | Ch1 1.5 | `beats4.ts` SUPERS.line | wording | UNCONFIRMED (owner OK) |
+| G2 | "Provisum 2. How it was made, and why." | Ch1 20.0 | `beats4.ts` SUPERS.line | wording | UNCONFIRMED |
+| G3 | Cutout labels "letter", "school form", "passport", "insurance card", "Sam's papers"; "Sam, Lisbon" | Ch2 | `beats4.ts` mayasHouse.cutouts; `mayasHouse/layout.ts` | fiction | UNCONFIRMED (covered by C1/C2 once credited as fictional) |
+| G4 | Family-tree names Dad, Jonas, Maya, Leo, Mia, Biscuit | Ch2 28.5 | `mayasHouse/layout.ts` 107-112 | fiction | UNCONFIRMED (C1) |
+| G5 | "Rejected" on both letters | Ch3 2.0-3.0 | `theNo/Chapter.tsx` | fact: the film's own word, not a quotation of Apple | UNCONFIRMED (A1) |
+| G6 | "Design - Spam" (note beside 4.3(a)) | Ch3 6.0 | `beats4.ts` theNo.guideline.note; `theNo/layout.ts` | fact: guideline title | UNCONFIRMED (A2). Not seen in the sampled stills; confirm it is drawn at all. |
+| G7 | "Keep the engine. Find a new reason." | Ch3 13.0 | `beats4.ts` SUPERS.theNo | wording | UNCONFIRMED. The drawn label "keep" (`theNo/Chapter.tsx:130`) is one letter from the banned predecessor name; owner to confirm it is acceptable. |
+| G8 | Calendar page "September 2026" with the 21 circled, weekdays M-S | Ch3 28.5 | `theNo/Chapter.tsx` | fact: a date | UNCONFIRMED (A7). Checked: 1 Sep 2026 is a Tuesday and the 21st falls on a Monday, as drawn. |
+| G9 | Gate texts "Useful for years, not for a week", "Not something the iPhone already does", "Private: no account, no tracking", "Buildable in six to eight weeks", "Free to start, paid to unlock"; machine label "filter" | Ch4 7.5-17.0 | `beats4.ts` filterMachine.gateLabels | fact (the owner's rules) | UNCONFIRMED (B2/E15). Spoken M2 says "Buildable in weeks, not years" and "a business from day one": screen and voice differ. |
+| G10 | "A binder for the one who holds the family's papers." (the card that survives) | Ch4 36.5 | `beats4.ts` filterMachine.cardText | wording | UNCONFIRMED |
+| G11 | Card titles "The store", "The suggestions", "The reviews", "The rules"; supers "Does it already exist?", "What do people really type?", "What do the others get wrong?", "Who publishes the real rules?" | Ch5 4-21 | `beats4.ts` researchBoard.cards, SUPERS.researchBoard | wording | UNCONFIRMED (D1-D4). The card art is drawn bars only: no real store, terminal or review text appears (checked). |
+| G12 | "Organises the family", "Handles the hard stuff", "The gap: all of it, for everyone, privately." | Ch5 34-45 | `researchBoard/StringBoard.tsx:128-130`; `beats4.ts` | fact: a market claim | UNCONFIRMED (D6) |
+| G13 | "Six building blocks. Everything else hangs off them." (screen) vs spoken M5 "Everything the app does is one of them, or a mix of them." | Ch5 48 | `beats4.ts` SUPERS and VO4 M5 | fact | UNCONFIRMED (B6). The screen is already the safer wording; the voice line and `voicelines.json` still carry the old one. |
+| G14 | Block labels Documents, Dates, Bills, People, Emergency card, Packets | Ch5 46-53.5; Ch7 | `engineRoom/layout.ts` 42-47 | fact | UNCONFIRMED (B5: the app tab is "Deadlines", the film says "Dates") |
+| G15 | Crossed-out names Kinfolk, Hearth, Carebook, Homebase, Tend, Familio, Papertrail; "On Behalf" | Ch6 0-4.5 | `nameAndLook/Chapter.tsx` / `layout.ts` (strings) | fact: names of rejected ideas | UNCONFIRMED (A10). Six of the seven are invented and several are real trade names (Homebase, Hearth, Kinfolk, Tend). Owner to confirm they are the real working names or replace them with obviously invented ones. |
+| G16 | "PROVISUM"; `Latin. "Provided for."` | Ch6 5-8.5 | `nameAndLook/layout.ts:23`; `beats4.ts` | fact | UNCONFIRMED (B1) |
+| G17 | Design-token labels Light, Dark, Canvas, Surface, Text, Accent, Secondary, On accent | Ch6 23-28 | `nameAndLook/Chapter.tsx:187` | depiction | UNCONFIRMED (B8). The design file is imagined (13.4). |
+| G18 | Wallpaper names Plain, Morning mist, Lavender, Sea glass, Apricot, Blush, Sage, Linen, Dusk | Ch6 28-33 | `nameAndLook/layout.ts:68-76` | fact | verified against `Wallpaper.swift` (B7) except display names "Morning mist", "Sea glass": owner to confirm the in-app names. |
+| G19 | Emergency-card footage: "Eleanor Hughes", "80 years old", "Born Mar 14, 1946", "Card updated Oct 16, 2026", Allergies "Penicillin (hives)", "Shellfish"; Watch shows "Mom" | Ch6 40; Ch10 36-38 | footage `emergency-card-full`, `phone-show-on-watch` | fact: a date and a medical sample | UNCONFIRMED. Fictional persona that does not match the film's family (Dad). A dated 2026-10-16 card is on screen. Owner: re-capture with film names and no date, or accept as sample data. |
+| G20 | Home-screen footage: "Friday, Oct 16", "Nothing needs you for Mia this week", "Cardiology follow-up", "Dr. Alan Brooks", "Internet bill", "Electricity bill", "Car registration", invite screen name "Sam Costa", "sam@example.com" | Ch10 8-64 | footage `passport-reminder`, `phone-show-on-watch`, `capture: invite-friend` | fact: dates, names | UNCONFIRMED. A real-looking doctor name; owner to confirm fictional. |
+| G21 | "Many versions. One home screen." (screen) vs `beats4.ts` "Dozens of versions. One home screen." | Ch6 44 | `nameAndLook/Chapter.tsx:457`; `beats4.ts` | wording | the code already applies the B9 reword; the beat sheet should be updated by its owner. |
+| G22 | Xcode navigator tree: Provisum, Features, Binder, Documents, Deadlines, Packets, EmergencyCard, Family, Visits; "Build succeeded" green check | Ch7 8-18, 69 | `engineRoom/Chapter.tsx:63` | fact | UNCONFIRMED (B14/B26). Drawn, not recorded: fine. |
+| G23 | Floor labels "Code", "The data", "The vault"; "Your own iCloud", "Your brother", "Sam", "Veyago server" (erased) | Ch7 | `engineRoom/layout.ts` 16-18, 60-65 | fact | UNCONFIRMED (B20, B21) |
+| G24 | Supers "Every feature has its own room.", "One person. Everything that belongs to them.", "All the dates. One list. The right reminder." | Ch7 | `beats4.ts` SUPERS.engineRoom | wording | UNCONFIRMED |
+| G25 | "No account. Nothing collected." (screen, replaces "No server. No account. Data Not Collected.") | Ch7 50 | `engineRoom/layout.ts:71` | fact | UNCONFIRMED (B20, B23). Spoken M11 still says "There is no Veyago server." |
+| G26 | "3 days before, and on the day"; ticks 9 / 6 / 3 | Ch7 36.5-38.5 | `engineRoom/Chapter.tsx:372` | fact | verified in part (B17, B18): the app code gives [3, 0] days for a bill. Spoken M10 still says "the day before". |
+| G27 | "placeholder: the release-day test count" and the number 000 | Ch7 64-72 | `engineRoom/Chapter.tsx` (test roll) | placeholder | OPEN: a working tag is drawn on screen and the roll ends on 000. Must be replaced by the real count (B26) or removed. |
+| G28 | Sticky "Fixed. The next day." (screen); beats4 and script say "Fixed. Version 1.1. Next day."; super "Day one: a mistake. Day two: fixed."; VO "On day one we got the price wrong. On day two we fixed it." | Ch8 22-30 | `launch/Chapter.tsx:190`; `beats4.ts` | fact | UNCONFIRMED (A15, A16). The VO and super still say day two. |
+| G29 | "United States first. On purpose." | Ch8 15 | `beats4.ts` SUPERS.launch | fact | UNCONFIRMED (A12, A13) |
+| G30 | "Version 2: a binder for everyone you call family." | Ch9 0 | `beats4.ts` SUPERS.village | wording | UNCONFIRMED |
+| G31 | House nameplates Dad, Leo, Mia, Maya, Jonas, Biscuit, Sam (Lisbon) | Ch9 | `beats4.ts` village.houses | fiction | UNCONFIRMED (C1) |
+| G32 | "Five countries. Five languages."; country circles (four drawn plus the US) | Ch9 57 | `beats4.ts` SUPERS.village | fact | UNCONFIRMED (B35, B37) |
+| G33 | "Who are you looking after?", chips Dad, Leo | Ch9 68.5 | `village/pages.ts:161` | fact | verified in v1 footage (CLAIMS-additions); re-check on the 2.0 build |
+| G34 | Number rolls "6 kinds of people", "5 countries", "5 languages", "0 servers" | Ch10 42-46.5 | `beats4.ts` paperToGlass.numberRolls | fact | UNCONFIRMED (B16, B35, B37, B20). "0 servers" is still in the build, see B20. |
+| G35 | "Every person. Their own binder. Their own colour."; "Apple Watch. Apple Wallet."; "Share a binder with anyone you trust."; subline "A binder for your whole family. And the friends who are family." | Ch10 | `beats4.ts` SUPERS.paperToGlass | wording | UNCONFIRMED (B41, B34) |
+| G36 | `Maya invited you to "Sam".` | Ch10 64 | `paperToGlass/Invite.tsx` | fact | UNCONFIRMED (B40) |
+| G37 | "A no. Five filters. One idea. A whole village." | Ch11 3 | `beats4.ts` SUPERS.providedFor | wording | UNCONFIRMED. The film says "five gates" in Ch4 and "five filters" here; pick one. |
+| G38 | "Provided for." (closing line); "Provisum 2"; "Free on the App Store"; "Made by Veyago. Private by design." | Ch11 16-23 | `providedFor/layout.ts`; `beats4.ts` | fact | UNCONFIRMED (A18, A19, B20). "Private by design" is a privacy claim on the end card. |
+| G39 | The mark above "Made by Veyago." is a placeholder: a dark rounded square with a chevron | Ch11 22 | `providedFor/Chapter.tsx` | asset | OPEN: the real Veyago mark must be supplied; the chevron is not a company mark. |
+| G40 | Credits / the synthetic-voice disclosure (MAKER, MAYA, FOUNDER) | end | none in the film | fact | OPEN (C4). No credit line exists on screen at all. |
