@@ -109,4 +109,5 @@ export const CITY: readonly ScreenSource[] = [
     'emergency-largest-text',
   ].map(footageStill),
 ];
-export const CITY_GRID = {cols: 6, rows: 4, w: 48, h: 104, gap: 12};
+// C5: 8 x 3 (the bible's 6 x 4 is a tall block that reads as a sliver on a landscape screen); 568 x 433 of the 900 x 560 screen, in the tall frame's column.
+export const CITY_GRID = {cols: 8, rows: 3, w: 64, h: 139, gap: 8};

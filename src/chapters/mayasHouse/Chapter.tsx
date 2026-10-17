@@ -82,7 +82,7 @@ const at = (sheetX: number, sheetY: number): React.CSSProperties => {
 };
 
 /** Bust offsets so each figure sits in the middle of its node (the tree pose's origin is its cut line). */
-const BUST_SCALE = 0.5;
+const BUST_SCALE = 0.65;
 const BUST_OFFSET = Object.fromEntries(
   TREE.map((n) => {
     const b = boundsOf([placeFigure(n.character, 'tree', {x: 0, y: 0, scale: BUST_SCALE, boil: 0})], 0);
@@ -153,6 +153,17 @@ export const Art: React.FC = () => {
       })}
       {/* the storm's far side, Maya, then everything in front of her */}
       {flying((p) => p.depth < 0 && p.depth !== BEHIND_THE_BOX)}
+      {t >= B.mayaDraws.from ? (
+        <div
+          style={{
+            ...at(MAYA.ground[0] - 250, MAYA.ground[1] - 520),
+            width: 500,
+            height: 560,
+            opacity: smooth((t - B.mayaDraws.from) / 1.5),
+            background: 'radial-gradient(ellipse at 50% 55%, rgba(250,243,228,0.97) 0%, rgba(250,243,228,0.9) 50%, rgba(250,243,228,0) 72%)',
+          }}
+        />
+      ) : null}
       <Maya t={t} zoom={zoom} />
       {flying((p) => p.depth >= 0)}
       {/* the tree: the pencil page, and a bust drawing into each node once its paper has landed */}
