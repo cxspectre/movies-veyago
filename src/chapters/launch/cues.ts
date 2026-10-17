@@ -12,7 +12,6 @@ const pencil = (t: number, dur: number, pressure = 0.8): Cue => ({kind: 'stroke'
 export const cues: ModuleCues = [
   hit(launch.pad, 'fold', {dur: 1.1}),
   hit(launch.rocket.from, 'fold', {dur: launch.rocket.to - launch.rocket.from}),
-  hit(launch.date.at, 'odometer', {dur: 1.0}),
   ...launch.statuses.slice(1).map((s) => hit(s.at, 'snap')),
   hit(launch.liftOff.from, 'rocket', {dur: launch.liftOff.to - launch.liftOff.from - 1.0}),
   pencil(launch.map.from, launch.map.to - launch.map.from, 0.6),

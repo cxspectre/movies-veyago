@@ -8,7 +8,7 @@ import {Img, staticFile} from 'remotion';
 import {launch, SUPERS} from '../../beats4';
 import {headAt, masterOf} from '../../endless';
 import {COLORS, FONTS, FPS} from '../../film';
-import {ChapterShell, NumberRoll, Super, superFromBeat, useChapter} from '../../kit';
+import {ChapterShell, Super, superFromBeat, useChapter} from '../../kit';
 import {LineCharacter} from '../../characters';
 import {StickyNote, handLine, handPath} from '../../paper';
 import {PopUp, ROCKET, RocketArt, rocketSpec} from '../../popup';
@@ -297,7 +297,6 @@ export const Art: React.FC = () => {
       <UsFill t={t} />
       <Pad t={t} clip={flying} />
       <StatusPlaque t={t} />
-      <NumberRoll to={launch.date.text} start={launch.date.at} duration={1.0} at={[PAD_AT[0], 4650]} align="centre" size={56} />
       <Flier t={t} />
       <Notes t={t} zoom={zoom} />
       <CrossOut t={t} />
