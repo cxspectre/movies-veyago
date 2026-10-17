@@ -13,10 +13,11 @@ import {ChapterShell, NumberRoll, Super, superFromBeat, useChapter} from '../../
 import {DockStarPatch} from '../../scenes/familyOfDevices/DockStarPatch';
 import {cardLanded, dockStarAlpha, passBodyOpacity, passLight, passPose, passProgress, phoneLight, phonePose, watchBodyOpacity, watchLight, watchPose} from '../../scenes/familyOfDevices/layout';
 import {BINDER_HOME_STILL, homeScreenSource, useHomeStill} from '../../scenes/transition/homeScreen';
-import {MayaInLight, NotificationCard, PaperPlane} from './Invite';
+import {FarScreen, MayaInLight, NotificationCard, PaperPlane} from './Invite';
 import {
   BINDERS,
   INVITE,
+  HANDOFF_LIGHT,
   REST_LIGHT,
   REC_PHONE_HEIGHT,
   REC_PHONE_Y,
@@ -51,7 +52,7 @@ const KIT_VIDEO_HOLD = 0.0;
 export const WATCH_SCREEN = 'footage/watch-card-still.png';
 
 /** The label under the phone: DM Sans 500 36 px glassWhite 92%, 48 px under the phone (BIBLE4 §5.10). */
-const Label: React.FC<{text: string; centreX: number; top: number; opacity: number}> = ({text, centreX, top, opacity}) => (
+const Label: React.FC<{text: string; centreX: number; top: number; opacity: number; scrim?: boolean}> = ({text, centreX, top, opacity, scrim}) => (
   <div
     style={{
       position: 'absolute',
@@ -67,7 +68,11 @@ const Label: React.FC<{text: string; centreX: number; top: number; opacity: numb
       opacity: 1,
     }}
   >
-    {text}
+    {scrim ? (
+      <span style={{display: 'inline-block', padding: '8px 28px', borderRadius: 32, background: rgba(COLORS.void, 0.92 * opacity), border: `1px solid ${rgba(GLASS_WHITE, 0.22 * opacity)}`}}>{text}</span>
+    ) : (
+      text
+    )}
   </div>
 );
 
@@ -290,7 +295,7 @@ export const Overlay: React.FC = () => {
   void KIT_VIDEO_HOLD;
 
   const veil = ease('easeInOutCubic', windowProgress(P.paperToBlack, t));
-  const dim = 1 - 0.15 * windowProgress({from: P.glowFadeStarts, to: 80}, t);
+  const dim = 1 - (1 - HANDOFF_LIGHT) * ease('easeInOutSine', windowProgress({from: P.glowFadeStarts, to: 80}, t));
   const rec = recordingAt(t);
   const stageOn = t >= P.foldIntoPhone.from && t < P.hardStop && !(t >= P.numberRolls[0].at && t < P.recordings[0]!.t);
   const snapI = snapIndexAt(t);
@@ -316,12 +321,13 @@ export const Overlay: React.FC = () => {
       {RECORDINGS.map((r) => {
         if (t < r.t || t >= r.t + r.dur) return null;
         const centreY = Math.min(r.framing === 'void' ? REC_PHONE_Y[format] * height + (REC_PHONE_HEIGHT[format] * height) / 2 + 48 : height * 0.88, height - 64);
-        return <Label key={r.n} text={r.label} centreX={width / 2} top={centreY} opacity={labelOpacity(t, r.t, r.t + r.dur)} />;
+        return <Label key={r.n} text={r.label} centreX={width / 2} top={r.framing === 'bleed' ? height - 120 : centreY} scrim={r.framing === 'bleed'} opacity={labelOpacity(t, r.t, r.t + r.dur)} />;
       })}
       {t >= P.numberRolls[0].at - 0.3 && t < P.recordings[0]!.t ? <Rolls t={t} format={format} size={size} /> : null}
       {t >= P.invite.mayaIn.from && t < P.hardStop ? (
         <>
           <MayaInLight t={t} format={format} size={size} />
+          <FarScreen t={t} format={format} size={size} />
           <PaperPlane t={t} format={format} size={size} />
           <NotificationCard t={t} format={format} size={size} />
         </>

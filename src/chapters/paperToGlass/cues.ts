@@ -10,6 +10,8 @@ import {cues as titleCues} from './title/cues';
 
 const hit = (t: number, name: Extract<Cue, {kind: 'hit'}>['name'], o: {dur?: number; gain?: number} = {}): Cue => ({kind: 'hit', t, name, ...o});
 
+// Hard stop 68.0-70.0: `silence` is not in src/audio/cues.ts on main yet (C2 adds it), so no cue here. When it lands add
+// `{kind: 'silence', t: P.hardStop, dur: 2.0}` to the list below.
 export const cues: ModuleCues = ([
   {kind: 'sweep' as const, t: P.edgeLight.lap.from, dur: P.edgeLight.lap.to - P.edgeLight.lap.from},
   ...GLASS_SNAPS.map((s) => hit(s.t, 'snap')),

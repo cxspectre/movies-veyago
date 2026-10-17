@@ -46,7 +46,11 @@ export const PaperPlane: React.FC<{t: number; format: FormatName; size: Size}> =
   const [x1, y1] = farPhoneTop(format, size);
   const e = ease('easeInOutSine', k);
   const lift = (format === 'tall' ? 0.05 : 0.14) * size.height;
-  const arc = (u: number): [number, number] => [mix(x0, x1, u), mix(y0, y1, u) - Math.sin(Math.PI * u) * lift];
+  // wide: an arc over the top; tall: the phone is in the way of a straight drop, so the plane swings out to the right around it
+  const arc = (u: number): [number, number] =>
+    format === 'tall'
+      ? [mix(x0, x1, u) + Math.sin(Math.PI * u) * 0.36 * size.width, mix(y0, y1, u)]
+      : [mix(x0, x1, u), mix(y0, y1, u) - Math.sin(Math.PI * u) * lift];
   const [px, py] = arc(e);
   const [qx, qy] = arc(Math.min(1, e + 0.01));
   const angle = (Math.atan2(qy - py, qx - px) * 180) / Math.PI;
@@ -72,12 +76,36 @@ export const PaperPlane: React.FC<{t: number; format: FormatName; size: Size}> =
   );
 };
 
+/** The far phone's lit lock screen: a drawn gradient with a faint banner slot where the card lands (no words on it). */
+export const FarScreen: React.FC<{t: number; format: FormatName; size: Size}> = ({t, format, size}) => {
+  const k = ease('easeInOutSine', (t - (P.invite.farPhoneLights - 0.5)) / 0.5);
+  if (k <= 0) return null;
+  const f = INVITE[format].far;
+  const h = f.height * size.height;
+  const w = h * 0.479 * 0.9;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: f.x * size.width - w / 2,
+        top: f.y * size.height - (h * 0.94) / 2,
+        width: w,
+        height: h * 0.94,
+        borderRadius: w * 0.13,
+        background: 'linear-gradient(170deg, rgba(60,78,150,0.9) 0%, rgba(24,30,64,0.95) 55%, rgba(12,14,28,0.98) 100%)',
+        opacity: k,
+        boxShadow: `inset 0 0 ${w * 0.15}px rgba(159,180,255,0.25)`,
+      }}
+    />
+  );
+};
+
 /** The drawn notification card over the far phone: glass type on a hairline-edged card. */
 export const NotificationCard: React.FC<{t: number; format: FormatName; size: Size}> = ({t, format, size}) => {
   const k = ease('easeInOutSine', (t - P.invite.farPhoneLights) / 0.6);
   if (k <= 0) return null;
   const [cx, top] = farPhoneTop(format, size);
-  const w = (format === 'tall' ? 0.74 : 0.27) * size.width;
+  const w = (format === 'tall' ? 0.7 : 0.25) * size.width;
   const h = (format === 'tall' ? 0.06 : 0.115) * size.height;
   const fontSize = format === 'tall' ? 34 : 34;
   return (
@@ -85,7 +113,7 @@ export const NotificationCard: React.FC<{t: number; format: FormatName; size: Si
       style={{
         position: 'absolute',
         left: cx - w / 2,
-        top: top - h - 24 + (1 - k) * 14,
+        top: top + 0.06 * (INVITE[format].far.height * size.height) + (1 - k) * 14,
         width: w,
         height: h,
         borderRadius: 22,
