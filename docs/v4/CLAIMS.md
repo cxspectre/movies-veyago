@@ -20,8 +20,8 @@ Times are the script's chapter-map times (master time). Ch = chapter number.
 | A5 | Engine gears labelled storage, sync, reminders, export | Ch3 1:25, shown | App: SwiftData store, iCloud sync, `ReminderEngine`, `Features/Export` | app | verified (areas exist in the app source). Whether they came from the first app: owner. |
 | A6 | Old name, old idea, old purpose shown blurred, nothing legible | Ch3 1:35, shown | CONTRACT 13.5 and 13.6 (never named) | repo | verified as a rule: the art must be unreadable at 4K. |
 | A7 | "21 September 2026", "the twenty-first of September, we started again" | Ch3 1:43, shown and spoken | Owner's records (first commit, new bundle id, App Store Connect creation date) | owner | needs the owner |
-| A8 | "28 September 2026" on the number roll | Ch8 6:05, shown | App Store Connect: date the status became Ready for Distribution (or the approval email) | owner | needs the owner |
-| A9 | "Seven days after the first sketch, App Review said yes." | Ch8 6:05, spoken | 28 Sept minus the "first sketch" date. 21 to 28 September is seven days, but 21 September is "started again", not "first sketch". | owner | needs the owner: confirm which event is day zero; otherwise reword to "Seven days after we started again, App Review said yes." |
+| A8 | "28 September 2026" on the number roll | Ch8 6:05, shown | App Store Connect: date the status became Ready for Distribution (or the approval email) | owner | needs the owner |  **REMOVED by the owner 2026-10-17: the film no longer states the launch date or that it took seven days.**
+| A9 | "Seven days after the first sketch, App Review said yes." | Ch8 6:05, spoken | 28 Sept minus the "first sketch" date. 21 to 28 September is seven days, but 21 September is "started again", not "first sketch". | owner | needs the owner: confirm which event is day zero; otherwise reword to "Seven days after we started again, App Review said yes." |  **REMOVED by the owner 2026-10-17: the film no longer states the launch date or that it took seven days.**
 | A10 | "For a few days it was called On Behalf." | Ch6 3:55, spoken; shown crossed-out names | Owner's notes (earlier working name of Provisum) | owner | needs the owner (also: the other crossed-out names must be invented or owner-supplied; none may be the first app's name) |
 | A11 | App Store Connect statuses "Waiting for Review", "In Review", "Ready for Distribution" | Ch8 6:05, shown on the rocket | App Store Connect's own status names | owner | needs the owner (exact spelling and the order they happened). Drawn, not recorded (CONTRACT 13.5). |
 | A12 | "We launched in the United States" | Ch8 6:15, spoken; map | App Store Connect: availability on release (storefronts) | owner | needs the owner (confirm US only at 1.0 launch) |
@@ -106,8 +106,8 @@ Times are the script's chapter-map times (master time). Ch = chapter number.
 |---|---|---|---|---|---|
 | E1 | 4.3(a) | Ch3 1:15 | A2 | owner | needs the owner |
 | E2 | 21 September 2026 | Ch3 1:43 | A7 | owner | needs the owner |
-| E3 | 28 September 2026 | Ch8 6:05 | A8 | owner | needs the owner |
-| E4 | "Seven days" | Ch8 6:05 | A9 | owner | needs the owner |
+| E3 | 28 September 2026 | Ch8 6:05 | A8 | owner | needs the owner |  **REMOVED by the owner 2026-10-17: the film no longer states the launch date or that it took seven days.**
+| E4 | "Seven days" | Ch8 6:05 | A9 | owner | needs the owner |  **REMOVED by the owner 2026-10-17: the film no longer states the launch date or that it took seven days.**
 | E5 | five gates | Ch4 | B2 | owner | needs the owner |
 | E6 | six building blocks | Ch5 | B5 | app | verified |
 | E7 | nine wallpapers | Ch6 | B7 | app | verified |
