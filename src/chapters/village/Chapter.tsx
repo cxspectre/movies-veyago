@@ -11,7 +11,7 @@ import {LineCharacter, type CharacterId, type PoseId} from '../../characters';
 import {PencilCanvas, handCircle, measureHand, type XY} from '../../paper';
 import {bubblePath} from '../../sketches/speech-bubbles/bubble';
 import type {Point} from '../../sheet4';
-import {VillageHouse} from './House';
+import {VillageHouse} from '../launch/houseArt';
 import {
   BUBBLE_FROM,
   BUBBLE_RISE,
@@ -25,6 +25,7 @@ import {
   VISIT,
   VISIT_PLANS,
   closeAt,
+  frontKeys,
   dims,
   house,
   toRegion,
@@ -121,8 +122,9 @@ const notePlacement = (v: VisitPlan, tall: boolean): {at: (w: number, h: number)
   const right = h.centre[0] + h.width / 2;
   if (tall) {
     const top = h.centre[1] - d.depth * 0.46 - d.wall * 0.41 - d.roof * 0.5 - 6;
-    const maxWidth = Math.min(h.width, 2 * (half[0] as number) - 16);
-    return {maxWidth, at: (w, hgt) => [v.centre[0] - w / 2, top - hgt]};
+    const maxWidth = Math.min(h.width, 2 * (half[0] as number) - 40);
+    const edge = 12;
+    return {maxWidth, at: (w, hgt) => [Math.min(v.centre[0] + (half[0] as number) - edge - w, Math.max(v.centre[0] - (half[0] as number) + edge, v.centre[0] - w / 2)), top - hgt]};
   }
   const roomL = left - (v.centre[0] - (half[0] as number));
   const roomR = v.centre[0] + (half[0] as number) - right;
@@ -145,6 +147,9 @@ const VisitNote: React.FC<{v: VisitPlan; t: number; zoom: number; tall: boolean;
   const at = place.at(page.width * NEST, page.height * NEST);
   return <NestedPage page={page} at={at} scale={NEST} progress={clamp01(t - from)} zoom={zoom} opacity={opacity} />;
 };
+
+/** People who carry a beat are drawn 1.3x the nested scale so the faces read. */
+const PERSON = NEST * 1.3;
 
 /** The interior page scale: the v1 page at 0.16 (BIBLE4 §5.9), smaller where the house is smaller. */
 const interiorScale = (v: VisitPlan): number => {
@@ -179,7 +184,7 @@ const Visit: React.FC<{i: number; t: number; zoom: number; tall: boolean}> = ({i
             key={r.character}
             character={r.character as CharacterId}
             pose={r.pose as PoseId}
-            scale={NEST}
+            scale={PERSON}
             x={x}
             y={y}
             progress={clamp01((t - v.open) / 0.5)}
@@ -188,7 +193,7 @@ const Visit: React.FC<{i: number; t: number; zoom: number; tall: boolean}> = ({i
         );
       })}
       {t >= v.open + VISIT.mayaAfter ? (
-        <LineCharacter character="maya" pose="doorway" scale={NEST} x={mx} y={my} progress={clamp01((t - v.open - VISIT.mayaAfter) / 0.5)} zoom={zoom} />
+        <LineCharacter character="maya" pose="doorway" scale={PERSON} x={mx} y={my} progress={clamp01((t - v.open - VISIT.mayaAfter) / 0.5)} zoom={zoom} />
       ) : null}
       <VisitNote v={v} t={t} zoom={zoom} tall={tall} opacity={1} />
     </div>
@@ -312,7 +317,7 @@ export const Art: React.FC = () => {
     <>
       <StringDots t={t} />
       {HOUSES.map((h) => (
-        <VillageHouse key={h.id} h={h} t={t} />
+        <VillageHouse key={h.id} h={h} t={t} frontKeys={frontKeys} />
       ))}
       {VISIT_PLANS.map((v, i) => (
         <Visit key={v.n} i={i} t={t} zoom={zoom} tall={isTall} />

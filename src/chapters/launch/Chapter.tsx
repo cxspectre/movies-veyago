@@ -5,7 +5,7 @@
 // The map (map.ts) is built for chapter 9: the nested village sits inside the US, Europe is on the same sheet.
 import React from 'react';
 import {Img, staticFile} from 'remotion';
-import {launch, SUPERS} from '../../beats4';
+import {HOUSE_WALLPAPER, launch, SUPERS} from '../../beats4';
 import {headAt, masterOf} from '../../endless';
 import {COLORS, FONTS, FPS} from '../../film';
 import {ChapterShell, Super, superFromBeat, useChapter} from '../../kit';
@@ -13,10 +13,9 @@ import {LineCharacter} from '../../characters';
 import {StickyNote, handLine, handPath} from '../../paper';
 import {PopUp, ROCKET, RocketArt, rocketSpec} from '../../popup';
 import type {Point} from '../../sheet4';
-import {VillageHouse} from '../village/House';
-import {ORIGIN as VILLAGE_ORIGIN, house as villageHouse} from '../village/layout';
+import {VillageHouse} from './houseArt';
 import {SUPER_AT} from './layout';
-import {LANDMASSES, ORIGIN, US, centreOf, toRegion} from './map';
+import {DAD_AT, DAD_WIDTH, LANDMASSES, ORIGIN, US, VILLAGE_ORIGIN, centreOf, toRegion, type HouseDef} from './mapGeometry';
 
 const clamp01 = (x: number): number => Math.min(1, Math.max(0, x));
 const smooth = (x: number): number => {
@@ -242,8 +241,16 @@ const CrossOut: React.FC<{t: number}> = ({t}) => {
 
 // Dad's house, its lit window and Maya
 
-/** Chapter 9's Dad house, unchanged (so the hand-off is exact), shifted from the village region into this one. */
-const DAD = {...villageHouse('dad'), popAt: launch.smallHouse.draw.from + 1.0};
+/** Dad's house: the same drawing and numbers chapter 9 starts from (houseArt.tsx, mapGeometry.ts), shifted from the village region into this one. */
+const DAD: HouseDef = {
+  id: 'dad',
+  door: 'Dad',
+  centre: DAD_AT,
+  width: DAD_WIDTH,
+  kind: 'house',
+  wallpaper: HOUSE_WALLPAPER['Dad']?.hex ?? '#B4DCFE',
+  popAt: launch.smallHouse.draw.from + 1.0,
+};
 /** Village region-local px to launch region-local px. */
 const SHIFT: Point = [VILLAGE_ORIGIN[0] - ORIGIN[0], VILLAGE_ORIGIN[1] - ORIGIN[1]];
 
