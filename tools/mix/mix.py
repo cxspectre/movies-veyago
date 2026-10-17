@@ -1,6 +1,6 @@
 """mix.py - the final sound mix for one version of the film.
 
-usage: .venv/bin/python tools/mix/mix.py <master|vertical|teaser> [--no-vo] [--voice primary|alt] [--target -16]
+usage: .venv/bin/python tools/mix/mix.py <master|vertical|teaser|master4|Hook75|Cut180|Short-<chapter>> [--no-vo] [--voice primary|alt] [--target -16]
 
 Stems: music (arranged per version), foley + a room-tone bed, VO. The music ducks under the voice, one static gain hits
 the loudness target, a lookahead limiter holds the true-peak ceiling, and the silences are forced to exact zeros.
@@ -16,6 +16,8 @@ import pyloudnorm as pyln
 import soundfile as sf
 from scipy.ndimage import maximum_filter1d, minimum_filter1d, uniform_filter1d
 from scipy.signal import resample_poly
+
+from silence import exact_zero, gate, silence_mask, silence_ranges
 
 SR = 48000
 DUCK_DB = -6.0           # music under the voice
@@ -33,6 +35,21 @@ PATHS = {
 }
 ROOM_BED = "audio/foley/stems/room_tone_master.wav"
 
+# The long film (v4, 600 s). Foley stems are rendered with --room-tone, so there is no separate bed. Music for the hook and
+# the cut comes from tools/music4/edits4_music.py; a chapter short slices the master music by edl-segments4.json.
+V4_SEGMENTS = "audio/v4/mix/edl-segments4.json"
+V4_CHAPTERS = ["line", "mayasHouse", "theNo", "filterMachine", "researchBoard", "nameAndLook", "engineRoom", "launch", "village",
+               "paperToGlass", "providedFor"]
+PATHS["master4"] = dict(seconds=600.0, music="audio/v4/music/master/music4-master-mix.wav", foley="audio/v4/foley/stems/foley-master4.wav",
+                        cues="audio/v4/foley/master4.cues.json", edl=None, v4=True, vo_stem="audio/v4/vo/stem_all.wav")
+for _id, _seconds in (("Hook75", 75.0), ("Cut180", 180.0)):
+    PATHS[_id] = dict(seconds=_seconds, music=f"audio/v4/music/{_id}/music4-{_id}-mix.wav", foley=f"audio/v4/foley/stems/foley-{_id}.wav",
+                      cues=f"audio/v4/foley/edl/{_id}.cues.json", edl=_id, v4=True)
+for _c in V4_CHAPTERS:
+    _id = f"Short-{_c}"
+    PATHS[_id] = dict(seconds=None, music="audio/v4/music/master/music4-master-mix.wav", foley=f"audio/v4/foley/stems/foley-{_id}.wav",
+                      cues=f"audio/v4/foley/edl/{_id}.cues.json", edl=_id, v4=True, slice_music=True)
+
 
 def load(path, seconds):
     """Stereo float64 at SR, padded or trimmed to `seconds`."""
@@ -46,6 +63,23 @@ def load(path, seconds):
     m = min(n, data.shape[0])
     out[:m] = data[:m, :2]
     return out
+
+
+def slice_by_edl(path, version, seconds):
+    """A stem cut like the edit: each EDL segment's master range placed at the segment's edit start (v4 shorts)."""
+    master = load(path, 600.0)
+    edl = next(e for e in json.load(open(V4_SEGMENTS)) if e["id"] == PATHS[version]["edl"])
+    out = np.zeros((int(round(seconds * SR)), 2))
+    for seg in edl["segments"]:
+        a, b = int(round(seg["masterFrom"] * SR)), int(round(seg["masterTo"] * SR))
+        start = int(round(seg["start"] * SR))
+        piece = master[a:b]
+        out[start:start + len(piece)] = piece
+    return out
+
+
+def edl_seconds(version):
+    return next(e for e in json.load(open(V4_SEGMENTS)) if e["id"] == PATHS[version]["edl"])["seconds"]
 
 
 def room_bed(version, seconds):
@@ -90,7 +124,25 @@ def cut_vo(audio, line_id, cut, timing):
     return np.concatenate([head, tail])
 
 
+def build_vo_v4(version, seconds, voice):
+    """v4 voice-over: the master uses the placed stem; an edit places the clips named in its cue sheet."""
+    cfg = PATHS[version]
+    folder = "audio/v4/vo" if voice == "primary" else "audio/v4/vo/alt"
+    if cfg["edl"] is None:
+        return load(cfg["vo_stem"] if voice == "primary" else f"{folder}/stem_all.wav", seconds)
+    vo = np.zeros((int(round(seconds * SR)), 2))
+    for line in json.load(open(cfg["cues"])).get("vo", []):
+        audio = load(f"{folder}/clips/{line['line']}.wav", 60.0)
+        audio = audio[: np.max(np.nonzero(np.abs(audio).sum(axis=1) > 0)[0]) + 1]
+        a = int(round(line["t"] * SR))
+        b = min(a + len(audio), vo.shape[0])
+        vo[a:b] += audio[: b - a]
+    return vo
+
+
 def build_vo(version, seconds, voice):
+    if PATHS[version].get("v4"):
+        return build_vo_v4(version, seconds, voice)
     folder = "audio/vo" if voice == "primary" else "audio/vo/alt"
     if version == "master":
         return load(f"{folder}/vo_stem_master.wav", seconds)
@@ -138,22 +190,24 @@ def main():
     ap.add_argument("--target", type=float, default=-16.0)
     args = ap.parse_args()
     cfg = PATHS[args.version]
-    seconds = cfg["seconds"]
+    v4 = cfg.get("v4", False)
+    seconds = cfg["seconds"] if cfg["seconds"] is not None else edl_seconds(args.version)
 
-    music = load(cfg["music"], seconds)
-    foley = load(cfg["foley"], seconds) + room_bed(args.version, seconds)
-    silences = json.load(open(cfg["cues"])).get("silences", [])
+    music = slice_by_edl(cfg["music"], args.version, seconds) if cfg.get("slice_music") else load(cfg["music"], seconds)
+    foley = load(cfg["foley"], seconds) + (0 if v4 else room_bed(args.version, seconds))
+    silences = silence_ranges(json.load(open(cfg["cues"])))
+    music, foley = gate(music, silences, SR), gate(foley, silences, SR)
 
     if args.no_vo:
         mix = music + foley
     else:
         vo = build_vo(args.version, seconds, args.voice)
+        if v4:  # v1 keeps its original ducking; the final mask zeroes the silences either way
+            vo = gate(vo, silences, SR)
         p = presence(vo)[:, None]
         mix = music * (1 - p * (1 - 10 ** (DUCK_DB / 20))) + foley * (1 - p * (1 - 10 ** (FOLEY_DUCK_DB / 20))) + vo
 
-    mask = np.ones(mix.shape[0])
-    for s in silences:
-        mask[int(round(s["start"] * SR)):int(round(s["end"] * SR))] = 0.0
+    mask = silence_mask(mix.shape[0], silences, SR)
     mix *= mask[:, None]
 
     meter = pyln.Meter(SR)
@@ -163,9 +217,10 @@ def main():
     mix *= mask[:, None]
     after = meter.integrated_loudness(mix)
 
-    name = f"audio/mix/{args.version}{'-novo' if args.no_vo else ''}{'-alt' if args.voice == 'alt' and not args.no_vo else ''}.wav"
+    out_dir = "audio/v4/mix" if v4 else "audio/mix"
+    name = f"{out_dir}/{args.version}{'-novo' if args.no_vo else ''}{'-alt' if args.voice == 'alt' and not args.no_vo else ''}.wav"
     sf.write(name, mix, SR, subtype="PCM_24")
-    zero_check = [bool(np.all(mix[int(round(s['start'] * SR)):int(round(s['end'] * SR))] == 0)) for s in silences]
+    zero_check = exact_zero(mix, silences, SR)
     print(json.dumps({
         "file": name, "seconds": round(mix.shape[0] / SR, 3), "lufs_before_gain": round(before, 2), "lufs_final": round(after, 2),
         "true_peak_dbtp": round(true_peak_db(mix), 2), "max_limiter_reduction_db": round(max_reduction_db, 2),
