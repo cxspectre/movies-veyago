@@ -1,4 +1,4 @@
-# D1: the sheet's level-of-detail images and the pull-back (cloud, Sonnet High, CAP $20; START ONLY AFTER D2 IS MERGED)
+# D1: the sheet's level-of-detail images and the pull-back (cloud, Sonnet High, CAP $20; runs beside D2 and D3)
 
 Read `docs/v4/briefs/C-common.md` (the same rules apply), `docs/v4/MASTER4-AUDIT.md` (especially "How regions mount" and "The 9:30 pull-back without LOD images"), `src/endless/README.md`, `tools/renderSheetLod.ts`, `src/endless/lod.ts`, `src/endless/MasterRegion.tsx`.
 
@@ -14,3 +14,6 @@ The images in `public/tex/sheet/` are still placeholder marks. So below zoom 0.1
 4. Write `docs/v4/LOD.md`: how to regenerate (the exact command), when it must be re-run (after any chapter art change), file sizes, and what each far image shows.
 
 Report as in C-common, with the contact sheets.
+
+## Running beside D2
+Another session (D2) is changing the art of chapters 6 (`nameAndLook`), 8 (`launch`), 9 (`village`) and 11 (`providedFor`) at the same time. Render from `main` as it is, and when you are done: `git fetch origin && git merge origin/main`. If D2's PR has merged by then and touched those four chapters, re-run `renderSheetLod.ts` for those ids and `far-done`, commit the new images and re-check the pull-back stills. If D2 has not merged yet, say so at the top of your report (list which images will need a re-run: `nameAndLook`, `launch`, `village`, `providedFor`, `far-done`) and the conductor will re-run them after D2 lands. Do not edit D2's folders.
