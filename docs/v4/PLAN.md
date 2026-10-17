@@ -50,3 +50,6 @@ Cloud sessions push `claude/<brief-id>` branches and open PRs on `cxspectre/movi
 3. **Claims:** every number and date needs a source (`docs/v4/CLAIMS.md`).
 4. **Invite and sharing flows:** the Family CloudKit schema was missing in Production at the last check, so capture those moments with the app's demo hooks (`OB_DEMO_MEMBERS`, `OB_DEMO_JOINING`), never a live flow, and the film's claims must match what is shipped on release day.
 5. **Cost:** v4 cannot be brute-forced on $250; hence reuse, Sonnet by default, stage caps and gates.
+
+## Wave C (cloud, 2026-10-17): assembly, sound plumbing, polish
+C1 Master4 on one sheet plus the handoff audit ($25), C2 v4 cue export, `silence` cue and cut-down cues ($12, code only), C3 chapters 10-11 polish ($14), C4 chapters 4-5 polish ($12), C5 chapters 2 and 6 polish ($12), C6 chapters 8-9 reconcile and polish ($14). Total cap $89; each session owns separate folders. Wave D (after Wave C merges): sheet LOD images, full local audio and renders. The audio mix and the 4K renders stay local.
