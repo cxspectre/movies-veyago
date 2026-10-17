@@ -1,0 +1,7 @@
+# E4: chapters 8 and 9 (cloud, Sonnet High, CAP $14)
+
+Branch `claude/e4-launch-village`. You own `src/chapters/launch/**` and `src/chapters/village/**`. Read `docs/v4/briefs/E-common.md` first. The shared map and house art live in `src/chapters/launch/` (`mapGeometry.ts`, `houseArt.tsx`); keep them the single source.
+
+QA1 rows: **16** (chapter 8: the status plaques "Waiting for Review" and "Ready for Distribution" are 12-14 px, the sticky note "Listed as paid. Should be free." is about 11 px with the pencil line through it, and the "Day one: a mistake..." super is small: scale the plaques and the note about 2x, move the line off the note, raise the super to the rule), **7** (chapter 9: the super "Version 2: a binder for everyone you call family." is written across the base of Dad's house and its nameplate: give it a clear band, for example the top of the frame or a paper tint, in both formats), **10** (the village-green chat "Who are you looking after?" and its two chips are about 14 px and crossed by the pencil line and the crossed-out form: draw the bubble on a paper tint, 36+ px, route the line away), **22** (the greeting bubbles Hello/Hola/Hallo/Bonjour/Hoi are about 24 px and the country circles are tiny ovals: enlarge to the rule).
+
+Then your art-director pass on both chapters (BIBLE4 5.8 and 5.9), both formats, 20 frames each: the village houses must read as houses and the people as people at the working zoom.
