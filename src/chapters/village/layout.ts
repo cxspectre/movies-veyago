@@ -3,32 +3,18 @@
 import {HOUSE_WALLPAPER, HOUSE_VISITS, village} from '../../beats4';
 import type {FoldKey} from '../../popup';
 import {REGIONS, VISITS, type Point} from '../../sheet4';
+import {
+  AUTHOR, COUNTRY_RINGS, DAD_AT, DAD_WIDTH, LISBON_AT, LISBON_WIDTH, MAYA_AT, MAYA_WIDTH, NEST, SEA_ROUTE, dims,
+  type HouseDef, type HouseId, type HouseKind,
+} from '../launch/mapGeometry';
+
+export {AUTHOR, NEST, dims};
+export type {HouseDef, HouseId, HouseKind};
 
 /** Region origin (top-left) in sheet px: plain elements in the art are placed relative to it. */
 export const ORIGIN: Point = [REGIONS.village.centre[0] - REGIONS.village.size[0] / 2, REGIONS.village.centre[1] - REGIONS.village.size[1] / 2];
 export const toRegion = (p: Point): Point => [p[0] - ORIGIN[0], p[1] - ORIGIN[1]];
 
-/** Drawings at the nested scale are authored at 4x (page px) with the v1 line weights and placed at 0.25 (BIBLE4 §1.1). */
-export const NEST = 0.25;
-export const AUTHOR = 1 / NEST;
-
-export type HouseKind = 'house' | 'kennel' | 'flat';
-export type HouseId = 'dad' | 'leo' | 'mia' | 'maya' | 'jonas' | 'biscuit' | 'sam';
-
-export type HouseDef = {
-  readonly id: HouseId;
-  /** The name on the door. */
-  readonly door: string;
-  /** Floor centre, sheet px (BIBLE4 §1.2). */
-  readonly centre: Point;
-  /** Front width, sheet px. */
-  readonly width: number;
-  readonly kind: HouseKind;
-  /** HOUSE_WALLPAPER hex (the light "leading" stop). */
-  readonly wallpaper: string;
-  /** Local second the house pops up (Dad's stands already: chapter 8 drew it). */
-  readonly popAt: number;
-};
 
 const popAt = (name: string): number => {
   const h = village.houses.find((x) => x.name === name);
@@ -43,11 +29,11 @@ const paper = (name: string): string => {
 
 /** Back row first, so nearer houses overlap farther ones. */
 export const HOUSES: readonly HouseDef[] = [
-  {id: 'dad', door: 'Dad', centre: [27600, 3262], width: 270, kind: 'house', wallpaper: paper('Dad'), popAt: -2},
+  {id: 'dad', door: 'Dad', centre: DAD_AT, width: DAD_WIDTH, kind: 'house', wallpaper: paper('Dad'), popAt: -2},
   {id: 'leo', door: 'Leo', centre: [27310, 3270], width: 200, kind: 'house', wallpaper: paper('Leo'), popAt: popAt('Leo')},
   {id: 'mia', door: 'Mia', centre: [27890, 3270], width: 200, kind: 'house', wallpaper: paper('Mia'), popAt: popAt('Mia')},
-  {id: 'sam', door: 'Sam, Lisbon', centre: [28380, 3180], width: 160, kind: 'flat', wallpaper: paper('Sam'), popAt: popAt('Sam')},
-  {id: 'maya', door: 'Maya', centre: [27460, 3480], width: 220, kind: 'house', wallpaper: paper('Maya'), popAt: popAt('Maya')},
+  {id: 'sam', door: 'Sam, Lisbon', centre: LISBON_AT, width: LISBON_WIDTH, kind: 'flat', wallpaper: paper('Sam'), popAt: popAt('Sam')},
+  {id: 'maya', door: 'Maya', centre: MAYA_AT, width: MAYA_WIDTH, kind: 'house', wallpaper: paper('Maya'), popAt: popAt('Maya')},
   {id: 'jonas', door: 'Jonas', centre: [27760, 3480], width: 220, kind: 'house', wallpaper: paper('Jonas'), popAt: popAt('Jonas')},
   {id: 'biscuit', door: 'Biscuit', centre: [27610, 3620], width: 110, kind: 'kennel', wallpaper: paper('Biscuit'), popAt: popAt('Biscuit')},
 ];
@@ -56,13 +42,6 @@ export const house = (id: HouseId): HouseDef => {
   const h = HOUSES.find((x) => x.id === id);
   if (!h) throw new Error(`village: no house ${id}`);
   return h;
-};
-
-/** Floor depth and wall height, sheet px (the projected floor is what the visits look into). */
-export const dims = (h: HouseDef): {depth: number; wall: number; roof: number} => {
-  const depth = h.width * (h.kind === 'kennel' ? 0.62 : 0.6);
-  const wall = h.width * (h.kind === 'flat' ? 0.48 : h.kind === 'kennel' ? 0.36 : 0.3);
-  return {depth, wall, roof: h.width * 0.12};
 };
 
 // The visits
@@ -153,8 +132,7 @@ export const STRING_ROUTE: readonly Point[] = [
   doorPoint('biscuit'),
   doorPoint('jonas'),
   doorPoint('mia'),
-  [28080, 3150],
-  [28260, 3190],
+  ...SEA_ROUTE,
   doorPoint('sam'),
 ];
 
@@ -162,10 +140,10 @@ export const STRING_ROUTE: readonly Point[] = [
 
 /** Accent circles on chapter 8's map of Europe (sheet px, radius). */
 export const COUNTRIES: readonly {id: (typeof village.countries.ids)[number]; at: Point; r: number}[] = [
-  {id: 'be', at: [28470, 3085], r: 12},
-  {id: 'nl', at: [28480, 3060], r: 14},
-  {id: 'de', at: [28560, 3080], r: 28},
-  {id: 'fr', at: [28450, 3130], r: 34},
+  {id: 'be', ...COUNTRY_RINGS.be},
+  {id: 'nl', ...COUNTRY_RINGS.nl},
+  {id: 'de', ...COUNTRY_RINGS.de},
+  {id: 'fr', ...COUNTRY_RINGS.fr},
 ];
 
 /** "112" and "A4" in the margin. Wide: the bible's (28850, 3000/3080). Tall: the z 0.7 frame ends at x 28871, so they move in. */
