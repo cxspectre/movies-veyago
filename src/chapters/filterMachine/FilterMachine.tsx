@@ -136,7 +136,7 @@ export const GateLabels: React.FC<{t: number}> = ({t}) => (
               <rect x={0} y={0} width={PLAQUE.w} height={PLAQUE.h} rx={6} fill="#FBF8EF" stroke={COLORS.graphite} strokeOpacity={0.6} strokeWidth={2} />
             </Panel>
             <svg style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible'}}>
-              <Written lines={[label.text]} x={toRegion(PLAQUE.x + 22, 0)[0]} y={toRegion(0, lip + PLAQUE.below + 40)[1]} size={32} t={t} start={label.at} dur={1.5} />
+              <Written lines={[label.text]} x={toRegion(PLAQUE.x + 18, 0)[0]} y={toRegion(0, lip + PLAQUE.below + 49)[1]} size={45} t={t} start={label.at} dur={1.5} />
             </svg>
         </React.Fragment>
       );

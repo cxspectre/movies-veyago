@@ -58,7 +58,7 @@ const Card: React.FC<{t: number; i: number; L: Layout}> = ({t, i, L}) => {
     <g transform={`translate(${tx} ${y + CARD.h / 2 + lift + peel * peel * 150}) rotate(${(1 - e) * (i % 2 ? 9 : -9) + peel * (i % 2 ? 14 : -14)}) scale(${1 - 0.55 * peel} ${1 - 0.8 * peel}) translate(${-CARD.w / 2} ${-CARD.h / 2})`} opacity={(1 - smooth(prog(t, M.peel.from + i * 0.4 + 0.5, 0.8))) * clamp01(slide * 3)}>
       <rect x={8} y={11} width={CARD.w} height={CARD.h} rx={8} fill={SHADOW} />
       <rect width={CARD.w} height={CARD.h} rx={8} fill={PAPER} stroke={COLORS.graphite} strokeOpacity={0.8} strokeWidth={2.4} />
-      <Written lines={[c.label]} x={CARD.w / 2} y={46} size={28} anchor="middle" t={t} start={c.at + 0.5} dur={0.8} />
+      <Written lines={[c.label]} x={CARD.w / 2} y={52} size={44} anchor="middle" t={t} start={c.at + 0.5} dur={0.8} />
       <g transform={`translate(${CARD.frame.dx} ${CARD.frame.dy})`}>
         <clipPath id={`frame-${i}`}>
           <rect width={CARD.frame.w} height={CARD.frame.h} rx={6} />
@@ -125,9 +125,9 @@ const Chart: React.FC<{t: number}> = ({t}) => {
     <Layer opacity={fade}>
       <DrawOn d={handLine(x0, y1, x1, y1, 71)} p={clamp01(axes * 2)} width={3.2} />
       <DrawOn d={handLine(x0, y1, x0, y0, 72)} p={clamp01(axes * 2 - 0.4)} width={3.2} />
-      <Written lines={['Organises the family']} x={lx} y={ly} size={30} anchor="middle" t={t} start={chart.labels.from} dur={0.75} />
+      <Written lines={['Organises the family']} x={lx} y={ly} size={44} anchor="middle" t={t} start={chart.labels.from} dur={0.75} />
       <g transform={`rotate(-90 ${yx} ${yy})`}>
-        <Written lines={['Handles the hard stuff']} x={yx} y={yy} size={30} anchor="middle" t={t} start={chart.labels.from + 0.75} dur={0.75} />
+        <Written lines={['Handles the hard stuff']} x={yx} y={yy} size={44} anchor="middle" t={t} start={chart.labels.from + 0.75} dur={0.75} />
       </g>
       {COMPETITORS.map(([px, py], i) => {
         const [x, y] = r(px, py);

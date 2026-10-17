@@ -8,7 +8,7 @@ export const ORIGIN = regionOrigin('researchBoard');
 export const toRegion = (x: number, y: number): [number, number] => [x - ORIGIN[0], y - ORIGIN[1]];
 
 export const BOARD = {x: 15400, y: 3300, w: 1600, h: 1200} as const;
-export const CARD = {w: 440, h: 300, frame: {dx: 30, dy: 56, w: 380, h: 230}} as const;
+export const CARD = {w: 440, h: 300, frame: {dx: 30, dy: 64, w: 380, h: 228}} as const;
 export const CARD_AT: readonly Point[] = [[15540, 3350], [16420, 3350], [15540, 4100], [16420, 4100]];
 /** Pin heads: the card's top centre. */
 export const CARD_PIN: readonly Point[] = CARD_AT.map(([x, y]) => [x + CARD.w / 2, y + 6] as Point);
@@ -27,7 +27,7 @@ export const COMPETITORS: readonly Point[] = [
 
 /** Where each card's super sits: under the card, graphite-line left edge. */
 export const SUPER_AT: readonly Point[] = CARD_AT.map(([x, y]) => [x, y + CARD.h + 52] as Point);
-export const GAP_SUPER_AT: Point = [16200, 4552];
+export const GAP_SUPER_AT: Point = [16200, 4468];
 export const BLOCKS_SUPER_AT: Point = [16200, 4650];
 
 /** The six boxes in a row and the hand truck they end up on. */

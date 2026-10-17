@@ -13,7 +13,7 @@ export const HOPPER = {y0: 2540, wTop: 640, wBottom: 420} as const;
 /** The lip of each gate; a card stops on the ledge just above it, and the gate's label hangs just below. */
 export const LIP = [3000, 3260, 3520, 3780, 4040] as const;
 export const REST = LIP.map((y) => y - 60);
-export const PLAQUE = {x: 12290, w: 620, h: 58, below: 16} as const;
+export const PLAQUE = {x: 12220, w: 760, h: 68, below: 16} as const;
 export const CARD = {w: 160, h: 100} as const;
 export const PILE = {x: 12100, y: 4600} as const;
 export const TRAY = {x: 12600, y: 4800, w: 560, front: 4870, back: 4770} as const;

@@ -6,6 +6,7 @@ import {ChapterShell, useChapter} from '../../kit';
 import {BinderCard, FallingCards} from './Cards';
 import {FilterMachine, GateLabels, TrayBack, TrayFront} from './FilterMachine';
 import {Flight} from './Flight';
+import {prog} from './hand';
 
 export const Art: React.FC = () => {
   const {t} = useChapter('filterMachine');
@@ -14,7 +15,9 @@ export const Art: React.FC = () => {
       <FilterMachine t={t} />
       <TrayBack t={t} />
       <FallingCards t={t} />
-      <GateLabels t={t} />
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, opacity: 1 - prog(t, 51.5, 1)}}>
+        <GateLabels t={t} />
+      </div>
       <svg style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible'}}>
         <BinderCard t={t} />
       </svg>
