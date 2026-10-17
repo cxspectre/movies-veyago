@@ -5,6 +5,8 @@
 // the name would be on the inside. Here the front panel lies over the floor in the net and hinges on its south edge.)
 // Authored at 4x (page px, v1 line weights) and placed at the nested scale 0.25.
 import React from 'react';
+import {Img, staticFile} from 'remotion';
+import {LineCharacter} from '../../characters';
 import {Box, Drawing, Hatch, Ink, Line, PopUp, Window, foldKeys, type FoldKey, type Panel, type PopUpSpec} from '../../popup';
 import {handRect} from '../../paper';
 import {COLORS, FONTS} from '../../film';
@@ -159,6 +161,28 @@ export const VillageHouse: React.FC<{h: HouseDef; t: number; frontKeys?: (h: Hou
       <PopUp spec={n.spec} time={t} view={{tilt: TILT}}>
         {(panel: Panel) => (panel.id === 'front' ? <FrontArt h={h} n={n} /> : <InsideArt h={h} n={n} panel={panel.id} />)}
       </PopUp>
+    </div>
+  );
+};
+
+/** Dad's lit window (chapters 8 and 9): a 40 x 30 pane on the inside face of the back wall, which is what the camera sees from above (measured at z 4.0).
+ *  `origin` is the host region's top-left in sheet px; `maya` is her draw progress (0 = not there). */
+export const DAD_WINDOW = {x: 27580, y: 3135, w: 40, h: 30} as const;
+
+export const DadWindow: React.FC<{origin: readonly [number, number]; lit: number; maya: number; zoom: number}> = ({origin, lit, maya, zoom}) => {
+  if (lit <= 0) return null;
+  const {x, y, w, h} = DAD_WINDOW;
+  return (
+    <div style={{position: 'absolute', left: x - origin[0], top: y - origin[1], width: w, height: h, opacity: lit}}>
+      <div style={{position: 'absolute', inset: -26, borderRadius: 40, background: `radial-gradient(closest-side, rgba(47,91,234,0.20), rgba(47,91,234,0))`}} />
+      <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#B4DCFE', boxShadow: `0 0 0 1.6px ${COLORS.graphite}`}}>
+        <Img src={staticFile('footage4/binder-home-dad-light.png')} style={{position: 'absolute', left: 0, top: 0, width: w, height: (w * 2622) / 1206}} />
+        {maya > 0 ? (
+          <div style={{position: 'absolute', left: 0, top: 0, width: w, height: h}}>
+            <LineCharacter character="maya" pose="window" scale={0.14} x={w * 0.76} y={h} progress={maya} zoom={zoom} />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

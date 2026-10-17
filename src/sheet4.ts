@@ -217,11 +217,11 @@ const WIDE: Record<ChapterId, readonly CameraKey[]> = {
     key(27.5, [9000, 3950], 0.9),
     key(30.0, [9000, 3600], 0.75, 'easeInOutSine'),
     key(36.0, [9000, 3600], 0.75),
-    key(40.0, [12600, 2900], 0.8, 'easeInOutCubic'),
+    key(40.0, [12600, 3300], 0.8, 'easeInOutCubic'),
   ],
   filterMachine: [
-    key(0.0, [12600, 2900], 0.8),
-    key(7.0, [12600, 2900], 0.8),
+    key(0.0, [12600, 3300], 0.8),
+    key(7.0, [12600, 2900], 0.8, 'easeInOutSine'),
     key(35.0, [12600, 4400], 0.7),
     key(37.0, [12600, 4700], 1.1, 'easeInOutCubic'),
     key(47.0, [12600, 4700], 1.1),
@@ -281,8 +281,8 @@ const WIDE: Record<ChapterId, readonly CameraKey[]> = {
     ...visitKeys(),
     key(55.0, [28000, 3250], 0.9, 'easeInOutQuint'),
     key(63.0, [28000, 3250], 0.9),
-    key(65.0, [27600, 3400], 4.0, 'easeInOutCubic'),
-    key(71.0, [27600, 3400], 4.0),
+    key(65.0, [27610, 3720], 4.0, 'easeInOutCubic'),
+    key(71.0, [27610, 3720], 4.0),
     key(75.0, [27600, 3380], 2.0, 'easeInOutSine'),
   ],
   paperToGlass: [key(0.0, [27600, 3380], 2.0), key(80.0, [27600, 3380], 2.0)],
@@ -302,6 +302,7 @@ type TallOverride = {t: number; centre?: Point; zoom?: number};
 
 const TALL_OVERRIDES: Partial<Record<ChapterId, readonly TallOverride[]>> = {
   line: [{t: 22.0, zoom: FAR_ZOOM.tall}, {t: 26.0, zoom: FAR_ZOOM.tall}],
+  researchBoard: [{t: 47.0, centre: [16700, 4100], zoom: 0.6}, {t: 61.0, centre: [16700, 4100], zoom: 0.6}],
   mayasHouse: [{t: 31.0, centre: [5400, 3500], zoom: 0.5}, {t: 40.0, centre: [5400, 3500], zoom: 0.5}],
   nameAndLook: [{t: 23.0, zoom: 1.9}, {t: 50.0, zoom: 1.9}],
   engineRoom: [
@@ -311,7 +312,7 @@ const TALL_OVERRIDES: Partial<Record<ChapterId, readonly TallOverride[]>> = {
   village: [{t: 55.0, centre: [28100, 3200], zoom: 0.7}, {t: 63.0, centre: [28100, 3200], zoom: 0.7}],
   providedFor: [
     {t: 11.0, zoom: FAR_ZOOM.tall}, {t: 12.0, zoom: FAR_ZOOM.tall},
-    {t: 21.0, centre: [38300, 3950]}, {t: 30.0, centre: [38300, 3950]},
+    {t: 21.0, centre: [37900, 3950]}, {t: 30.0, centre: [37900, 3950]},
   ],
 };
 
