@@ -33,10 +33,13 @@ export type Polyline = {readonly pts: readonly XY[]; readonly smooth?: number; r
 export type Figure = {
   /** The body as ordered segments: concatenated, they are one continuous pencil movement. */
   readonly body: readonly Segment[];
-  /** Face (3-5 strokes: brow, nose, mouth, a hint of an eye) and any beard strokes. */
+  /** Face (3-5 strokes: brow, nose, mouth, a hint of an eye), any beard strokes, and small clothing details in the
+   *  figure's ink (Maya's cardigan edge, Dad's placket, Leo's and Sam's straps). */
   readonly face: readonly Polyline[];
   /** The one accent detail (drawn last, in the accent ink); several movements make one stroke. */
   readonly accent: readonly Polyline[];
+  /** What the pose sits or lies on (a chair, a bed): graphite, drawn right after the body. */
+  readonly prop?: readonly Polyline[];
   /** Hand wobble of the outline points, px (the drawing hand's own imperfection, constant per pose). */
   readonly wobble: number;
 };
@@ -55,3 +58,4 @@ export type CharacterDesign = {
 export const BODY_ID = 'body';
 export const FACE_ID = 'face';
 export const ACCENT_ID = 'accent';
+export const PROP_ID = 'prop';

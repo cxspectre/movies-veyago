@@ -9,6 +9,9 @@ import {STROKE_MAX_SEC, STROKE_MIN_SEC} from '../sounds/stroke';
 export type Validated<T> = {readonly value: T; readonly warnings: readonly string[]};
 
 const MAX_GAIN = 4;
+/** v4 hits with a duration (fold, crumple, marble_run...) and a rate (odometer); each recipe clamps further. */
+const HIT_MAX_DUR_SEC = 30;
+const HIT_MAX_RATE = 40;
 const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
 type Obj = Record<string, unknown>;
 
@@ -55,6 +58,8 @@ function checkCue(raw: unknown, index: number, errors: string[], warnings: strin
       if (!isSfxName(o.name)) errors.push(`${where}: unknown hit name ${JSON.stringify(o.name)} (known: ${SFX_NAMES.join(', ')})`);
       checkOptionalRange(o, 'gain', 0, MAX_GAIN, errors, where);
       checkOptionalRange(o, 'pan', -1, 1, errors, where);
+      checkOptionalRange(o, 'dur', 0.05, HIT_MAX_DUR_SEC, errors, where);
+      checkOptionalRange(o, 'rate', 1, HIT_MAX_RATE, errors, where);
       break;
     default:
       errors.push(`${where}: unknown kind ${JSON.stringify(o.kind)} (expected stroke, erase, slide, sweep or hit)`);

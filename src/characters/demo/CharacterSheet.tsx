@@ -1,4 +1,5 @@
-// CharacterSheet.tsx — the Gate 1 style test: `CharacterSheet-wide` (all seven standing on paper, evenly lit) and
+// CharacterSheet.tsx — the Gate 1 style test: `CharacterSheet-wide` (all seven standing on paper, evenly lit, and
+// below them the family's other poses at 0.62: seated on their chairs, Dad in bed, reaching, holding up) and
 // `Maya-poses-wide` (Maya's poses plus one swap caught mid-redraw). The figures draw on over DRAW_SECONDS, then hold.
 import React from 'react';
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
@@ -28,9 +29,16 @@ const Paper: React.FC<{children: React.ReactNode}> = ({children}) => (
 
 const drawProgress = (frame: number, startFrame = 0): number => Math.min(1, Math.max(0, (frame - startFrame) / sec(DRAW_SECONDS)));
 
-const SHEET_GROUND = 790;
+const SHEET_GROUND = 620;
 const SHEET_X0 = 180;
 const SHEET_STEP = 262;
+const POSE_GROUND = 1000;
+const POSE_SCALE = 0.62;
+const POSE_X0 = 150;
+const POSE_STEP = 232;
+const FAMILY_POSES: readonly (readonly [CharacterId, PoseId])[] = [
+  ['dad', 'sit'], ['dad', 'lie'], ['dad', 'hold-up'], ['jonas', 'sit'], ['leo', 'reach'], ['mia', 'reach'], ['sam', 'hold-up'], ['biscuit', 'lie'],
+];
 
 export const CharacterSheet: React.FC = () => {
   const frame = useCurrentFrame();
@@ -46,7 +54,16 @@ export const CharacterSheet: React.FC = () => {
           </React.Fragment>
         );
       })}
-      <Caption x={WIDE.width / 2} y={60} text="The design sheet: standing, scale 1, one accent detail each" width={900} />
+      {FAMILY_POSES.map(([id, pose], i) => {
+        const x = POSE_X0 + i * POSE_STEP;
+        return (
+          <React.Fragment key={`${id}-${pose}`}>
+            <LineCharacter character={id} pose={pose} x={x} y={POSE_GROUND} scale={POSE_SCALE} progress={drawProgress(frame, 28 + i * 4)} />
+            <Caption x={x} y={POSE_GROUND + 22} text={`${DESIGNS[id].name} · ${pose}`} />
+          </React.Fragment>
+        );
+      })}
+      <Caption x={WIDE.width / 2} y={40} text="The design sheet: standing, scale 1, one accent detail each; below, the other poses at 0.62" width={1100} />
     </Paper>
   );
 };

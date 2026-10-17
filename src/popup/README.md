@@ -27,7 +27,7 @@ import {PopUp, MAYAS_HOUSE, HouseArt} from '../../popup';
 | Tall machine: body box, hopper, five gates, tray | `FILTER_MACHINE`, `machineSpec(data)`, `MachineArt` | 5.4 |
 | Rocket on a pad with three fins | `ROCKET`, `rocketSpec(data)`, `RocketArt` | 5.8 |
 
-Change timings and sizes in the data (`timing`, `at`, `amount`); change the look of the drawing by passing other art children. Scissors and the paper plane are not built yet (a plane is a 4-panel net: write it as a spec).
+Change timings and sizes in the data (`timing`, `at`, `amount`); change the look of the drawing by passing other art children. The paper plane is not built yet (scissors, crumpled ball and page drop: see Effects below) (a plane is a 4-panel net: write it as a spec).
 
 ## Proof and cost
 
@@ -39,3 +39,29 @@ Measured on the 4-core cloud box (software GL, four pop-ups with about 45 panels
 - The crumple reads as crumpled paper but is a loose zigzag, not a tidy ball (a chain of random creases). Tune `maxCrease`, grid and seed, or add a shrink; the ball does not shrink in size.
 - Panels shadow the page, not each other (no self-shadow); shading is per panel normal.
 - The back-leaning roof is visible mostly as a flap above the back wall.
+
+## Effects (`src/popup/effects`, chapter 3 "The no", BIBLE4 5.3)
+
+Flat SVG components (no CSS 3D, no canvas, no WebGL, no `mix-blend-mode`), deterministic (seeded hashes). Art children are **SVG** in the effect's own box (0..w, 0..h): paths, `<text>`, the `Ink`/`Box`/`Ring`/`Scribble` helpers. Every effect takes `time` (module-local seconds; default `frame / fps`), `lamp` and `style`; position and scale with a wrapper div.
+
+```tsx
+import {CrumpleBall, crumpleRest, UnfoldFromBall, ScissorsCut, PageDrop} from '../../popup';
+
+// 10.0-12.0 the letter crushes into a ball r 180, rolls and settles
+<CrumpleBall w={460} h={600} time={t} start={10} duration={2} radius={180} to={[dx, dy]}>{letterSvg}</CrumpleBall>
+// 13.0 the same ball (same seed/cols/rows/radius, box centred on the same point) opens into the engine
+<UnfoldFromBall w={900} h={520} time={t} start={13} duration={2} radius={180} from={crumpleRest({w: 460, h: 600, radius: 180, to: [dx, dy]})}>{engineSvg}</UnfoldFromBall>
+// 20.0 scissors enter, snip 3 times down the path, halves slide; left fades with a 0->12 px blur, right is labelled "keep"
+<ScissorsCut w={900} h={520} time={t} start={20} cut={2.5} path={[[450, 0], [450, 520]]} left={{dx: -400, fade: true}} right={{dx: 300, label: 'keep'}}>{cardSvg}</ScissorsCut>
+// 28.0 the page drops (lands 28.45), 30.0 the 21 is circled; the NumberRoll goes in `anchor`
+<PageDrop time={t} start={28} month="September 2026" days={30} firstWeekday={1} circled={21} circleAt={30} anchor={<NumberRoll ... />} />
+```
+
+- **CrumpleBall / UnfoldFromBall**: a jittered 8 x 10 triangle mesh; each vertex has a flat home and a home on a dented ball (octahedral wrap: the middle of the sheet faces the viewer, the corners meet behind), moving on its own staggered schedule with a wrinkle that peaks mid-crush. Facets are painted far-to-near, the art affine-mapped and clipped onto each, shaded from the facet normal against the lamp (backs of the paper are blank, darker paper). The shadow is the silhouette offset along the lamp, plus a contact shadow that tightens under the ball. `rolls` (default three small rolls, then a rocking settle; `[]` = none), `to` (ball centre vs the sheet centre: two letters crushing into one ball share a point), `seed`, `cols`, `rows`, `creaseFade` (unfold: seconds for the last creases to go, default 1.2). Two letters into one ball: two CrumpleBalls with `to` pointing at the same spot; swap to one at the end of the crush.
+- **ScissorsCut**: `path` must run from the top edge to the bottom edge (y increasing). Timings default from `start`: enter 0.5 s, cut `cut` s in `snips` snips, slide at cut end + 0.5 for `slideDur` 1 s, fade from slide + 0.5 for 2 s, label at slide end + 0.5. Halves are separate paper pieces with their own shadow (lifted while sliding). `scissorsSize` default 300.
+- **PageDrop**: falls 0.45 s with gravity, two small bounces and a rotational wobble; shadow is `castShadow` at the page's height. `pageDropAnchor(w, h)` gives the anchor point (default centred 50 px under the page); the element carries `data-anchor="number-roll"`.
+
+Proof: `Effects-demo-wide` / `-tall` (8 s): `FILM_GL=swangle npx tsx tools/stills.ts Effects-demo-wide 1 36,37,100,160,235 --sheet=out/review/a3/x.png` (stills in `out/review/a3/`, not committed).
+Cost on the 4-core cloud box: about **1.3 s per frame at 1080p** (6 frames in 13 s including about 5 s of bundling; three effects on screen, the ball 160 facets), about **3 s for a 2x still**. Adjacent mid-crumple frames 36/37 differ by 1.5% of pixels, all of it the ball moving coherently (same facets, no popping or seams).
+
+Known gaps: the ball is seen straight down (no view tilt); facet order is a per-facet depth sort, so a facet can briefly poke through another mid-crush. The fading half is CSS `filter: blur()` (fine for stills; costlier in long renders).
