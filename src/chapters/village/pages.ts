@@ -158,11 +158,17 @@ export const formPage = ((): Page => {
 })();
 
 /** "Who are you looking after?" and the chips (Patrick Hand 36 screen px at z 4 = 36 page px at the nested scale). */
-export const CHAT = {question: 'Who are you looking after?', size: 36, chipSize: 32} as const;
-export const chatPage = (question: string, chips: readonly string[]): Page => {
-  const qw = measureHand(question, CHAT.size, 'patrick-400');
+export const CHAT = {question: 'Who are you looking after?', size: 46, chipSize: 40} as const;
+const chatBox = (question: string) => {
   const pad = 34;
-  const box = {x0: 40, y0: 30, x1: 40 + qw + pad * 2, y1: 30 + 200};
+  const qw = measureHand(question, CHAT.size, 'patrick-400');
+  return {x0: 40, y0: 30, x1: 40 + qw + pad * 2, y1: 30 + 240};
+};
+/** The bubble's box in page px (the chapter lays a paper tint under it). */
+export const chatBubbleBox = chatBox;
+export const chatPage = (question: string, chips: readonly string[]): Page => {
+  const pad = 34;
+  const box = chatBox(question);
   const width = Math.ceil(box.x1 + 40);
   const height = Math.ceil(box.y1 + 70);
   const bubble = bubblePath(box, {radius: 36, tail: 40, tailHalfBase: 16, toward: [0, height], seed: 1101});
@@ -173,13 +179,13 @@ export const chatPage = (question: string, chips: readonly string[]): Page => {
     const at = x;
     x += w + 22;
     return [
-      stroke(`chip-${i}`, roundedRect(at, box.y0 + 104, w, 62, 30, 1110 + i), {width: 2.2, ink: i === 0 ? 'accent' : 'graphite'}),
-      label(`chip-${i}-text`, c, at + 24, box.y0 + 146, {size: CHAT.chipSize, face: 'patrick-400', ink: i === 0 ? 'accent' : 'graphite'}),
+      stroke(`chip-${i}`, roundedRect(at, box.y0 + 116, w, 78, 38, 1110 + i), {width: 2.2, ink: i === 0 ? 'accent' : 'graphite'}),
+      label(`chip-${i}-text`, c, at + 24, box.y0 + 168, {size: CHAT.chipSize, face: 'patrick-400', ink: i === 0 ? 'accent' : 'graphite'}),
     ];
   });
   const items = [
     stroke('bubble', bubble.d, {width: 2.4}),
-    label('question', question, box.x0 + pad, box.y0 + 66, {size: CHAT.size, face: 'patrick-400'}),
+    label('question', question, box.x0 + pad, box.y0 + 72, {size: CHAT.size, face: 'patrick-400'}),
     ...chipItems,
   ];
   return page({id: 'village-chat', ...sequence(items, 0, 1, 0.08)}, width, height);

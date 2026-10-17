@@ -154,11 +154,11 @@ export const MARGIN_AT: Record<'wide' | 'tall', readonly Point[]> = {
 
 /** Five bubbles float up from the houses (each from the house below it): start points, sheet px. */
 export const BUBBLE_FROM: readonly {from: HouseId; at: Point}[] = [
-  {from: 'dad', at: [27600, 3060]},
-  {from: 'leo', at: [27300, 3090]},
-  {from: 'jonas', at: [27790, 3130]},
-  {from: 'mia', at: [27960, 3070]},
-  {from: 'maya', at: [27440, 3170]},
+  {from: 'dad', at: [27640, 3100]},
+  {from: 'leo', at: [27440, 3190]},
+  {from: 'jonas', at: [27840, 3190]},
+  {from: 'mia', at: [28040, 3100]},
+  {from: 'maya', at: [28240, 3190]},
 ];
 export const BUBBLE_RISE = 60;
 

@@ -12,7 +12,7 @@ import {StickyNote, handLine, handPath} from '../../paper';
 import {PopUp, ROCKET, RocketArt, rocketSpec} from '../../popup';
 import type {Point} from '../../sheet4';
 import {DadWindow, VillageHouse} from './houseArt';
-import {SUPER_AT} from './layout';
+import {SUPER_AT, SUPER_SIZE} from './layout';
 import {DAD_AT, DAD_WIDTH, LANDMASSES, ORIGIN, US, VILLAGE_ORIGIN, centreOf, toRegion, type HouseDef} from './mapGeometry';
 
 const clamp01 = (x: number): number => Math.min(1, Math.max(0, x));
@@ -108,7 +108,9 @@ const Flier: React.FC<{t: number}> = ({t}) => {
 
 // The status plaque (DRAWN, contract 13.5) and the date
 
-const PLAQUE = {x: 26330, y: 4090, w: 220, h: 64} as const;
+/** Read at zoom 0.8 (3-10 s): 48 sheet px lettering = 38 screen px. It fades once the rocket has left. */
+const PLAQUE = {x: 26330, y: 4090, w: 440, h: 128} as const;
+const PLAQUE_OUT = {from: 10.5, to: 12.0};
 const STATUS_LINES: Record<string, readonly string[]> = {
   'Waiting for Review': ['Waiting for', 'Review'],
   'In Review': ['In Review'],
@@ -119,14 +121,15 @@ const SNAP = 0.18;
 const StatusPlaque: React.FC<{t: number}> = ({t}) => {
   const first = launch.statuses[0].at;
   const appear = smooth((t - (first - 0.6)) / 0.5);
-  if (appear <= 0) return null;
+  const gone = 1 - smooth(win(PLAQUE_OUT, t));
+  if (appear <= 0 || gone <= 0) return null;
   const [x, y] = toRegion([PLAQUE.x, PLAQUE.y]);
   const body = handPath([[x, y], [x + PLAQUE.w, y], [x + PLAQUE.w, y + PLAQUE.h], [x, y + PLAQUE.h], [x, y]], 21, {wobble: 1.1, smooth: 0.15});
-  const tether = handLine(x, y + PLAQUE.h * 0.5, x - 46, y + PLAQUE.h * 0.5 + 18, 22);
+  const tether = handLine(x, y + PLAQUE.h * 0.5, x - 92, y + PLAQUE.h * 0.5 + 36, 22);
   return (
-    <Layer opacity={appear}>
-      <path d={tether} fill="none" stroke={COLORS.graphite} strokeWidth={1.8} strokeOpacity={0.8} strokeLinecap="round" />
-      <path d={body} fill="rgba(243,238,227,0.92)" stroke={COLORS.graphite} strokeWidth={2.4} strokeOpacity={0.9} strokeLinejoin="round" />
+    <Layer opacity={appear * gone}>
+      <path d={tether} fill="none" stroke={COLORS.graphite} strokeWidth={3.2} strokeOpacity={0.8} strokeLinecap="round" />
+      <path d={body} fill="rgba(243,238,227,0.92)" stroke={COLORS.graphite} strokeWidth={4} strokeOpacity={0.9} strokeLinejoin="round" />
       {launch.statuses.map((s, i) => {
         const next = launch.statuses[i + 1];
         const a = smooth((t - s.at) / SNAP) * (next ? 1 - smooth((t - next.at) / SNAP) : 1);
@@ -134,9 +137,9 @@ const StatusPlaque: React.FC<{t: number}> = ({t}) => {
         const op = i === 0 ? (next ? 1 - smooth((t - next.at) / SNAP) : 1) : a;
         const lines = STATUS_LINES[s.text] ?? [s.text];
         return (
-          <text key={s.text} x={x + PLAQUE.w / 2} y={y + PLAQUE.h / 2 + (lines.length === 1 ? 8 : -3)} textAnchor="middle" fontSize={24} fontWeight={500} fill={COLORS.graphite} opacity={op} style={{fontFamily: FONTS.super}}>
+          <text key={s.text} x={x + PLAQUE.w / 2} y={y + PLAQUE.h / 2 + (lines.length === 1 ? 16 : -6)} textAnchor="middle" fontSize={48} fontWeight={500} fill={COLORS.graphite} opacity={op} style={{fontFamily: FONTS.super}}>
             {lines.map((l, j) => (
-              <tspan key={l} x={x + PLAQUE.w / 2} dy={j === 0 ? 0 : 27}>
+              <tspan key={l} x={x + PLAQUE.w / 2} dy={j === 0 ? 0 : 54}>
                 {l}
               </tspan>
             ))}
@@ -199,8 +202,9 @@ const UsFill: React.FC<{t: number}> = ({t}) => {
 /** The second note's wording. The claims sheet (A16) could not confirm that version 1.1 was the price fix, so the
  *  default is the wording it allows; the film's script and beats4 say "Fixed. Version 1.1. Next day." */
 export const NOTE_FIX_TEXT = 'Fixed. The next day.';
-const NOTE_SIZE = 220;
-const NOTE_AT: readonly Point[] = [[27500, 3150], [27750, 3400]];
+/** Read at zoom 0.55 (22-35 s): 66 sheet px lettering = 36 screen px. Placed right of the pencil's rest point, off the line. */
+const NOTE_SIZE = 480;
+const NOTE_AT: readonly Point[] = [[27920, 3050], [28180, 3560]];
 
 const Notes: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
   const fade = 1 - smooth(win(launch.zoomIn.notesFade, t));
@@ -218,7 +222,7 @@ const Notes: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
               rotate={i === 0 ? -4 : 3}
               face="kalam-700"
               ink="accent"
-              textSize={30}
+              textSize={66}
               pressAt={n.press * FPS}
               writeAt={n.write.from * FPS}
               writeFrames={Math.round((n.write.to - n.write.from) * FPS)}
@@ -238,13 +242,13 @@ const CrossOut: React.FC<{t: number}> = ({t}) => {
   if (k <= 0) return null;
   const fade = 1 - smooth(win(launch.zoomIn.notesFade, t));
   const [cx, cy] = toRegion(NOTE_AT[0] as Point);
-  const a = handPath([[cx - 104, cy + 70], [cx + 6, cy - 6], [cx + 108, cy - 78]], 41, {wobble: 1.2, smooth: 0.6});
-  const b = handPath([[cx - 100, cy - 56], [cx + 4, cy + 12], [cx + 106, cy + 82]], 42, {wobble: 1.2, smooth: 0.6});
+  const a = handPath([[cx - 227, cy + 153], [cx + 13, cy - 13], [cx + 236, cy - 170]], 41, {wobble: 1.2, smooth: 0.6});
+  const b = handPath([[cx - 218, cy - 122], [cx + 9, cy + 26], [cx + 231, cy + 179]], 42, {wobble: 1.2, smooth: 0.6});
   return (
     <Layer opacity={fade}>
       {[a, b].map((d, i) => {
         const kk = clamp01(k * 2 - i);
-        return kk > 0 ? <path key={i} d={d} fill="none" stroke={COLORS.graphite} strokeWidth={4} strokeOpacity={0.92} strokeLinecap="round" pathLength={1} strokeDasharray={`${kk} 1`} /> : null;
+        return kk > 0 ? <path key={i} d={d} fill="none" stroke={COLORS.graphite} strokeWidth={8} strokeOpacity={0.92} strokeLinecap="round" pathLength={1} strokeDasharray={`${kk} 1`} /> : null;
       })}
     </Layer>
   );
@@ -304,7 +308,7 @@ export const Art: React.FC = () => {
       <CrossOut t={t} />
       <HouseScene t={t} zoom={zoom} />
       {SUPERS.launch.map((s) => (
-        <Super key={s.t} {...superFromBeat(s, {sheet: [sx, sy], align: 'centre'}, {size: 56, maxWidth: 1080})} />
+        <Super key={s.t} {...superFromBeat(s, {sheet: [sx, sy], align: 'centre'}, {size: SUPER_SIZE, maxWidth: 1080})} />
       ))}
     </>
   );

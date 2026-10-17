@@ -4,7 +4,7 @@
 import type {Cue, ModuleCues} from '../../audio/cues';
 import {SUPERS, launch} from '../../beats4';
 import {superCues, superFromBeat} from '../../kit';
-import {SUPER_AT} from './layout';
+import {SUPER_AT, SUPER_SIZE} from './layout';
 
 const hit = (t: number, name: Extract<Cue, {kind: 'hit'}>['name'], o: {dur?: number; gain?: number} = {}): Cue => ({kind: 'hit', t, name, ...o});
 const pencil = (t: number, dur: number, pressure = 0.8): Cue => ({kind: 'stroke', t, dur, pressure});
@@ -16,7 +16,7 @@ export const cues: ModuleCues = [
   hit(launch.liftOff.from, 'rocket', {dur: launch.liftOff.to - launch.liftOff.from - 1.0}),
   pencil(launch.map.from, launch.map.to - launch.map.from, 0.6),
   {kind: 'stroke' as const, t: launch.usFill.from, dur: launch.usFill.to - launch.usFill.from, pressure: 1.0, tool: 'pen' as const},
-  ...SUPERS.launch.flatMap((s) => superCues(superFromBeat(s, {sheet: SUPER_AT, align: 'centre'}, {size: 56, maxWidth: 1080}))),
+  ...SUPERS.launch.flatMap((s) => superCues(superFromBeat(s, {sheet: SUPER_AT, align: 'centre'}, {size: SUPER_SIZE, maxWidth: 1080}))),
   ...launch.notes.map((n) => hit(n.press, 'sticky_press')),
   ...launch.notes.map((n) => pencil(n.write.from, n.write.to - n.write.from, 0.9)),
   pencil(launch.crossOut.from, launch.crossOut.to - launch.crossOut.from, 1.3),
