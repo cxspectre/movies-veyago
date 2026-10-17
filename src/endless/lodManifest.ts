@@ -5,9 +5,9 @@ export const REGION_IMAGE_CROP: Record<string, {x: number; y: number; w: number;
   theNo: {x: 915.5, y: 75, w: 574.5, h: 795},
   filterMachine: {x: 487, y: 423.5, w: 1149, h: 2455.5},
   researchBoard: {x: 487, y: 486.5, w: 1626.5, h: 1226},
-  nameAndLook: {x: 648, y: 536, w: 1102, h: 879},
+  nameAndLook: {x: 648, y: 535.5, w: 1102, h: 879.5},
   engineRoom: {x: 592.5, y: 436.5, w: 1271, h: 3163.5},
   launch: {x: 372, y: 387, w: 2828, h: 1931.5},
-  village: {x: 258, y: 78.5, w: 1142, h: 624.5},
-  providedFor: {x: 811.5, y: 591, w: 1202.5, h: 568.5},
+  village: {x: 258, y: 79, w: 1142, h: 719.5},
+  providedFor: {x: 812, y: 590.5, w: 1202.5, h: 569},
 };
