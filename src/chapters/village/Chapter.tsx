@@ -11,7 +11,8 @@ import {LineCharacter, type CharacterId, type PoseId} from '../../characters';
 import {PencilCanvas, handCircle, measureHand, type XY} from '../../paper';
 import {bubblePath} from '../../sketches/speech-bubbles/bubble';
 import type {Point} from '../../sheet4';
-import {VillageHouse} from '../launch/houseArt';
+import {DadWindow, VillageHouse} from '../launch/houseArt';
+import {VILLAGE_ORIGIN} from '../launch/mapGeometry';
 import {
   BUBBLE_FROM,
   BUBBLE_RISE,
@@ -319,6 +320,8 @@ export const Art: React.FC = () => {
       {HOUSES.map((h) => (
         <VillageHouse key={h.id} h={h} t={t} frontKeys={frontKeys} />
       ))}
+      {/* chapter 8's lit window carries over, then dims as the village pops up around it */}
+      <DadWindow origin={VILLAGE_ORIGIN} lit={1 - smooth((t - 3.0) / 2.0)} maya={1} zoom={zoom} />
       {VISIT_PLANS.map((v, i) => (
         <Visit key={v.n} i={i} t={t} zoom={zoom} tall={isTall} />
       ))}

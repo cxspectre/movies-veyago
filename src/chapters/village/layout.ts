@@ -166,4 +166,4 @@ export const BUBBLE_RISE = 60;
 export const SUPER_FIVE_AT: Point = [28000, 3800];
 
 /** The village green (63-75). */
-export const GREEN = {form: [27560, 3420] as Point, bubble: [27660, 3420] as Point};
+export const GREEN = {form: [27575, 3720] as Point, bubble: [27610, 3720] as Point};

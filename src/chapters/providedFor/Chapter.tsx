@@ -29,13 +29,8 @@ const local = (p: readonly [number, number]): [number, number] => [p[0] - ORIGIN
 
 /** The graphite pencil lying at 12 degrees, the line's end at its tip; it sets itself down 15.0-17.0. */
 const SetDownPencil: React.FC = () => {
-  const {t, camera, isTall} = useChapter('providedFor');
-  const [tx, ty] = local(PENCIL.tip);
-  // Tall only: the camera's drift (sheet4.ts, not ours) leaves the pencil half off the 1080 px frame, so during the drift it is
-  // nudged right and down in sheet space to rest whole in the lower-left (see README: the clean fix is the tall camera centre).
-  const nudge = isTall ? smooth(win(t, 20.0, 21.0)) : 0;
-  const x = tx + 370 * nudge;
-  const y = ty + 420 * nudge;
+  const {t, camera} = useChapter('providedFor');
+  const [x, y] = local(PENCIL.tip);
   // The live pencil takes over from the far image's glimpse between zoom 0.15 and 0.30 (BIBLE4 §1.5).
   const fade = smooth((camera.zoom - 0.15) / 0.15);
   if (fade <= 0) return null;
@@ -111,8 +106,9 @@ export const Overlay: React.FC = () => {
           <TitleLayer t={80} format={isTall ? 'tall' : 'wide'} />
         </div>
       ) : null}
+      {/* top-left, two lines: the pencil line crosses the lower and middle of the frame while the camera pulls back */}
       {SUPERS.providedFor.map((s) => (
-        <Super key={s.text} {...superFromBeat(s)} />
+        <Super key={s.text} {...superFromBeat(s, {screen: {x: isTall ? 0.06 : 0.05, y: isTall ? 0.1 : 0.15, align: 'left'}}, {maxWidth: isTall ? 500 : 900})} />
       ))}
       {closing > 0 ? (
         <div

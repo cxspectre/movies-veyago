@@ -34,7 +34,7 @@ export const CARD = {
  * the mark and the Caladea line near the foot. All of it stays inside the 1080 px central column.
  */
 export const cardLayout = (tall: boolean) => {
-  const cx = 38300;
+  const cx = tall ? 37900 : 38300;
   const cy = tall ? 3950 : 3900;
   const H = tall ? 1920 : 1080;
   const titleSize = tall ? 96 : 120;

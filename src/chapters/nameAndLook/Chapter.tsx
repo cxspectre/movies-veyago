@@ -56,6 +56,10 @@ const NamesSheet: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
   const out = smooth((t - WORD_PARKED.move.from) / (WORD_PARKED.move.to - WORD_PARKED.move.from));
   if (out >= 1) return null;
   const progress = clamp01((t - NAMES_PAGE.from) / (NAMES_PAGE.to - NAMES_PAGE.from));
+  // the line reaches the sheet at 4.5: its outline is drawn on over 0.0-4.5, then the paper fills in (3.5-4.5)
+  const outline = clamp01(t / 4.5);
+  const fill = smooth((t - 3.5) / 1.0);
+  const outlineD = handRect(0, 0, w, h, 5100, {overshoot: 3});
   return (
     <div
       style={{
@@ -65,11 +69,15 @@ const NamesSheet: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
         width: w,
         height: h,
         transform: `rotate(${rotate - 2 * out}deg)`,
-        background: '#F7F3EA',
-        boxShadow: castShadow(DEFAULT_LAMP, {height: 4}),
         opacity: 1 - out,
       }}
     >
+      <div style={{position: 'absolute', inset: 0, background: '#F7F3EA', boxShadow: castShadow(DEFAULT_LAMP, {height: 4}), opacity: fill}} />
+      {outline < 1 || fill < 1 ? (
+        <svg width={w} height={h} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible', opacity: 1 - fill}}>
+          <path d={outlineD} fill="none" stroke={COLORS.graphite} strokeOpacity={0.8} strokeWidth={2} strokeLinecap="round" pathLength={1} strokeDasharray={`${outline} 1`} />
+        </svg>
+      ) : null}
       <PencilCanvas marks={NAMES_PAGE.marks} progress={progress} width={w} height={h} zoom={zoom} style={{left: 0, top: 0}} />
     </div>
   );

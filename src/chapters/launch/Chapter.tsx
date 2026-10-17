@@ -4,16 +4,14 @@
 // the fix); the camera zooms into the US to Dad's house, its window lit with a binder named Dad, and Maya at it.
 // The map (map.ts) is built for chapter 9: the nested village sits inside the US, Europe is on the same sheet.
 import React from 'react';
-import {Img, staticFile} from 'remotion';
 import {HOUSE_WALLPAPER, launch, SUPERS} from '../../beats4';
 import {headAt, masterOf} from '../../endless';
 import {COLORS, FONTS, FPS} from '../../film';
 import {ChapterShell, Super, superFromBeat, useChapter} from '../../kit';
-import {LineCharacter} from '../../characters';
 import {StickyNote, handLine, handPath} from '../../paper';
 import {PopUp, ROCKET, RocketArt, rocketSpec} from '../../popup';
 import type {Point} from '../../sheet4';
-import {VillageHouse} from './houseArt';
+import {DadWindow, VillageHouse} from './houseArt';
 import {SUPER_AT} from './layout';
 import {DAD_AT, DAD_WIDTH, LANDMASSES, ORIGIN, US, VILLAGE_ORIGIN, centreOf, toRegion, type HouseDef} from './mapGeometry';
 
@@ -50,14 +48,27 @@ const netBox = (left: number, top: number, extra: React.CSSProperties = {}): Rea
   ...extra,
 });
 
+/** Chapter 7's line reaches the pad at 3.0: the slab is drawn on left to right over 0.0-3.0 (a pen wipe), the body fades in over 2.5-3.0. */
+const PAD_DRAW = {from: 0.0, to: 3.0};
+const BODY_IN = {from: 2.5, to: 3.0};
+
 const Pad: React.FC<{t: number; clip: boolean}> = ({t, clip}) => {
   const [x, y] = toRegion(PAD_AT);
-  return (
-    <div style={netBox(x - NET_PAD[0], y - NET_PAD[1], clip ? {clipPath: `inset(${SPLIT_Y}px -200px -200px -200px)`} : {})}>
+  const drawn = win(PAD_DRAW, t);
+  const body = smooth(win(BODY_IN, t));
+  const net = (children: React.ReactNode, extra: React.CSSProperties) => (
+    <div style={netBox(x - NET_PAD[0], y - NET_PAD[1], extra)}>
       <PopUp spec={ROCKET} time={t} view={{tilt: 24}}>
-        <RocketArt spec={ROCKET} />
+        {children}
       </PopUp>
     </div>
+  );
+  const slabClip = `inset(${SPLIT_Y}px ${drawn >= 1 ? -200 : `${(1 - drawn) * 100}%`}${drawn >= 1 ? 'px' : ''} -200px -200px)`;
+  return (
+    <>
+      {net(<RocketArt spec={ROCKET} />, {clipPath: slabClip})}
+      {clip || body <= 0 ? null : net(<RocketArt spec={ROCKET} />, {clipPath: `inset(-200px -200px ${ROCKET.size.h - SPLIT_Y}px -200px)`, opacity: body})}
+    </>
   );
 };
 
@@ -254,16 +265,12 @@ const DAD: HouseDef = {
 /** Village region-local px to launch region-local px. */
 const SHIFT: Point = [VILLAGE_ORIGIN[0] - ORIGIN[0], VILLAGE_ORIGIN[1] - ORIGIN[1]];
 
-/** The lit window: a 40 x 30 pane on the inside face of the back wall, which is what the camera sees from above (measured at z 4.0). */
-const WINDOW = {x: 27580, y: 3135, w: 40, h: 30} as const;
-
 const HouseScene: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
   const draw = launch.smallHouse.draw;
   if (t < draw.from) return null;
   const lit = smooth((t - launch.smallHouse.windowLights) / 0.2);
   const [gx, gy] = toRegion([27440, 3345]);
   const ground = handLine(gx, gy, gx + 320, gy + 1, 51);
-  const [wx, wy] = toRegion([WINDOW.x, WINDOW.y]);
   const maya = win(launch.mayaInWindow, t);
   return (
     <>
@@ -274,19 +281,7 @@ const HouseScene: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
       <div style={{position: 'absolute', left: SHIFT[0], top: SHIFT[1]}}>
         <VillageHouse h={DAD} t={t} />
       </div>
-      {lit > 0 ? (
-        <div style={{position: 'absolute', left: wx, top: wy, width: WINDOW.w, height: WINDOW.h, opacity: lit}}>
-          <div style={{position: 'absolute', inset: -26, borderRadius: 40, background: `radial-gradient(closest-side, rgba(47,91,234,0.20), rgba(47,91,234,0))`}} />
-          <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#B4DCFE', boxShadow: `0 0 0 1.6px ${COLORS.graphite}`}}>
-            <Img src={staticFile('footage4/binder-home-dad-light.png')} style={{position: 'absolute', left: 0, top: 0, width: WINDOW.w, height: (WINDOW.w * 2622) / 1206}} />
-            {maya > 0 ? (
-              <div style={{position: 'absolute', left: 0, top: 0, width: WINDOW.w, height: WINDOW.h}}>
-                <LineCharacter character="maya" pose="window" scale={0.14} x={WINDOW.w * 0.76} y={WINDOW.h} progress={maya} zoom={zoom} />
-              </div>
-            ) : null}
-          </div>
-        </div>
-      ) : null}
+      <DadWindow origin={ORIGIN} lit={lit} maya={maya} zoom={zoom} />
     </>
   );
 };
