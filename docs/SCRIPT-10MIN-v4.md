@@ -146,7 +146,7 @@ SUPER: *The gap: all of it, for everyone, privately.*
 
 **3:35** The board's papers peel off and fold into six labelled paper boxes: Documents, Dates, Bills, People, Emergency card, Packets.
 SUPER: *Six building blocks. Everything else hangs off them.*
-MAKER: Six building blocks. Everything the app does is one of them, or a mix of them.
+MAKER: Six building blocks. Most of the app is one of them, or a mix.
 
 **3:48** The six boxes stack onto a paper hand truck and roll along the pencil line.
 
@@ -166,7 +166,7 @@ MAKER: Then the look. Calm, because people open this app on hard days.
 - The nine wallpapers slide past, then spread out like paint swatches. *Every person gets their own colour.*
 - A form screen; a pencil stroke crosses it out over the recording; a conversation screen slides in. *Ask one question at a time.*
 - The emergency view jumps to the largest text size. *Readable on the worst night of your life.*
-- Version history scrubs: dozens of home screens flick by and settle. *Dozens of versions. One home screen.*
+- Version history scrubs: many home screens flick by and settle. *Many versions. One home screen.*
 
 MAKER: Every screen was checked at the biggest text sizes. When something broke, we redesigned the screen, not the text.
 
@@ -185,12 +185,12 @@ MAKER: Everything belongs to a binder, and a binder belongs to a person: your da
 SUPER: *One person. Everything that belongs to them.*
 
 **5:18** A small paper train runs through the floor: three carriages (a passport expiry, a bill, an appointment) merge onto one track.
-MAKER: Every date from every source joins one list and gets the reminder that fits it. Passports get nine, six and three months. A bill gets the day before.
+MAKER: Every date from every source joins one list and gets the reminder that fits it. Passports get nine, six and three months. A bill gets a nudge three days out, and that day.
 SUPER: *All the dates. One list. The right reminder.*
 
 **5:32** Bottom floor: the vault. The phone's floor connects by a pipe to a cloud labelled *Your own iCloud*, and through it to two more phones labelled *Your brother* and *Sam*. Off to the side, a drawn server box labelled *Veyago server*: the pencil draws it, then erases it completely.
-MAKER: There is no Veyago server. Your data lives on your phone and in your own iCloud. Sharing goes straight to the people you invite.
-SUPER: *No server. No account. Data Not Collected.*
+MAKER: No account. Nothing is collected. Your data lives on your phone and in your own iCloud. Sharing goes straight to the people you invite.
+SUPER: *No account. Nothing collected.*
 
 **5:46** The emergency card slides into a small safe; a padlock snaps shut.
 MAKER: The emergency card is encrypted on your iPhone before it goes anywhere.
@@ -209,9 +209,9 @@ FOUNDER: And App Review said yes.
 SUPER: *United States first. On purpose.*
 FOUNDER: We launched in the United States, where Veyago does business, with its states' forms and Medicare built in.
 
-**6:27** A red sticky note slaps onto the US: *Listed as paid. Should be free.* The pencil crosses it out; a new note: *Fixed. Version 1.1. Next day.*
-SUPER: *Day one: a mistake. Day two: fixed.*
-FOUNDER: On day one we got the price wrong. On day two we fixed it.
+**6:27** A red sticky note slaps onto the US: *Listed as paid. Should be free.* The pencil crosses it out; a new note: *Fixed. The next day.*
+SUPER: *Day one: a mistake. The next day: fixed.*
+FOUNDER: On day one we got the price wrong. The next day we fixed it.
 
 **6:40** Zoom into the US until only a single house is in frame: Maya's house again, now with Provisum's tab for *Dad* glowing in the window.
 FOUNDER: Then we looked at what we'd built, and at who we'd left out.

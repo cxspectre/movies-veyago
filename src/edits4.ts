@@ -149,7 +149,7 @@ export const CUT_180: readonly EditSegment4[] = [
   seg('researchBoard', 45.0, 55.0, 'six building blocks', {
     music: 'plucks on the boxes',
     vo: {line: 'M5', at: 3.0},
-    captions: [{at: 3.0, text: 'Six building blocks. Everything the app does is one of them, or a mix of them.'}],
+    captions: [{at: 3.0, text: 'Six building blocks. Most of the app is one of them, or a mix.'}],
     captionTone: 'paper',
   }),
   seg('nameAndLook', 5.0, 13.0, 'PROVISUM writes itself and becomes the logotype', {
@@ -162,7 +162,7 @@ export const CUT_180: readonly EditSegment4[] = [
   seg('engineRoom', 44.0, 54.0, 'the server is drawn and erased; your own iCloud', {
     music: 'a rest for the eraser; the pedal returns',
     vo: {line: 'M11', at: 0.0},
-    captions: [{at: 0.0, text: 'There is no Veyago server.'}, {at: 3.0, text: 'Your data lives on your phone and in your own iCloud.'}],
+    captions: [{at: 0.0, text: 'No account. Nothing is collected.'}, {at: 3.0, text: 'Your data lives on your phone and in your own iCloud.'}],
     captionTone: 'paper',
   }),
   seg('launch', 0.0, 10.0, 'the rocket; three statuses', {
@@ -175,7 +175,7 @@ export const CUT_180: readonly EditSegment4[] = [
   seg('launch', 22.0, 31.0, 'two sticky notes', {
     music: 'dry rest',
     vo: {line: 'F12', at: 4.0},
-    captions: [{at: 4.0, text: 'On day one we got the price wrong. On day two we fixed it.'}],
+    captions: [{at: 4.0, text: 'On day one we got the price wrong. The next day we fixed it.'}],
     captionTone: 'paper',
     sfxAt: {sticky_press: 0.0, sticky_press_2: 5.0},
   }),
@@ -232,7 +232,7 @@ export const CHAPTER_SHORTS: readonly Edl4[] = [
   {id: 'Short-engineRoom', format: 'tall', chapter: 'engineRoom', targetSeconds: 41, segments: [
     seg('engineRoom', 0.0, 6.0, 'the cutaway opens', {music: 'as the master', vo: {line: 'M8', at: 0.0}, ...paper('Native Swift, for iPhone, Apple Watch and widgets. Nothing in between.')}),
     seg('engineRoom', 16.0, 28.0, 'the data model', {music: 'as the master', vo: {line: 'M9', at: 2.0}, ...paper('Everything belongs to a binder, and a binder belongs to a person.', 2.0)}),
-    seg('engineRoom', 42.0, 62.0, 'the vault', {music: 'as the master', vo: {line: 'M11', at: 2.0}, ...paper('There is no Veyago server.', 2.0)}),
+    seg('engineRoom', 42.0, 62.0, 'the vault', {music: 'as the master', vo: {line: 'M11', at: 2.0}, ...paper('No account. Nothing is collected.', 2.0)}),
     seg('engineRoom', 72.0, 75.0, 'the cutaway closes', {music: 'as the master'}),
   ]},
   {id: 'Short-launch', format: 'tall', chapter: 'launch', targetSeconds: 41, segments: [
