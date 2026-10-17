@@ -9,8 +9,10 @@ import {ACCENT_ID, BODY_ID, FACE_ID, PROP_ID, type CharacterDesign, type Charact
 export const SWAP = {frames: 15, eraseFrames: 6, drawFrames: 9} as const;
 export const BOIL = {px: 0.5, everyFrames: 8, storm: 3} as const;
 
-const FACE_WIDTH = 0.82;
+const FACE_WIDTH = 1.0;
 const ACCENT_WIDTH = 1.1;
+/** Maya's sepia is faint at working zoom: pressed harder than graphite so the stroke is denser. */
+const SEPIA_PRESSURE = 1.3;
 const SAME_EPS = 0.05;
 const DEDUPE_EPS = 0.3;
 const SWAP_U = 0.5;
@@ -102,9 +104,9 @@ export const figureItems = (character: CharacterId, pose: PoseId, o: FigureOptio
   const w = widthOf(f.design, o.scale ?? 1);
   const seed = seedOf(prefix);
   return [
-    stroke(`${prefix}-${BODY_ID}`, bodyPath(f.body, seed), {ink, width: w, rough: o.rough ?? false}),
+    stroke(`${prefix}-${BODY_ID}`, bodyPath(f.body, seed), {ink, width: w, pressure: ink === 'sepia' ? SEPIA_PRESSURE : 1, rough: o.rough ?? false}),
     stroke(`${prefix}-${PROP_ID}`, accentPath(f.prop, seed + 61), {ink: PROP_INK, width: w * PROP_WIDTH, rough: o.rough ?? false}),
-    ...f.face.map((pl, i) => stroke(`${prefix}-${FACE_ID}-${i}`, pathOf(pl, seed + 11 + i), {ink, width: w * FACE_WIDTH, pressure: 0.9})),
+    ...f.face.map((pl, i) => stroke(`${prefix}-${FACE_ID}-${i}`, pathOf(pl, seed + 11 + i), {ink, width: w * FACE_WIDTH, pressure: 1.1})),
     stroke(`${prefix}-${ACCENT_ID}`, accentPath(f.accent, seed + 41), {ink: 'accent', width: w * ACCENT_WIDTH}),
   ].filter((s) => s.d.length > 0);
 };
@@ -156,6 +158,7 @@ export const swapSpec = (character: CharacterId, from: PoseId, to: PoseId, s: nu
   const ink = o.ink ?? a.design.ink;
   const w = widthOf(a.design, o.scale ?? 1);
   const seed = seedOf(prefix);
+  const bodyPressure = ink === 'sepia' ? SEPIA_PRESSURE : undefined;
   const {erase, draw} = swapPhase(s);
   const range = changedRange(a, b);
   const [i0, i1] = range ?? [b.body.length, b.body.length - 1];
@@ -163,14 +166,14 @@ export const swapSpec = (character: CharacterId, from: PoseId, to: PoseId, s: nu
   const propOf = (p: Placed, pr: number, tag: string): readonly StrokeSpec[] => timed(`${prefix}-${tag}-prop`, accentPath(p.prop, seed + 61), PROP_INK, w * PROP_WIDTH, pr);
   const faceMoved = !a.face.every((pl, i) => samePts(pl.pts, b.face[i]?.pts ?? [])) || a.face.length !== b.face.length;
   const faceOf = (p: Placed, pr: number, tag: string): readonly StrokeSpec[] => [
-    ...p.face.flatMap((pl, i) => timed(`${prefix}-${tag}-face-${i}`, pathOf(pl, seed + 11 + i), ink, w * FACE_WIDTH, pr, 0.9)),
+    ...p.face.flatMap((pl, i) => timed(`${prefix}-${tag}-face-${i}`, pathOf(pl, seed + 11 + i), ink, w * FACE_WIDTH, pr, 1.1)),
     ...timed(`${prefix}-${tag}-accent`, accentPath(p.accent, seed + 41), 'accent', w * ACCENT_WIDTH, pr),
   ];
   const strokes: readonly StrokeSpec[] = [
-    ...timed(`${prefix}-prefix`, bodyPath(b.body.slice(0, i0), seed + 1), ink, w, 1),
-    ...timed(`${prefix}-old`, bodyPath(a.body.slice(i0, i1 + 1), seed + 2), ink, w, 1 - erase),
-    ...timed(`${prefix}-new`, bodyPath(b.body.slice(i0, i1 + 1), seed + 3), ink, w, draw),
-    ...timed(`${prefix}-suffix`, bodyPath(b.body.slice(i1 + 1), seed + 4), ink, w, 1),
+    ...timed(`${prefix}-prefix`, bodyPath(b.body.slice(0, i0), seed + 1), ink, w, 1, bodyPressure),
+    ...timed(`${prefix}-old`, bodyPath(a.body.slice(i0, i1 + 1), seed + 2), ink, w, 1 - erase, bodyPressure),
+    ...timed(`${prefix}-new`, bodyPath(b.body.slice(i0, i1 + 1), seed + 3), ink, w, draw, bodyPressure),
+    ...timed(`${prefix}-suffix`, bodyPath(b.body.slice(i1 + 1), seed + 4), ink, w, 1, bodyPressure),
     ...(propMoved ? [...propOf(a, 1 - erase, 'old'), ...propOf(b, draw, 'new')] : propOf(b, 1, 'held')),
     ...(faceMoved ? [...faceOf(a, 1 - erase, 'old'), ...faceOf(b, Math.max(0, (draw - FACE_AFTER) / (1 - FACE_AFTER)), 'new')] : faceOf(b, 1, 'held')),
   ];

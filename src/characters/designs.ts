@@ -432,43 +432,43 @@ const scarf: AccentFn = (sk) => {
 // ---- the seven ---------------------------------------------------------------------------------------------
 
 const MAYA: Proportions = {
-  headR: 29, headRy: 33, neckLen: 13, neckHalf: 7, shoulderX: 40, shoulderDrop: 23, torso: 150, hipX: 16,
+  headR: 34, headRy: 38, neckLen: 13, neckHalf: 7, shoulderX: 40, shoulderDrop: 23, torso: 150, hipX: 16,
   upperArm: 76, foreArm: 62, thigh: 98, shin: 94, armW: [11, 8.5, 6.5], legW: [19, 12.5, 8.5], hipFlare: 5,
   mitten: 19, foot: 25, sleeve: 'pushed', hair: knotHair,
   skirt: {hem: 37, drop: 44, kind: 'cardigan'},
-  face: {browY: -0.24, browArch: 0.08, browLen: 0.2, browTilt: 0.03, eyeLen: 0.1, eyeArc: 0.05, noseLen: 0.36, noseTip: 0.12, mouthW: 0.2, mouthCurve: 0.08, mouthTilt: 0.04},
+  face: {browY: -0.26, browArch: 0.1, browLen: 0.25, browTilt: 0.06, eyeLen: 0.12, eyeArc: 0.06, noseLen: 0.36, noseTip: 0.12, mouthW: 0.25, mouthCurve: 0.11, mouthTilt: 0.06},
   body: {chest: 6, belly: 0, blade: 3, seat: 9, sway: 0},
 };
 const DAD: Proportions = {
-  headR: 29, headRy: 31, neckLen: 8, neckHalf: 8.5, shoulderX: 42, shoulderDrop: 25, torso: 140, hipX: 16,
+  headR: 34, headRy: 36, neckLen: 8, neckHalf: 8.5, shoulderX: 42, shoulderDrop: 25, torso: 140, hipX: 16,
   upperArm: 72, foreArm: 60, thigh: 92, shin: 90, armW: [12.5, 9.5, 7.5], legW: [19, 13.5, 9.5], hipFlare: 6,
   mitten: 20, foot: 30, sleeve: 'long', hair: plainHead, collar: true, stoop: 18, shoe: 'slipper',
   face: {browY: -0.2, browArch: 0.03, browLen: 0.24, browTilt: 0.07, eyeLen: 0.09, eyeArc: 0.02, noseLen: 0.42, noseTip: 0.16, mouthW: 0.17, mouthCurve: 0.05, mouthTilt: 0.01},
   body: {chest: 2, belly: 9, blade: 4, seat: 6, sway: 0},
 };
 const LEO: Proportions = {
-  headR: 24, headRy: 26, neckLen: 7, neckHalf: 6, shoulderX: 28, shoulderDrop: 13, torso: 86, hipX: 11,
+  headR: 28, headRy: 30, neckLen: 7, neckHalf: 6, shoulderX: 28, shoulderDrop: 13, torso: 86, hipX: 11,
   upperArm: 46, foreArm: 38, thigh: 56, shin: 56, armW: [9, 7.5, 6], legW: [12.5, 9.5, 7.5], hipFlare: 3,
   mitten: 15, foot: 20, sleeve: 'long', hair: capHair, backpack: 0,
   face: {browY: -0.3, browArch: 0.08, browLen: 0.18, browTilt: 0.0, eyeLen: 0.09, eyeArc: 0.08, noseLen: 0.3, noseTip: 0.1, mouthW: 0.27, mouthCurve: 0.14, mouthTilt: 0.03},
   body: {chest: 1, belly: 1, blade: 2, seat: 4, sway: 0},
 };
 const MIA: Proportions = {
-  headR: 23, headRy: 25, neckLen: 6, neckHalf: 5.5, shoulderX: 24, shoulderDrop: 11, torso: 72, hipX: 10,
+  headR: 27, headRy: 29, neckLen: 6, neckHalf: 5.5, shoulderX: 24, shoulderDrop: 11, torso: 72, hipX: 10,
   upperArm: 40, foreArm: 33, thigh: 50, shin: 50, armW: [8, 6.5, 5.5], legW: [10, 8, 6.5], hipFlare: 0,
   mitten: 13, foot: 17, sleeve: 'long', hair: ponytailHair, skirt: {hem: 34, drop: 40, kind: 'skirt'}, sock: 1,
   face: {browY: -0.31, browArch: 0.1, browLen: 0.16, browTilt: 0.04, eyeLen: 0.07, eyeArc: 0.05, noseLen: 0.26, noseTip: 0.08, mouthW: 0.18, mouthCurve: 0.12, mouthTilt: 0},
   body: {chest: 0, belly: 2, blade: 1, seat: 3, sway: 0},
 };
 const JONAS: Proportions = {
-  headR: 29, headRy: 34, neckLen: 15, neckHalf: 9.5, shoulderX: 50, shoulderDrop: 19, torso: 160, hipX: 16,
+  headR: 34, headRy: 39, neckLen: 15, neckHalf: 9.5, shoulderX: 50, shoulderDrop: 19, torso: 160, hipX: 16,
   upperArm: 82, foreArm: 68, thigh: 102, shin: 100, armW: [14, 10.5, 8.5], legW: [20, 14, 10], hipFlare: 3,
   mitten: 22, foot: 30, sleeve: 'rolled', hair: cropHair, beard: true,
   face: {browY: -0.2, browArch: 0.015, browLen: 0.22, browTilt: -0.04, eyeLen: 0.1, eyeArc: 0.0, noseLen: 0.4, noseTip: 0.13, mouthW: 0.15, mouthCurve: 0.035, mouthTilt: 0, mouthY: 0.52},
   body: {chest: 7, belly: 0, blade: 4, seat: 7, sway: 0},
 };
 const SAM: Proportions = {
-  headR: 27, headRy: 32, neckLen: 13, neckHalf: 7.5, shoulderX: 41, shoulderDrop: 21, torso: 150, hipX: 14,
+  headR: 31, headRy: 37, neckLen: 13, neckHalf: 7.5, shoulderX: 41, shoulderDrop: 21, torso: 150, hipX: 14,
   upperArm: 78, foreArm: 64, thigh: 100, shin: 96, armW: [11.5, 9, 7], legW: [17, 12, 8.5], hipFlare: 3,
   mitten: 19, foot: 27, sleeve: 'long', hair: quiffHair, bag: 0, mittens: ['round', 'phone'],
   face: {browY: -0.24, browArch: 0.06, browLen: 0.19, browTilt: -0.01, browAsym: 0.08, eyeLen: 0.1, eyeArc: 0.03, noseLen: 0.38, noseTip: 0.14, mouthW: 0.2, mouthCurve: 0.05, mouthTilt: 0.09},
@@ -485,7 +485,7 @@ const ON_TABLE_L: Arms = [[22, 62], [0, 0]];
 
 export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
   maya: {
-    id: 'maya', name: 'Maya', ink: 'sepia', height: 420, lineWidth: 2.2,
+    id: 'maya', name: 'Maya', ink: 'sepia', height: 420, lineWidth: 3.1,
     poses: human(MAYA, hairClip, cardiganEdge, {
       stand: [{facing: 0.3, weight: 0, stance: 4, arms: [[10, -10], [14, 26]], mood: 'warm'}, 'stand'],
       tree: [{facing: 0.25, headTilt: 6, mood: 'calm'}, 'bust'],
@@ -498,7 +498,7 @@ export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
     }),
   },
   dad: {
-    id: 'dad', name: 'Dad', ink: 'graphite', height: 410, lineWidth: 2.2,
+    id: 'dad', name: 'Dad', ink: 'graphite', height: 410, lineWidth: 2.7,
     poses: human(DAD, glasses, shirtFront, {
       stand: [{facing: 0.35, weight: 1, stance: 3, kneeBend: 0.5, arms: [[4, 10], [6, 14]], feet: [-0.5, 0.9], mood: 'calm'}, 'stand'],
       tree: [{facing: 0.2, mood: 'calm'}, 'bust'],
@@ -508,7 +508,7 @@ export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
     }),
   },
   leo: {
-    id: 'leo', name: 'Leo', ink: 'graphite', height: 260, lineWidth: 2.0,
+    id: 'leo', name: 'Leo', ink: 'graphite', height: 260, lineWidth: 2.4,
     poses: human(LEO, capBrimAccent, packStrap, {
       stand: [{facing: 0.5, weight: 1, stance: 8, arms: [[14, -6], [12, 22]], farArm: 'hide', feet: [0.2, 1]}, 'stand'],
       tree: [{facing: 0.3, headTilt: -5}, 'bust'],
@@ -516,7 +516,7 @@ export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
     }),
   },
   mia: {
-    id: 'mia', name: 'Mia', ink: 'graphite', height: 230, lineWidth: 2.0,
+    id: 'mia', name: 'Mia', ink: 'graphite', height: 230, lineWidth: 2.4,
     poses: human(MIA, bobble, noDetails, {
       stand: [{facing: 0.35, weight: 0, stance: 3, arms: [[24, -14], [26, 16]], feet: [0.35, -0.45], headTilt: 7}, 'stand'],
       tree: [{facing: 0.3, headTilt: 7}, 'bust'],
@@ -524,7 +524,7 @@ export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
     }),
   },
   jonas: {
-    id: 'jonas', name: 'Jonas', ink: 'graphite', height: 440, lineWidth: 2.2,
+    id: 'jonas', name: 'Jonas', ink: 'graphite', height: 440, lineWidth: 2.7,
     poses: human(JONAS, watchStrap, noDetails, {
       stand: [{facing: -0.3, weight: 1, stance: 6, arms: [[10, -14], [8, -22]], mood: 'calm'}, 'stand'],
       tree: [{facing: -0.2, mood: 'calm'}, 'bust'],
@@ -532,14 +532,14 @@ export const DESIGNS: Readonly<Record<CharacterId, CharacterDesign>> = {
     }),
   },
   sam: {
-    id: 'sam', name: 'Sam', ink: 'graphite', height: 420, lineWidth: 2.2,
+    id: 'sam', name: 'Sam', ink: 'graphite', height: 420, lineWidth: 2.7,
     poses: human(SAM, scarf, bagStrap, {
       stand: [{facing: 0.45, weight: 0, stance: 5, headUp: -18, arms: [[8, -8], [10, -64]], foreArmScale: [1, 0.72]}, 'stand'],
       tree: [{facing: 0.3, headTilt: -6}, 'bust'],
       'hold-up': [{facing: 0.5, weight: 0, stance: 5, arms: [[8, -8], [38, 104]], foreArmScale: [1, 0.85], headUp: 10}, 'stand'],
     }),
   },
-  biscuit: {id: 'biscuit', name: 'Biscuit', ink: 'graphite', height: 110, lineWidth: 2.0, poses: dogPoses},
+  biscuit: {id: 'biscuit', name: 'Biscuit', ink: 'graphite', height: 110, lineWidth: 2.4, poses: dogPoses},
 };
 
 export const CHARACTER_IDS = Object.keys(DESIGNS) as readonly CharacterId[];

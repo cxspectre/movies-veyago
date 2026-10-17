@@ -113,6 +113,13 @@ character (`sit-A` ↔ `sit-B` ↔ `look-up`) holds the chair and the legs and r
 `Maya-poses-wide` (Maya in eight poses plus the `sit-A → sit-B` swap caught mid-redraw). Gate 1 stills:
 `out/review/s1b/`; the A2 art pass: `out/review/a2/` (`before/`, `round1-3/`, `maya-before-after.png`).
 
+## E7 readability pass
+
+Heads and faces are 16% larger on every figure (gesture proportion, same neck/torso), the body line is heavier
+(adults 2.7 px, Maya 3.1, Leo/Mia/Biscuit 2.4 at scale 1), face strokes run at the body width and pressure 1.1, and
+sepia bodies are pressed at 1.3 (`SEPIA_PRESSURE`) so Maya's stroke is denser at 30% scale. Maya's brows are longer
+and arched, her mouth wider with a lopsided smile. Proof: `out/review/e7/` (not committed).
+
 ## Known limits (honest)
 
 - Faces are frontal-to-3/4 only; a true profile would need its own nose-on-the-contour treatment. At scale 1 on the
