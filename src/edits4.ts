@@ -165,10 +165,10 @@ export const CUT_180: readonly EditSegment4[] = [
     captions: [{at: 0.0, text: 'There is no Veyago server.'}, {at: 3.0, text: 'Your data lives on your phone and in your own iCloud.'}],
     captionTone: 'paper',
   }),
-  seg('launch', 0.0, 10.0, 'the rocket; three statuses; 28 September 2026', {
+  seg('launch', 0.0, 10.0, 'the rocket; three statuses', {
     music: 'three plucked notes',
     vo: {line: 'F10', at: 0.0},
-    captions: [{at: 0.0, text: 'Seven days after the first sketch, App Review said yes.'}],
+    captions: [{at: 0.0, text: 'And App Review said yes.'}],
     captionTone: 'paper',
     sfxAt: {fold: 0.0, odometer: 4.0},
   }),
@@ -236,7 +236,7 @@ export const CHAPTER_SHORTS: readonly Edl4[] = [
     seg('engineRoom', 72.0, 75.0, 'the cutaway closes', {music: 'as the master'}),
   ]},
   {id: 'Short-launch', format: 'tall', chapter: 'launch', targetSeconds: 41, segments: [
-    seg('launch', 0.0, 35.0, 'rocket, map, sticky notes', {music: 'as the master', vo: {line: 'F10', at: 0.0}, ...paper('Seven days after the first sketch, App Review said yes.')}),
+    seg('launch', 0.0, 35.0, 'rocket, map, sticky notes', {music: 'as the master', vo: {line: 'F10', at: 0.0}, ...paper('And App Review said yes.')}),
     seg('launch', 44.0, 50.0, 'Maya in the window', {music: 'as the master', vo: {line: 'Y3', at: 1.0}, ...paper('It was never only my dad.', 1.0)}),
   ]},
   {id: 'Short-village', format: 'tall', chapter: 'village', targetSeconds: 38, segments: [

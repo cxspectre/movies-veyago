@@ -19,7 +19,7 @@ Written 2026-10-16. Source script: `docs/SCRIPT-10MIN-v4.md`. Rules: `CONTRACT.m
 | Chapter scenes 1-9, both formats | Cloud, one session per chapter or pair | Sonnet Medium, Opus where it is hard |
 | Paperwork: `--gl` flag, voice-line file, claims sheet, capture list, chapter stubs | Cloud | Sonnet / Haiku |
 | Design review of stills | Local (fast GPU) | Sonnet |
-| Chapters 10-11 (WebGL devices) | Local | Opus |
+| Chapters 10-11 (10 is WebGL devices, 11 is 2D) | Cloud (B8 with a swangle proof first, B9), reviewed locally | Opus / Sonnet |
 | Voice scratch tracks (MAKER and MAYA), the owner's FOUNDER takes | Local (the owner records FOUNDER) | Kokoro, Haiku to drive it |
 | 10-minute score, new foley | Local | Opus |
 | Simulator captures, any Xcode recording | Local | Opus drives the Simulator; the owner records Xcode |
@@ -31,7 +31,7 @@ Cloud sessions only render stills (4 cores, software WebGL). Local renders are f
 - **Stage 0 (cloud, about $10-25):** the director (S0-A: `docs/v4/BIBLE4.md`, `src/beats4.ts`) and the paperwork (S0-B). Briefs in `docs/v4/briefs/`.
 - **Stage 1 (cloud, about $40-60):** endless sheet + camera + unbroken line (both formats), the character system with a Maya style test, chapter 1 and the pop-up component. **Gate 1:** the owner approves the look from stills (I fetch the branch, render locally and send stills).
 - **Stage 2 (cloud, about $100-120):** chapters 2-9 in parallel sessions, then reviews and fixes. **Gate 2:** owner approves chapter stills.
-- **Stage 3 (local):** chapters 10-11, assemble `Master4`, mix, 1080p proofs in both formats, review and fix. **Gate 3:** owner watches and listens.
+- **Stage 3 (local):** (chapters 10-11 moved to the cloud, B8 and B9) assemble `Master4`, mix, 1080p proofs in both formats, review and fix. **Gate 3:** owner watches and listens.
 - **Stage 4 (local):** 4K renders, hook, 3:00 cut, chapter shorts, packaging into `out/final/`.
 - Reserve $30-80 of the $250 cloud credit for fixes. The credit expires 2026-11-05 08:59 GMT+1.
 

@@ -203,8 +203,7 @@ FOUNDER: We carried the engine over from our first app, and rebuilt everything a
 ## 8. The launch (6:05 - 6:55)
 
 **6:05** A paper rocket folds up on a launchpad. On its side, the status from App Store Connect, recorded and composited as a label that changes: *Waiting for Review*, *In Review*, *Ready for Distribution*.
-Number roll: *28 September 2026.*
-FOUNDER: Seven days after the first sketch, App Review said yes.
+FOUNDER: And App Review said yes.
 
 **6:15** The rocket launches up the paper and arcs over a drawn world map. It lands only on the United States, which fills with colour. The rest stays pencil outline.
 SUPER: *United States first. On purpose.*
