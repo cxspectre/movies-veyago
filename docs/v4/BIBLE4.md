@@ -322,7 +322,7 @@ Components: PopUp (pad, rocket, the sticky notes), PencilLine (the trail), Numbe
 | 0.0-3.0 | the pad folds (`fold` 0.0); the rocket folds up (`fold` 1.0, 2.0): 160 x 520, three fins, a drawn porthole |
 | 0.0 | VO FOUNDER F10 (ends ~4.3) |
 | 3.0, 5.0, 7.0 | the status plaque on the rocket's side (220 x 60, DM Sans 500 24, DRAWN per contract 13.5): **Waiting for Review** → **In Review** (`snap`) → **Ready for Distribution** (`snap`) (claims: S0-B) |
-| 4.0-5.0 | NumberRoll **"28 September 2026"** accent 56 at (26200, 4650), `odometer` |
+| 4.0-5.0 | (removed by the owner 2026-10-17: no launch date and no "seven days" on screen or in the voice-over) |
 | 10.0-15.0 | launch (`rocket` 10.0-14.0): the rocket (and the line, as its trail) climbs to the apex (27000, 2600) and arcs down to (27600, 3300); the world map draws under the arc 10.5-14.5 (one long rough coastline per continent; a sketch-map, no borders except the ones chapter 9 needs); 15.0-17.0 the United States fills with the accent wash at 18% (`stroke` pen) |
 | 15.0 | VO FOUNDER F11 (ends ~22.8) |
 | 15.0-18.0 | SUPER written by the line **"United States first. On purpose."** graphite, in the map's margin at (28000, 4150); out 21.0-21.5 |
