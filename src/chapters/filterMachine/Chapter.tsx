@@ -4,7 +4,7 @@
 import React from 'react';
 import {ChapterShell, useChapter} from '../../kit';
 import {BinderCard, FallingCards} from './Cards';
-import {FilterMachine, TrayBack, TrayFront} from './FilterMachine';
+import {FilterMachine, GateLabels, TrayBack, TrayFront} from './FilterMachine';
 import {Flight} from './Flight';
 
 export const Art: React.FC = () => {
@@ -14,6 +14,7 @@ export const Art: React.FC = () => {
       <FilterMachine t={t} />
       <TrayBack t={t} />
       <FallingCards t={t} />
+      <GateLabels t={t} />
       <svg style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible'}}>
         <BinderCard t={t} />
       </svg>

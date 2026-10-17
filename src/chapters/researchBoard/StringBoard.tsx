@@ -7,9 +7,7 @@ import {researchBoard as M} from '../../beats4';
 import {COLORS} from '../../film';
 import {handCircle, handLine, handRect} from '../../paper';
 import {clamp01, DrawOn, easeOutBack, hash01, Layer, prog, PushPin, smooth, Written} from '../filterMachine/hand';
-import {
-  BOARD, BOX, BOX_X, CARD, CARD_AT, CARD_PIN, CENTRE, CHART, COMPETITORS, FIRST_PINS, GAP_CIRCLE, pinSecond, toRegion, TRUCK,
-} from './layout';
+import {BOX, CARD, CENTRE, CHART, COMPETITORS, GAP_CIRCLE, layoutFor, pinSecond, toRegion, TRUCK, type Layout} from './layout';
 import {PAGES} from './pages';
 
 const PAPER = '#FBF8EF';
@@ -18,7 +16,8 @@ const r = (x: number, y: number): [number, number] => toRegion(x, y);
 
 // The board
 
-const Cork: React.FC<{t: number}> = ({t}) => {
+const Cork: React.FC<{t: number; L: Layout}> = ({t, L}) => {
+  const BOARD = L.board;
   const p = prog(t, M.frame.from, M.frame.to - M.frame.from);
   const [x, y] = r(BOARD.x, BOARD.y);
   const d = React.useMemo(() => handRect(x, y, BOARD.w, BOARD.h, 41, {radius: 6}), [x, y]);
@@ -43,9 +42,9 @@ const Cork: React.FC<{t: number}> = ({t}) => {
 
 const pinScale = (t: number, at: number): number => (t < at ? 0 : Math.min(1.1, easeOutBack(prog(t, at, 0.25))));
 
-const Card: React.FC<{t: number; i: number}> = ({t, i}) => {
+const Card: React.FC<{t: number; i: number; L: Layout}> = ({t, i, L}) => {
   const c = M.cards[i];
-  const at = CARD_AT[i];
+  const at = L.cardAt[i];
   if (!c || !at || t < c.at) return null;
   const slide = prog(t, c.at, 0.5);
   const e = 1 - (1 - slide) ** 3;
@@ -73,11 +72,11 @@ const Card: React.FC<{t: number; i: number}> = ({t, i}) => {
   );
 };
 
-const Pins: React.FC<{t: number}> = ({t}) => {
+const Pins: React.FC<{t: number; L: Layout}> = ({t, L}) => {
   const peelFade = 1 - smooth(prog(t, M.peel.from, 0.6));
   return (
     <Layer opacity={peelFade}>
-      {FIRST_PINS.map(([px, py], i) => {
+      {L.firstPins.map(([px, py], i) => {
         const [x, y] = r(px, py);
         const card = i < 4 ? M.cards[i] : undefined;
         const press = card ? 1 + 0.3 * Math.max(0, 1 - Math.abs(t - (card.at + M.cardPinAfter)) / 0.25) : 1;
@@ -96,14 +95,14 @@ const stringPath = (from: readonly [number, number], to: readonly [number, numbe
   return `M ${ax} ${ay} Q ${(ax + bx) / 2} ${(ay + by) / 2 + sag} ${bx} ${by}`;
 };
 
-const Strings: React.FC<{t: number}> = ({t}) => {
+const Strings: React.FC<{t: number; L: Layout}> = ({t, L}) => {
   const run = prog(t, M.string.from, M.string.tight.from - M.string.from);
   const tight = smooth(prog(t, M.string.tight.from, M.string.tight.to - M.string.tight.from));
   const fade = 1 - smooth(prog(t, M.peel.from, 0.8));
   if (run <= 0) return null;
   return (
     <Layer opacity={fade}>
-      {CARD_PIN.map((p, i) => {
+      {L.cardPin.map((p, i) => {
         const k = clamp01(run * 1.6 - i * 0.18);
         const sag = 90 * (1 - tight) * (i < 2 ? 1 : 0.7) * (1 - Math.abs(Math.sin(i + 1)) * 0.2);
         return <DrawOn key={i} d={stringPath(p, CENTRE, sag)} p={k} width={3.4} ink={COLORS.accent} />;
@@ -171,14 +170,14 @@ const Box: React.FC<{label: string; k: number; fold: number; labelT: number; t: 
   void k;
 };
 
-const Boxes: React.FC<{t: number}> = ({t}) => {
+const Boxes: React.FC<{t: number; L: Layout}> = ({t, L}) => {
   const {w, h} = BOX;
   const dx = truckX(t);
   return (
     <>
       {M.boxes.map((b, k) => {
         const jumpAt = M.stack.from + k * M.stack.every;
-        const row: Pt = [BOX_X(k), BOX.row];
+        const row: Pt = L.boxAt(k);
         const slot = stackSlot(k);
         const s = TRUCK.stackScale;
         const jumpDur = 0.45;
@@ -226,20 +225,23 @@ const Truck: React.FC<{t: number}> = ({t}) => {
   );
 };
 
-export const StringBoard: React.FC<{t: number}> = ({t}) => (
+export const StringBoard: React.FC<{t: number; tall?: boolean}> = ({t, tall = false}) => {
+  const L = layoutFor(tall);
+  return (
   <>
-    <Cork t={t} />
-    <Strings t={t} />
+    <Cork t={t} L={L} />
+    <Strings t={t} L={L} />
     <Layer>
       {M.cards.map((_, i) => (
-        <Card key={i} t={t} i={i} />
+        <Card key={i} t={t} i={i} L={L} />
       ))}
     </Layer>
     <Chart t={t} />
-    <Pins t={t} />
+    <Pins t={t} L={L} />
     <Layer>
       <Truck t={t} />
-      <Boxes t={t} />
+      <Boxes t={t} L={L} />
     </Layer>
   </>
-);
+  );
+};

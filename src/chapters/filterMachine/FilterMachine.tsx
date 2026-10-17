@@ -6,13 +6,27 @@
 import React from 'react';
 import {filterMachine as M} from '../../beats4';
 import {COLORS} from '../../film';
-import {Box, Hatch, Line} from '../../popup';
+import {Box, Line} from '../../popup';
 import {easeOutBack, prog, Written} from './hand';
 import {BODY, HOPPER, LIP, PLAQUE, toRegion, TRAY} from './layout';
 
 const PAPER = '#F3EEE3';
 const PANEL = '#ECE5D3';
 const PERSPECTIVE = 2600;
+
+/** Pencil hatching in a rectangle (lamp upper left, so it shades the right and lower edges): flicks at 45 degrees, hand-wobbled. */
+const Shade: React.FC<{x: number; y: number; w: number; h: number; gap?: number; seed: number; width?: number}> = ({x, y, w, h, gap = 14, seed, width = 2}) => (
+  <>
+    {Array.from({length: Math.floor((w + h) / gap)}, (_, i) => {
+      const d = i * gap;
+      const x1 = Math.min(x + d, x + w);
+      const y1 = d > w ? y + (d - w) : y;
+      const y2 = Math.min(y + d, y + h);
+      const x2 = d > h ? x + (d - h) : x;
+      return <Line key={i} x1={x1} y1={y1} x2={x2} y2={y2} seed={seed + i} width={width} ink={COLORS.graphiteSoft} />;
+    })}
+  </>
+);
 
 /** A paper panel at sheet (x, y), w x h, hinged on `hinge`, standing up from `angle` degrees (85 = flat) to 0. */
 const Panel: React.FC<{x: number; y: number; w: number; h: number; hinge: 'top' | 'bottom'; angle: number; shown?: boolean; children: React.ReactNode}> = ({x, y, w, h, hinge, angle, shown = true, children}) => {
@@ -35,24 +49,29 @@ export const FilterMachine: React.FC<{t: number}> = ({t}) => {
   const bw = BODY.x1 - BODY.x0;
   const bh = BODY.y1 - BODY.y0;
   const hh = BODY.y0 - HOPPER.y0;
-  const hopperA = standUp(t, hopperAt, 0.9);
-  const bodyA = standUp(t, bodyAt, 0.9);
+  const hopperA = standUp(t, hopperAt, 1.5);
+  const bodyA = standUp(t, bodyAt, 1.6);
   const sx = (bw - HOPPER.wTop) / 2;
   const nx = (bw - HOPPER.wBottom) / 2;
-  const shadowK = Math.min(1, prog(t, bodyAt, 0.9));
+  const shadowK = Math.min(1, prog(t, bodyAt, 1.6));
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, filter: `drop-shadow(${26 * shadowK}px ${22 * shadowK}px ${12 * shadowK}px rgba(42,36,28,0.26))`}}>
       {/* hopper (folds first, hinged on the body's top edge) */}
       <Panel x={BODY.x0} y={HOPPER.y0} w={bw} h={hh} hinge="bottom" angle={hopperA} shown={t >= hopperAt}>
         <path d={`M ${sx} 0 L ${sx + HOPPER.wTop} 0 L ${nx + HOPPER.wBottom} ${hh} L ${nx} ${hh} Z`} fill={PANEL} />
         <path d={`M ${sx} 0 L ${sx + HOPPER.wTop} 0 L ${nx + HOPPER.wBottom} ${hh} L ${nx} ${hh} Z`} fill="none" stroke={COLORS.graphite} strokeWidth={3} strokeOpacity={0.85} strokeLinejoin="round" />
+        <Shade x={bw / 2 + 60} y={6} w={HOPPER.wTop / 2 - 90} h={hh - 14} gap={15} seed={500} />
         <Line x1={bw * 0.3} y1={hh * 0.45} x2={bw * 0.7} y2={hh * 0.45} seed={40} width={3.2} />
       </Panel>
       {/* body (drops from the hopper) */}
       <Panel x={BODY.x0} y={BODY.y0} w={bw} h={bh} hinge="top" angle={bodyA} shown={t >= bodyAt}>
         <rect x={0} y={0} width={bw} height={bh} fill={PANEL} />
         <Box x={6} y={6} w={bw - 12} h={bh - 12} seed={7} width={3.4} />
-        <Hatch x={26} y={26} w={40} h={bh - 52} gap={14} seed={300} />
+        <Shade x={bw - 120} y={20} w={96} h={bh - 40} gap={15} seed={300} />
+        <Shade x={22} y={20} w={22} h={bh - 40} gap={22} seed={330} width={1.4} />
+        {LIP.map((lip, i) => (
+          <rect key={i} x={10} y={lip - BODY.y0 + 6} width={bw - 20} height={28} fill="rgba(42,36,28,0.1)" />
+        ))}
         {LIP.map((lip, i) => (
           <Line key={i} x1={14} y1={lip - BODY.y0} x2={bw - 14} y2={lip - BODY.y0 + 2} seed={10 + i} width={3} />
         ))}
@@ -65,7 +84,7 @@ export const FilterMachine: React.FC<{t: number}> = ({t}) => {
       {/* the five gates: a ledge folds out at the lip, a label tag hangs under it */}
       {LIP.map((lip, i) => {
         const at = gatesAt + i * 0.2;
-        const a = standUp(t, at, 0.65);
+        const a = standUp(t, at, 0.9);
         const label = M.gateLabels[i];
         if (!label) return null;
         return (
@@ -73,12 +92,6 @@ export const FilterMachine: React.FC<{t: number}> = ({t}) => {
             <Panel x={BODY.x0 - 24} y={lip - 8} w={bw + 48} h={20} hinge="top" angle={a} shown={t >= at}>
               <rect x={0} y={0} width={bw + 48} height={20} rx={4} fill={PAPER} stroke={COLORS.graphite} strokeOpacity={0.8} strokeWidth={2.4} />
             </Panel>
-            <Panel x={PLAQUE.x} y={lip + PLAQUE.below} w={PLAQUE.w} h={PLAQUE.h} hinge="top" angle={a} shown={t >= at + 0.1}>
-              <rect x={0} y={0} width={PLAQUE.w} height={PLAQUE.h} rx={6} fill="#FBF8EF" stroke={COLORS.graphite} strokeOpacity={0.6} strokeWidth={2} />
-            </Panel>
-            <svg style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible'}}>
-              <Written lines={[label.text]} x={toRegion(PLAQUE.x + 22, 0)[0]} y={toRegion(0, lip + PLAQUE.below + 40)[1]} size={32} t={t} start={label.at} dur={1.5} />
-            </svg>
           </React.Fragment>
         );
       })}
@@ -104,6 +117,29 @@ export const TrayFront: React.FC<{t: number}> = ({t}) => {
     <Panel x={TRAY.x - w / 2} y={TRAY.front} w={w} h={100} hinge="bottom" angle={a} shown={t >= 3.0}>
       <rect x={0} y={0} width={w} height={100} fill={PAPER} stroke={COLORS.graphite} strokeOpacity={0.85} strokeWidth={3} strokeLinejoin="round" />
       <Line x1={24} y1={30} x2={w - 24} y2={31} seed={77} width={1.8} />
+      <Shade x={w - 170} y={44} w={146} h={44} gap={13} seed={700} />
     </Panel>
   );
 };
+
+/** The five label tags and their handwriting: drawn above the falling cards, so a card passing behind never hides a word being written. */
+export const GateLabels: React.FC<{t: number}> = ({t}) => (
+  <div style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, filter: 'drop-shadow(5px 6px 4px rgba(42,36,28,0.2))'}}>
+    {LIP.map((lip, i) => {
+      const at = 2.0 + i * 0.2;
+      const a = standUp(t, at, 0.9);
+      const label = M.gateLabels[i];
+      if (!label) return null;
+      return (
+        <React.Fragment key={i}>
+          <Panel x={PLAQUE.x} y={lip + PLAQUE.below} w={PLAQUE.w} h={PLAQUE.h} hinge="top" angle={a} shown={t >= at + 0.1}>
+              <rect x={0} y={0} width={PLAQUE.w} height={PLAQUE.h} rx={6} fill="#FBF8EF" stroke={COLORS.graphite} strokeOpacity={0.6} strokeWidth={2} />
+            </Panel>
+            <svg style={{position: 'absolute', left: 0, top: 0, width: 1, height: 1, overflow: 'visible'}}>
+              <Written lines={[label.text]} x={toRegion(PLAQUE.x + 22, 0)[0]} y={toRegion(0, lip + PLAQUE.below + 40)[1]} size={32} t={t} start={label.at} dur={1.5} />
+            </svg>
+        </React.Fragment>
+      );
+    })}
+  </div>
+);

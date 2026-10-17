@@ -36,3 +36,58 @@ export const BOX_X = (k: number): number => 15545 + k * 225;
 export const TRUCK = {x: 17100, ground: 4000, stackScale: 0.62} as const;
 
 export const pinSecond = (i: number): number => M.pins.from + i * 0.3;
+
+/**
+ * The board's geometry per format. Wide is the glimpse of chapter 1 (above). Tall shows 1350 sheet px across (zoom 0.8 in the
+ * 1080 column, centred on x 16200), so its board is 1300 wide and 1400 tall, the cards sit closer to the middle, the supers
+ * centre under their card and the six boxes stand in two rows of three.
+ */
+export type Layout = {
+  readonly tall: boolean;
+  readonly board: {readonly x: number; readonly y: number; readonly w: number; readonly h: number};
+  readonly cardAt: readonly Point[];
+  readonly cardPin: readonly Point[];
+  readonly firstPins: readonly Point[];
+  readonly superAt: readonly Point[];
+  readonly superAlign: 'left' | 'centre';
+  readonly superMaxWidth: number;
+  readonly superSize: number;
+  readonly gapSuperAt: Point;
+  readonly blocksSuperAt: Point;
+  readonly boxAt: (k: number) => Point;
+};
+
+const WIDE_LAYOUT: Layout = {
+  tall: false,
+  board: BOARD,
+  cardAt: CARD_AT,
+  cardPin: CARD_PIN,
+  firstPins: FIRST_PINS,
+  superAt: SUPER_AT,
+  superAlign: 'left',
+  superMaxWidth: 600,
+  superSize: 38,
+  gapSuperAt: GAP_SUPER_AT,
+  blocksSuperAt: BLOCKS_SUPER_AT,
+  boxAt: (k) => [BOX_X(k), BOX.row],
+};
+
+const TALL_CARD_AT: readonly Point[] = [[15580, 3350], [16380, 3350], [15580, 4100], [16380, 4100]];
+const TALL_CARD_PIN: readonly Point[] = TALL_CARD_AT.map(([x, y]) => [x + CARD.w / 2, y + 6] as Point);
+
+const TALL_LAYOUT: Layout = {
+  tall: true,
+  board: {x: 15550, y: 3300, w: 1300, h: 1400},
+  cardAt: TALL_CARD_AT,
+  cardPin: TALL_CARD_PIN,
+  firstPins: [...TALL_CARD_PIN, CENTRE, [15580, 3335]],
+  superAt: TALL_CARD_AT.map(([x, y]) => [x + CARD.w / 2, y + CARD.h + 60] as Point),
+  superAlign: 'centre',
+  superMaxWidth: 440,
+  superSize: 40,
+  gapSuperAt: [16200, 4810],
+  blocksSuperAt: [16200, 4810],
+  boxAt: (k) => [15824 + (k % 3) * 270, 4290 + Math.floor(k / 3) * 190],
+};
+
+export const layoutFor = (tall: boolean): Layout => (tall ? TALL_LAYOUT : WIDE_LAYOUT);
