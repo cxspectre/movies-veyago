@@ -47,10 +47,10 @@ export const LISBON_WIDTH = 160;
 
 /** Accent circles on the map's Europe (sheet px, radius): FR is east of Iberia so Lisbon's flat (x 28300-28460) is clear of it. */
 export const COUNTRY_RINGS = {
-  be: {at: [28480, 3078] as Point, r: 12},
-  nl: {at: [28490, 3052] as Point, r: 14},
-  de: {at: [28572, 3078] as Point, r: 28},
-  fr: {at: [28512, 3150] as Point, r: 32},
+  be: {at: [28478, 3090] as Point, r: 26},
+  nl: {at: [28496, 3032] as Point, r: 26},
+  de: {at: [28590, 3080] as Point, r: 40},
+  fr: {at: [28512, 3170] as Point, r: 46},
 } as const;
 /** The two waypoints of the string across the Atlantic, from the US east coast to Lisbon. */
 export const SEA_ROUTE: readonly Point[] = [[28080, 3150], [28260, 3190]];

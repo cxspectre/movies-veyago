@@ -32,7 +32,7 @@ import {
   toRegion,
   type VisitPlan,
 } from './layout';
-import {FORM, chatPage, formPage, handPage, interiorPage, type Page} from './pages';
+import {FORM, chatBubbleBox, chatPage, formPage, handPage, interiorPage, type Page} from './pages';
 
 const clamp01 = (x: number): number => Math.min(1, Math.max(0, x));
 const smooth = (x: number): number => {
@@ -247,7 +247,7 @@ const MarginLabels: React.FC<{t: number; zoom: number; tall: boolean}> = ({t, zo
 };
 
 /** Five bubbles: Patrick Hand 36 screen px at z 0.9 = 40 sheet px; each rises 60 sheet px over 2.0 s. */
-const BUBBLE_TYPE = 40;
+const BUBBLE_TYPE = 52;
 const BUBBLE_OUT = {from: 62.0, to: 62.5};
 
 const Bubbles: React.FC<{t: number}> = ({t}) => {
@@ -257,9 +257,9 @@ const Bubbles: React.FC<{t: number}> = ({t}) => {
         const from = BUBBLE_FROM[i];
         if (!from) throw new Error(`village: no bubble origin ${i}`);
         const [x, y] = toRegion(from.at);
-        const w = measureHand(b.text, BUBBLE_TYPE, 'patrick-400') + 36;
-        const box = {x0: x - w / 2, y0: y - 30, x1: x + w / 2, y1: y + 30};
-        const shape = bubblePath(box, {radius: 22, tail: 22, tailHalfBase: 9, toward: [x - 40, y + 300] as XY, seed: 1300 + i * 7});
+        const w = measureHand(b.text, BUBBLE_TYPE, 'patrick-400') + 44;
+        const box = {x0: x - w / 2, y0: y - 40, x1: x + w / 2, y1: y + 40};
+        const shape = bubblePath(box, {radius: 28, tail: 26, tailHalfBase: 11, toward: [x - 40, y + 300] as XY, seed: 1300 + i * 7});
         return {...b, x, y, shape};
       }),
     [],
@@ -287,10 +287,11 @@ const Bubbles: React.FC<{t: number}> = ({t}) => {
 
 // The green (63-75)
 
+const CHAT_BOX = chatBubbleBox(village.green.question);
 const CHAT_PAGE = chatPage(village.green.question, village.green.chips);
 const FORM_CENTRE: Point = [GREEN.form[0] - 15, GREEN.form[1]];
 
-const Green: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
+const Green: React.FC<{t: number; zoom: number; tall: boolean}> = ({t, zoom, tall}) => {
   const {form, crossOut, bubble} = village.green;
   if (t < form.from) return null;
   // the form draws 65-67 (to FORM.crossFrom), the cross-out 67.5-68 (the rest)
@@ -300,10 +301,27 @@ const Green: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
       : FORM.crossFrom + (1 - FORM.crossFrom) * clamp01((t - crossOut.from) / (crossOut.to - crossOut.from));
   const fw = FORM.w * NEST;
   const fh = FORM.h * NEST;
-  const chatAt: Point = [FORM_CENTRE[0] + fw / 2 + 4, GREEN.bubble[1] - CHAT_PAGE.height * NEST * 0.62];
+  // wide: beside the form; tall: the 270 sheet px column has no room beside it, so under it, centred
+  const chatAt: Point = tall
+    ? [FORM_CENTRE[0] - (CHAT_PAGE.width * NEST) / 2, FORM_CENTRE[1] + fh / 2 + 6]
+    : [FORM_CENTRE[0] + fw / 2 + 4, GREEN.bubble[1] - CHAT_PAGE.height * NEST * 0.62];
   return (
     <>
       <NestedPage page={formPage} at={[FORM_CENTRE[0] - fw / 2, FORM_CENTRE[1] - fh / 2]} scale={NEST} progress={p} zoom={zoom} />
+      {t >= bubble.from ? (
+        <div
+          style={{
+            position: 'absolute',
+            left: toRegion(chatAt)[0] + CHAT_BOX.x0 * NEST - 8,
+            top: toRegion(chatAt)[1] + CHAT_BOX.y0 * NEST - 8,
+            width: (CHAT_BOX.x1 - CHAT_BOX.x0) * NEST + 16,
+            height: (CHAT_BOX.y1 - CHAT_BOX.y0) * NEST + 16,
+            borderRadius: 14,
+            background: 'rgba(243,238,227,0.96)',
+            opacity: smooth((t - bubble.from) / 0.4),
+          }}
+        />
+      ) : null}
       {t >= bubble.from ? <NestedPage page={CHAT_PAGE} at={chatAt} scale={NEST} progress={clamp01((t - bubble.from) / (bubble.to - bubble.from))} zoom={zoom} /> : null}
     </>
   );
@@ -329,7 +347,7 @@ export const Art: React.FC = () => {
       <MarginLabels t={t} zoom={zoom} tall={isTall} />
       <Bubbles t={t} />
       <Super {...superFromBeat(SUPERS.village[1] as (typeof SUPERS.village)[number], {sheet: SUPER_FIVE_AT, align: 'centre'}, {size: 62})} />
-      <Green t={t} zoom={zoom} />
+      <Green t={t} zoom={zoom} tall={isTall} />
     </>
   );
 };
@@ -337,6 +355,20 @@ export const Art: React.FC = () => {
 /** "Version 2: a binder for everyone you call family." is written in screen space: at 0-3 s the camera is at z 4 and
  *  the bible's sheet position (baseline y 2950) is above the frame until 10 s; on paper at 56 screen px it would be
  *  2 400 px wide. */
-export const Overlay: React.FC = () => <Super {...superFromBeat(SUPERS.village[0] as (typeof SUPERS.village)[number], {screen: 'super'})} />;
+export const Overlay: React.FC = () => {
+  const {t, isTall} = useChapter('village');
+  const beat = SUPERS.village[0] as (typeof SUPERS.village)[number];
+  // a paper tint behind the line, so it does not fight the nameplates under it
+  const a = smooth(t / 0.5) * (1 - smooth((t - (beat.t + beat.dur)) / 0.5));
+  const box = isTall
+    ? {left: '5%', width: '90%', top: '64.5%', height: '16%'}
+    : {left: '12%', width: '76%', top: '70%', height: '13%'};
+  return (
+    <>
+      <div style={{position: 'absolute', ...box, borderRadius: 28, background: 'rgba(243,238,227,0.94)', opacity: a}} />
+      <Super {...superFromBeat(beat, {screen: 'super'})} />
+    </>
+  );
+};
 
 export const Chapter: React.FC = () => <ChapterShell id="village" art={<Art />} overlay={<Overlay />} />;
