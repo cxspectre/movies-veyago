@@ -45,4 +45,10 @@ export type Cue =
   | {kind: 'sweep'; t: number; dur: number} // the band of edge light travelling
   | {kind: 'hit'; t: number; name: SfxName; gain?: number; pan?: number; dur?: number; rate?: number}; // dur/rate: v4 hits only
 
+/** Exact digital zero on every stem from `at` for `dur` seconds (v4; BIBLE4 7.2). Not a sound: the mixer gates with it. */
+export type SilenceCue = {kind: 'silence'; at: number; dur: number};
+
 export type ModuleCues = readonly Cue[];
+
+/** What a master or cut-down cue sheet may carry: the chapter cues plus the mixer's silence gates. */
+export type SheetCue = Cue | SilenceCue;
