@@ -3,14 +3,14 @@
 import React from 'react';
 import {ChapterShell, Super, useChapter} from '../../kit';
 import {StringBoard} from './StringBoard';
-import {BOARD_SUPERS} from './supers';
+import {BOARD_SUPERS, BOARD_SUPERS_TALL} from './supers';
 
 export const Art: React.FC = () => {
-  const {t} = useChapter('researchBoard');
+  const {t, isTall} = useChapter('researchBoard');
   return (
     <>
-      <StringBoard t={t} />
-      {BOARD_SUPERS.map((p) => (
+      <StringBoard t={t} tall={isTall} />
+      {(isTall ? BOARD_SUPERS_TALL : BOARD_SUPERS).map((p) => (
         <Super key={p.text} {...p} />
       ))}
     </>
