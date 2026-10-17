@@ -118,7 +118,7 @@ export const EngineArt: React.FC<{t: number}> = ({t}) => {
                 <Ink key={a} d={handPolyline([[Math.cos((a * Math.PI) / 180) * GEAR_R * 0.2, Math.sin((a * Math.PI) / 180) * GEAR_R * 0.2], [Math.cos((a * Math.PI) / 180) * GEAR_R * 0.62, Math.sin((a * Math.PI) / 180) * GEAR_R * 0.62]], 80 + i + a, 0.3)} width={1.4} />
               ))}
             </g>
-            <Written p={clamp01((t - at) / 0.8)} x={cx} y={g.up ? cy - GEAR_R - 14 : cy + GEAR_R + 34} w={150} size={30} anchor="middle">
+            <Written p={clamp01((t - at) / 0.8)} x={cx} y={g.up ? cy - GEAR_R - 16 : cy + GEAR_R + 46} w={200} size={44} anchor="middle">
               {g.label}
             </Written>
           </React.Fragment>
