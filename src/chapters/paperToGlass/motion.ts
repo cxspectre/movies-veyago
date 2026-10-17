@@ -143,7 +143,7 @@ export const recordingPose = (r: Recording, t: number, format: FormatName, size:
 export type Spot = {x: number; y: number};
 export const INVITE: Record<FormatName, {phone: Spot & {height: number}; maya: Spot & {height: number}; far: Spot & {height: number}}> = {
   wide: {phone: {x: 0.38, y: 0.5, height: 0.36}, maya: {x: 0.22, y: 0.82, height: 0.5}, far: {x: 0.86, y: 0.5, height: 0.18}},
-  tall: {phone: {x: 0.5, y: 0.55, height: 0.26}, maya: {x: 0.5, y: 0.4, height: 0.2}, far: {x: 0.5, y: 0.86, height: 0.16}},
+  tall: {phone: {x: 0.5, y: 0.55, height: 0.26}, maya: {x: 0.5, y: 0.4, height: 0.2}, far: {x: 0.5, y: 0.85, height: 0.16}},
 };
 
 /** The title's light level at 80.0: chapter 10 dims 1 -> this over 79.5-80.0 and chapter 11 starts from it (BIBLE4 5.10/5.11). */

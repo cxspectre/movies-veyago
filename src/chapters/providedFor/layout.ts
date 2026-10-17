@@ -38,9 +38,9 @@ export const cardLayout = (tall: boolean) => {
   const cy = tall ? 3950 : 3900;
   const H = tall ? 1920 : 1080;
   const titleSize = tall ? 96 : 120;
-  const lineSize = tall ? 34 : 40;
-  const markSize = tall ? 56 : 64;
-  const cambriaSize = tall ? 32 : 36;
+  const lineSize = tall ? 40 : 46;
+  const markSize = tall ? 64 : 72;
+  const cambriaSize = tall ? 36 : 42;
   const gap = lineSize; // title baseline to the line's cap top (v1)
   const cap = 0.7;
   const blockH = cap * titleSize + gap + cap * lineSize;

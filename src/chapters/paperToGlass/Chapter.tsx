@@ -275,7 +275,7 @@ const Rolls: React.FC<{t: number; format: FormatName; size: Size}> = ({t, format
 );
 
 /** The screen supers (kit, type only): positions from BIBLE4 §5.10, adapted to the format. */
-const SUPER_Y: Record<FormatName, readonly number[]> = {wide: [0.82, 0.9, 0.9, 0.67], tall: [0.7, 0.92, 0.12, 0.6]};
+const SUPER_Y: Record<FormatName, readonly number[]> = {wide: [0.82, 0.055, 0.9, 0.67], tall: [0.7, 0.92, 0.12, 0.6]};
 const SUPER_SIZE: Record<FormatName, readonly number[]> = {wide: [44, 44, 44, 44], tall: [40, 40, 40, 38]};
 const Supers: React.FC<{format: FormatName; opacity: number}> = ({format, opacity}) => (
   <div style={{opacity}}>
