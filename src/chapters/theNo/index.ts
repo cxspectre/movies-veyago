@@ -1,1 +1,2 @@
-export {Chapter} from './Chapter';
+export {Chapter, Art, Overlay} from './Chapter';
+export {cues} from './cues';
