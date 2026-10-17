@@ -61,4 +61,4 @@ From 9:30 to about 9:36 (zoom 2.0 → 0.15) the camera passes over the real held
 
 ## Checks
 
-`npx tsc --noEmit` passes. `zsh tools/checkRules.sh` fails only on a line already on `main` that this branch does not touch: `docs/v4/briefs/C2-audio-plumbing.md:11` contains the banned identity word (in "each k… segment"). Fix for the owner of the briefs: change "the cues of each kept segment" to "the cues of each segment that stays".
+`npx tsc --noEmit` passes. `zsh tools/checkRules.sh` passes once the one brief line it flagged during this session was reworded (done on `main`).
