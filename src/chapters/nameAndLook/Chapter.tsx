@@ -201,13 +201,13 @@ const Tokens: React.FC<{t: number}> = ({t}) => {
         const pk = smooth((t - from - ci * 0.25) / 0.5);
         return (
           <div key={col.key} style={{position: 'absolute', left: col.x, top: panel.y, width: panel.w, height: panel.h, borderRadius: 14, background: col.bg, border: `1px solid ${HAIR_SOFT}`, opacity: pk}}>
-            <div style={{position: 'absolute', left: 14, top: 12, fontFamily: FONTS.super, fontWeight: 500, fontSize: 11, color: col.ink, opacity: 0.6, letterSpacing: '0.04em'}}>{col.name}</div>
+            <div style={{position: 'absolute', left: 14, top: 9, fontFamily: FONTS.super, fontWeight: 500, fontSize: 17, color: col.ink, opacity: 0.8, letterSpacing: '0.04em'}}>{col.name}</div>
             {TOKENS.map((tok, i) => {
               const k = easeOutCubic((t - from - 0.4 - i * 0.22 - ci * 0.11) / 0.3);
               return (
                 <div key={tok.role} style={{position: 'absolute', left: 14, top: 36 + i * 54, width: panel.w - 28, height: 44, opacity: k, transform: `translateY(${(1 - k) * 8}px)`}}>
                   <div style={{position: 'absolute', left: 0, top: 0, width: 72, height: 44, borderRadius: 10, background: tok[col.key], border: `1px solid ${col.key === 'light' ? 'rgba(17,24,39,0.16)' : 'rgba(243,245,249,0.22)'}`}} />
-                  <div style={{position: 'absolute', left: 84, top: 14, fontFamily: FONTS.super, fontSize: 12, color: col.ink, opacity: 0.78}}>{tok.role}</div>
+                  <div style={{position: 'absolute', left: 84, top: 10, fontFamily: FONTS.super, fontSize: 18, whiteSpace: 'nowrap', fontWeight: 500, color: col.ink === '#F3F5F9' ? '#FFFFFF' : col.ink, opacity: 1}}>{tok.role}</div>
                 </div>
               );
             })}
@@ -255,7 +255,7 @@ const Wallpapers: React.FC<{t: number}> = ({t}) => {
         const x = lerp(rowX, px - SWATCH.w / 2, f);
         const y = py - SWATCH.h;
         return (
-          <div key={i} style={{position: 'absolute', left: x, top: y, width: SWATCH.w, height: SWATCH.h, transformOrigin: '50% 100%', transform: `rotate(${angle * f}deg)`, zIndex: i}}>
+          <div key={i} style={{position: 'absolute', left: x, top: y, width: SWATCH.w, height: SWATCH.h, transformOrigin: '50% 100%', transform: `rotate(${angle * f}deg) scale(${1 + 0.55 * f})`, zIndex: i}}>
             <WallpaperSwatch i={i} />
           </div>
         );
@@ -315,6 +315,37 @@ const LARGEST = footageClip('emergency-largest-text');
 const HOME = footageStill(IN.versions.footage);
 const SWAP = 0.5; // the chat slides out as the emergency view slides in (37.7-38.2)
 
+/**
+ * The emergency clip names "Eleanor Hughes" and dates the card, neither of which belongs to the film's family (CLAIMS G19).
+ * Footage cannot change, so the identity block is covered by a drawn one (E3): a black panel with the film's "Dad" on the
+ * red page and the largest-text view, and a soft blur over the three lines of the card view that carry a name, a date or
+ * a number. All fractions are of the phone window.
+ */
+const MASK_INK = '#F5F7FA';
+const IdentityCover: React.FC<{top: number; height: number; big: boolean}> = ({top, height, big}) => (
+  <div style={{position: 'absolute', left: 0, right: 0, top: `${top * 100}%`, height: `${height * 100}%`, background: '#000', fontFamily: FONTS.super, color: MASK_INK, whiteSpace: 'nowrap'}}>
+    <div style={{position: 'absolute', left: 9, top: big ? 10 : 6, width: big ? 54 : 30, height: big ? 54 : 30, borderRadius: 30, background: '#4A7FD8', fontSize: big ? 24 : 13, fontWeight: 700, textAlign: 'center', lineHeight: big ? '54px' : '30px'}}>D</div>
+    <div style={{position: 'absolute', left: big ? 9 : 46, top: big ? 78 : 4, fontSize: big ? 42 : 17, fontWeight: 700, lineHeight: 1.1}}>Dad</div>
+    <div style={{position: 'absolute', left: big ? 9 : 46, top: big ? 126 : 24, fontSize: big ? 17 : 11, opacity: 0.62}}>Emergency card</div>
+  </div>
+);
+const Blur: React.FC<{x: number; y: number; w: number; h: number}> = ({x, y, w, h}) => (
+  <div style={{position: 'absolute', left: `${x * 100}%`, top: `${y * 100}%`, width: `${w * 100}%`, height: `${h * 100}%`, backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)', background: 'rgba(255,255,255,0.35)', borderRadius: 4}} />
+);
+const CARD_CARD_VIEW = 38.75; // the clip's red page turns into the card view
+const EmergencyMask: React.FC<{t: number; phase: 'clip' | 'largest'}> = ({t, phase}) =>
+  phase === 'largest' ? (
+    <IdentityCover top={0.19} height={0.5} big />
+  ) : t < CARD_CARD_VIEW ? (
+    <IdentityCover top={0.2} height={0.17} big={false} />
+  ) : (
+    <>
+      <Blur x={0.06} y={0.285} w={0.58} h={0.06} />
+      <Blur x={0.04} y={0.6} w={0.92} h={0.105} />
+      <Blur x={0.04} y={0.79} w={0.5} h={0.05} />
+    </>
+  );
+
 /** The real screens: the conversation (36.0-38.2), the emergency view (37.7-40.0), its largest text size (40.0-43.0). */
 const Screens: React.FC<{t: number}> = ({t}) => {
   const {chatIn} = IN.form;
@@ -327,10 +358,10 @@ const Screens: React.FC<{t: number}> = ({t}) => {
   return (
     <>
       {t >= chatIn.from && t < swapFrom + SWAP ? <ClipWindow source={QUESTION} start={chatIn.from} t={t} {...PHONE} style={{transform: `translateX(${chatX}px)`}} /> : null}
-      {t >= swapFrom && t < snap ? <ClipWindow source={EMERGENCY} start={card.from} t={t} {...PHONE} style={{transform: `translateX(${emX}px)`}} /> : null}
+      {t >= swapFrom && t < snap ? <ClipWindow source={EMERGENCY} start={card.from} t={t} {...PHONE} style={{transform: `translateX(${emX}px)`}}><EmergencyMask t={t} phase="clip" /></ClipWindow> : null}
       {t >= snap && t < IN.versions.flick.from ? (
         <>
-          <ClipWindow source={LARGEST} start={snap} t={t} {...PHONE} style={{transform: `scale(${pop})`}} />
+          <ClipWindow source={LARGEST} start={snap} t={t} {...PHONE} style={{transform: `scale(${pop})`}}><EmergencyMask t={t} phase="largest" /></ClipWindow>
           {flash > 0 ? <div style={{position: 'absolute', left: PHONE.x, top: PHONE.y, width: PHONE.w, height: PHONE.h, borderRadius: PHONE.r, background: `rgba(245,247,250,${flash})`}} /> : null}
         </>
       ) : null}

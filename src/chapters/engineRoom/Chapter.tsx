@@ -25,7 +25,9 @@ import {
   LAPTOP,
   PHONES,
   PIPE,
+  READ,
   SAFE,
+  SHOW_PLACEHOLDER,
   SERVER,
   SILHOUETTE,
   SIM_AT,
@@ -34,6 +36,7 @@ import {
   SUPER_ROOMS_AT,
   SUPER_VAULT_AT,
   TAB,
+  TEST_COUNT_IS_REAL,
   TEST_COUNT_PLACEHOLDER,
   TEST_ROLL_AT,
   TRACKS,
@@ -134,8 +137,8 @@ const TopFloor: React.FC<{t: number}> = ({t}) => (
   <>
     <XcodeScreen t={t} />
     <ScreenOnPaper device="laptop" source={LAPTOP_SOURCE} at={LAPTOP.at} scale={LAPTOP.scale} drawStart={B.top.laptop.from} drawDuration={B.top.laptop.to - B.top.laptop.from} contentStart={NEVER} seed={71} />
-    <NumberRoll to={TEST_COUNT_PLACEHOLDER} start={B.tests.from} duration={B.tests.to - B.tests.from} at={TEST_ROLL_AT} align="centre" size={64} ink="accent" />
-    <TestPlaceholderTag t={t} />
+    {SHOW_PLACEHOLDER || TEST_COUNT_IS_REAL ? <NumberRoll to={TEST_COUNT_PLACEHOLDER} start={B.tests.from} duration={B.tests.to - B.tests.from} at={TEST_ROLL_AT} align="centre" size={64} ink="accent" /> : null}
+    {SHOW_PLACEHOLDER ? <TestPlaceholderTag t={t} /> : null}
     <ScreenOnPaper device="phone" source={footageClip(B.simulator.footage)} at={SIM_AT} scale={1} drawStart={B.simulator.from} drawDuration={1} />
   </>
 );
@@ -183,15 +186,16 @@ const Tabs: React.FC<{t: number}> = ({t}) => (
             border: `1.5px solid rgba(42,42,45,0.7)`,
             boxShadow: castShadow(DEFAULT_LAMP, {height: pinned ? 3 : 3 + 20 * Math.sin(k * Math.PI)}),
             fontFamily: 'Patrick Hand',
-            fontSize: 26,
+            fontSize: TAB.font,
             lineHeight: `${TAB.h}px`,
-            paddingLeft: 30,
+            paddingLeft: 38,
+            whiteSpace: 'nowrap',
             color: COLORS.graphite,
             boxSizing: 'border-box',
           }}
         >
           {name}
-          {pinned ? <span style={{position: 'absolute', left: 9, top: TAB.h / 2 - 6, width: 12, height: 12, borderRadius: 6, background: COLORS.accent, boxShadow: '1px 2px 2px rgba(0,0,0,0.25)'}} /> : null}
+          {pinned ? <span style={{position: 'absolute', left: 12, top: TAB.h / 2 - 8, width: 16, height: 16, borderRadius: 8, background: COLORS.accent, boxShadow: '1px 2px 2px rgba(0,0,0,0.25)'}} /> : null}
         </div>
       );
     })}
@@ -212,7 +216,9 @@ const BOXES_PAGE = (() => {
     const t0 = B.middle.binder + 0.15 + i * 0.12;
     return [
       at(stroke(`box-${i}`, handRect(cx - BOX.w / 2, cy - BOX.h / 2, BOX.w, BOX.h, 7100 + i, {radius: 6}), {width: 2.2, rough: true}), t0, t0 + 0.4),
-      at(label(`box-${i}-label`, b.label, cx - BOX.w / 2 + 12, cy + 9, {size: b.label.length > 10 ? 22 : 26, face: 'patrick-400'}), t0 + 0.3, t0 + 0.8),
+      ...b.label.split(' ').map((word, li, words) =>
+        at(label(`box-${i}-label-${li}`, word, cx - BOX.w / 2 + 14, cy + BOX.font * 0.35 + (li - (words.length - 1) / 2) * BOX.font * 1.05, {size: BOX.font, face: 'patrick-400'}), t0 + 0.3, t0 + 0.8),
+      ),
     ];
   });
   return {page: timedPage('boxes', items, x1 - x0, y1 - y0), topLeft: [x0, y0] as Point};
@@ -239,7 +245,7 @@ const Binder: React.FC<{t: number}> = ({t}) => {
         {[0.3, 0.5, 0.7].map((f) => (
           <span key={f} style={{position: 'absolute', left: 14, top: BINDER.h * f - 7, width: 14, height: 14, borderRadius: 7, border: `2px solid ${COLORS.graphite}`}} />
         ))}
-        <div style={{position: 'absolute', left: 0, right: 0, top: BINDER.h / 2 - 22, textAlign: 'center', fontFamily: 'Patrick Hand', fontSize: 30, color: COLORS.graphite}}>Binder</div>
+        <div style={{position: 'absolute', left: 0, right: 0, top: BINDER.h / 2 - 28, textAlign: 'center', fontFamily: 'Patrick Hand', fontSize: 42, color: COLORS.graphite}}>Binder</div>
       </div>
     </div>
   );
@@ -375,17 +381,17 @@ const ReminderTicks: React.FC<{t: number; from: number; to: number; billAt: numb
   const marks = ['9', '6', '3'];
   const each = (to - from) / marks.length;
   const [px, py] = toRegion([CARRIAGE.finals[0], TRACKS.main - CARRIAGE.h - 40]);
-  const [bx, by] = toRegion([CARRIAGE.finals[1], TRACKS.main + 52]);
+  const [bx, by] = toRegion([23300, TRACKS.main + 100]);
   return (
     <>
       {marks.map((m, i) => {
         const k = clamp01((t - from - i * each) / (each * 0.6));
         if (k <= 0) return null;
-        const x = px - 48 + i * 48;
+        const x = px - 120 + i * 70;
         return (
           <g key={m}>
-            <path d={handTick(x - 8, py - 6, 16, 7500 + i)} fill="none" stroke={COLORS.accent} strokeWidth={3} strokeLinecap="round" pathLength={1} strokeDasharray={`${k} 1`} />
-            <text x={x + 8} y={py} fontSize={26} fill={COLORS.accent} opacity={k} style={{fontFamily: 'Patrick Hand'}}>
+            <path d={handTick(x - 10, py - 8, 20, 7500 + i)} fill="none" stroke={COLORS.accent} strokeWidth={3.4} strokeLinecap="round" pathLength={1} strokeDasharray={`${k} 1`} />
+            <text x={x + 12} y={py} fontSize={READ.note} fill={COLORS.accent} opacity={k} style={{fontFamily: 'Patrick Hand'}}>
               {m}
             </text>
           </g>
@@ -393,8 +399,8 @@ const ReminderTicks: React.FC<{t: number; from: number; to: number; billAt: numb
       })}
       {t >= billAt ? (
         <g opacity={smooth((t - billAt) / 0.3)}>
-          <path d={handTick(bx - 120, by - 6, 16, 7510)} fill="none" stroke={COLORS.accent} strokeWidth={3} strokeLinecap="round" />
-          <text x={bx - 96} y={by} fontSize={26} fill={COLORS.accent} style={{fontFamily: 'Patrick Hand'}}>
+          <path d={handTick(bx - 40, by - 8, 20, 7510)} fill="none" stroke={COLORS.accent} strokeWidth={3.4} strokeLinecap="round" />
+          <text x={bx - 12} y={by} fontSize={READ.note} fill={COLORS.accent} style={{fontFamily: 'Patrick Hand'}}>
             {BILL_REMINDER}
           </text>
         </g>
@@ -411,7 +417,7 @@ const SERVER_PAGE = (() => {
   const items: Timed[] = [
     at(stroke('server', handRect(pad, pad, w, h, 7600, {radius: 8}), {width: 2.6, rough: true}), 44.0, 44.7),
     ...[0, 1, 2].map((i) => at(stroke(`slot-${i}`, `${handLine(pad + 24, pad + 50 + i * 40, pad + w - 60, pad + 50 + i * 40, 7610 + i)} ${handCircle(pad + w - 34, pad + 50 + i * 40, 5, 5, 7620 + i)}`, {width: 1.8}), 44.5 + i * 0.12, 44.75 + i * 0.12)),
-    at(label('server-label', SERVER.label, pad + 18, pad + h - 22, {size: 28, face: 'patrick-400'}), 44.9, 45.5),
+    at(label('server-label', SERVER.label, pad + 18, pad + h - 22, {size: READ.vault, face: 'patrick-400'}), 44.9, 45.5),
   ];
   return timedPage('server', items, w + pad * 2, h + pad * 2);
 })();
@@ -462,7 +468,7 @@ const Below: React.FC<{t: number}> = ({t}) => {
       {ck > 0 ? (
         <>
           <path d={cloudPath(cx, cy, CLOUD.w, CLOUD.h)} fill="none" stroke={COLORS.graphite} strokeWidth={2.6} strokeLinecap="round" pathLength={1} strokeDasharray={`${ck} 1`} />
-          <text x={cx} y={cy + 10} textAnchor="middle" fontSize={28} fill={COLORS.graphite} opacity={smooth((ck - 0.6) / 0.4)} style={{fontFamily: 'Patrick Hand'}}>
+          <text x={cx} y={cy + 14} textAnchor="middle" fontSize={READ.vault} fill={COLORS.graphite} opacity={smooth((ck - 0.6) / 0.4)} style={{fontFamily: 'Patrick Hand'}}>
             {CLOUD.label}
           </text>
         </>
@@ -479,7 +485,7 @@ const Below: React.FC<{t: number}> = ({t}) => {
           <g key={p.label}>
             <path d={handRect(sx, sy, SMALL_PHONE.w, SMALL_PHONE.h, 7720 + i, {radius: 18})} fill="none" stroke={COLORS.graphite} strokeWidth={2.4} strokeLinecap="round" pathLength={1} strokeDasharray={`${k} 1`} />
             <path d={handRect(sx + 9, sy + 9, SMALL_PHONE.w - 18, SMALL_PHONE.h - 18, 7730 + i, {radius: 12})} fill="none" stroke={COLORS.graphite} strokeWidth={1.3} strokeOpacity={0.6 * k} />
-            <text x={x} y={sy + SMALL_PHONE.h + 40} textAnchor="middle" fontSize={28} fill={COLORS.graphite} opacity={smooth((k - 0.5) / 0.5)} style={{fontFamily: 'Patrick Hand'}}>
+            <text x={x} y={sy + SMALL_PHONE.h + 56} textAnchor="middle" fontSize={READ.vault} fill={COLORS.graphite} opacity={smooth((k - 0.5) / 0.5)} style={{fontFamily: 'Patrick Hand'}}>
               {p.label}
             </text>
             {dots(from, to, 22)

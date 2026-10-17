@@ -75,8 +75,8 @@ export const WALLPAPER_TILES: readonly {name: string; x: number; y: number; w: n
   {name: 'Linen', x: COL_X[0] as number, y: 1870, ...TILE},
   {name: 'Dusk', x: COL_X[1] as number, y: 1870, ...TILE},
 ];
-/** A wallpaper swatch, phone-shaped: 100 x 214 sheet px (the bible's 220 x 470 screen px at z 2.2). */
-export const SWATCH = {w: 100, h: 214, gap: 12, pivot: [450, 410] as Point, fanDeg: 48};
+/** A wallpaper swatch, phone-shaped: 58 x 124 screen px, so the resting row (9 x 58 + 8 x 4 = 554) fits the tall column (568 px at z 1.9); the fan scales it up to 1.55 (E3, QA1 11). */
+export const SWATCH = {w: 58, h: 124, gap: 4, pivot: [450, 410] as Point, fanDeg: 48};
 
 /** manifest4's still entries (kit's footageStill reads only its clips: a gap worked around here). */
 const STILLS4 = (manifest4Json as {stills?: readonly {id: string; file: string; width: number; height: number}[]}).stills ?? [];
