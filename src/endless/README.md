@@ -20,6 +20,10 @@ One sheet of paper (`SHEET`, 40 000 x 8 000 logical px, the paper itself never e
   - `geometry`: chapter 1 owns the detours (heart rate, calendar, passport, key). Build a geometry with `buildLine(anchors)` (`masterAnchors()` + extra points) and pass it in.
   - Zero-time moves in the anchors (the 90 px super rise) are given 90/600 s, borrowed from the run before. The last chapter's pick-up from the parked glass point (27600, 3420) to (28800, 3300) is added as an anchor at 9:30 (`GLASS_PARK` in `lineGeometry.ts`).
 
+## The master (`src/MasterFilm4.tsx`, `<MasterRegion>`)
+
+`Master4-*` is one `EndlessSheet` with every chapter's `Art` in a **`<MasterRegion id>`** and every `Overlay` in its slot window (module-local frames). `MasterRegion` is `SheetRegion` for the whole film: live while the chapter runs; once it is finished, its art is **held on its last frame** (frame and kit time frozen, the camera live) until its PNG is real (`FINAL_REGION_IMAGES`); culled outside the viewport + 20% and below zoom 0.15, fading out over 0.30 → 0.15 as the far image fades in. Audit, costs and requested chapter fixes: `docs/v4/MASTER4-AUDIT.md`; stills: `npx tsx tools/masterAudit.ts`.
+
 ## Level of detail (BIBLE4 §1.6)
 
 | zoom | live | images |
