@@ -122,9 +122,9 @@
       "id": "researchBoard-maker-03",
       "voice": "MAKER",
       "chapterId": "researchBoard",
-      "text": "Six building blocks. Everything the app does is one of them, or a mix of them.",
+      "text": "Six building blocks. Most of the app is one of them, or a mix.",
       "startMaster": 215,
-      "words": 16
+      "words": 14
     },
     {
       "id": "nameAndLook-founder-01",
@@ -178,15 +178,15 @@
       "id": "engineRoom-maker-03",
       "voice": "MAKER",
       "chapterId": "engineRoom",
-      "text": "Every date from every source joins one list and gets the reminder that fits it. Passports get nine, six and three months. A bill gets the day before.",
+      "text": "Every date from every source joins one list and gets the reminder that fits it. Passports get nine, six and three months. A bill gets a nudge three days out, and that day.",
       "startMaster": 318,
-      "words": 28
+      "words": 34
     },
     {
       "id": "engineRoom-maker-04",
       "voice": "MAKER",
       "chapterId": "engineRoom",
-      "text": "There is no Veyago server. Your data lives on your phone and in your own iCloud. Sharing goes straight to the people you invite.",
+      "text": "No account. Nothing is collected. Your data lives on your phone and in your own iCloud. Sharing goes straight to the people you invite.",
       "startMaster": 332,
       "words": 24
     },
@@ -226,7 +226,7 @@
       "id": "launch-founder-03",
       "voice": "FOUNDER",
       "chapterId": "launch",
-      "text": "On day one we got the price wrong. On day two we fixed it.",
+      "text": "On day one we got the price wrong. The next day we fixed it.",
       "startMaster": 387,
       "words": 14
     },
