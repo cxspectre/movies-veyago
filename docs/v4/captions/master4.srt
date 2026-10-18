@@ -1,0 +1,302 @@
+1
+00:00:07,000 --> 00:00:09,940
+This is the story of one app.
+
+2
+00:00:09,940 --> 00:00:16,530
+From a no, to a launch, to a binder
+for everyone you call family.
+
+3
+00:00:34,000 --> 00:00:37,513
+Some weeks I'm the mom, the daughter,
+
+4
+00:00:37,513 --> 00:00:41,500
+and the one who knows where everything is.
+
+5
+00:00:41,500 --> 00:00:45,412
+My dad's insurance. The kids' passports.
+
+6
+00:00:45,412 --> 00:00:48,052
+And Sam's car registration,
+
+7
+00:00:48,052 --> 00:00:53,920
+because he's in Lisbon for a
+year and I'm the one he trusts.
+
+8
+00:01:06,000 --> 00:01:09,361
+We wanted to build something for her.
+
+9
+00:01:09,361 --> 00:01:13,357
+But first, we had to
+fail at something else.
+
+10
+00:01:15,000 --> 00:01:18,099
+Our first app was turned down twice.
+
+11
+00:01:18,099 --> 00:01:21,887
+It wasn't different
+enough. Apple was right.
+
+12
+00:01:30,000 --> 00:01:36,087
+So we stopped resubmitting and held
+on to the one thing that was good.
+
+13
+00:01:46,000 --> 00:01:49,478
+On the twenty-first of
+September, we started again.
+
+14
+00:01:55,000 --> 00:02:01,522
+Before we had one idea, we built the
+filter that every idea had to pass.
+
+15
+00:02:02,000 --> 00:02:03,505
+Useful for years.
+
+16
+00:02:03,505 --> 00:02:06,782
+Not something the phone already does.
+
+17
+00:02:06,782 --> 00:02:11,121
+Private by design. Buildable
+in weeks, not years.
+
+18
+00:02:11,121 --> 00:02:13,600
+And a business from day one.
+
+19
+00:02:30,500 --> 00:02:33,318
+One idea made it through all five.
+
+20
+00:02:33,318 --> 00:02:38,291
+We started with the hardest
+version: looking after a parent.
+
+21
+00:02:50,000 --> 00:02:51,739
+Next, we stopped guessing.
+
+22
+00:02:54,000 --> 00:02:59,328
+We searched the store like a
+tired person at eleven at night.
+
+23
+00:02:59,328 --> 00:03:01,860
+We read the one-star reviews.
+
+24
+00:03:01,860 --> 00:03:07,712
+And every form and rule in the app
+comes from whoever publishes it.
+
+25
+00:03:07,712 --> 00:03:09,983
+States, Medicare, the FTC.
+
+26
+00:03:38,000 --> 00:03:40,127
+Six building blocks.
+
+27
+00:03:40,127 --> 00:03:44,487
+Most of the app is one of them, or a mix.
+
+28
+00:03:55,000 --> 00:03:59,029
+For a few days it was called On Behalf.
+
+29
+00:03:59,029 --> 00:04:01,922
+Then we found a better word.
+
+30
+00:04:02,000 --> 00:04:04,999
+Provisum. Latin for provided for.
+
+31
+00:04:04,999 --> 00:04:08,452
+What you want everyone you love to be.
+
+32
+00:04:12,000 --> 00:04:13,268
+Then the look.
+
+33
+00:04:13,268 --> 00:04:17,617
+Calm, because people open
+this app on hard days.
+
+34
+00:04:39,000 --> 00:04:42,944
+Every screen was checked
+at the biggest text sizes.
+
+35
+00:04:42,944 --> 00:04:47,661
+When something broke, we redesigned
+the screen, not the text.
+
+36
+00:04:50,000 --> 00:04:53,756
+Native Swift, for iPhone,
+Apple Watch and widgets.
+
+37
+00:04:53,756 --> 00:04:55,183
+Nothing in between.
+
+38
+00:05:08,000 --> 00:05:12,951
+Everything belongs to a binder,
+and a binder belongs to a person:
+
+39
+00:05:12,951 --> 00:05:18,435
+your dad, your daughter, yourself,
+your partner, a friend, even the dog.
+
+40
+00:05:18,500 --> 00:05:21,926
+Every date from every source joins one
+
+41
+00:05:21,926 --> 00:05:25,533
+list and gets the reminder that fits it.
+
+42
+00:05:25,533 --> 00:05:29,230
+Passports get nine, six and three months.
+
+43
+00:05:29,230 --> 00:05:33,648
+A bill gets a nudge three
+days out, and that day.
+
+44
+00:05:34,000 --> 00:05:36,887
+No account. Nothing is collected.
+
+45
+00:05:36,887 --> 00:05:41,523
+Your data lives on your
+phone and in your own iCloud.
+
+46
+00:05:41,523 --> 00:05:45,635
+Sharing goes straight to
+the people you invite.
+
+47
+00:05:46,000 --> 00:05:51,217
+The emergency card is encrypted on
+your iPhone before it goes anywhere.
+
+48
+00:05:54,000 --> 00:06:00,087
+We carried the engine over from our first
+app, and rebuilt everything around it.
+
+49
+00:06:05,000 --> 00:06:07,174
+And App Review said yes.
+
+50
+00:06:20,000 --> 00:06:24,504
+We launched in the United States,
+where Veyago does business,
+
+51
+00:06:24,504 --> 00:06:27,826
+with its states' forms
+and Medicare built in.
+
+52
+00:06:31,000 --> 00:06:34,738
+On day one we got the price wrong.
+
+53
+00:06:34,738 --> 00:06:37,487
+The next day we fixed it.
+
+54
+00:06:40,500 --> 00:06:46,152
+Then we looked at what we'd
+built, and at who we'd left out.
+
+55
+00:06:50,000 --> 00:06:53,000
+It was never only my dad.
+
+56
+00:06:56,000 --> 00:06:59,377
+Version one was a binder for a parent.
+
+57
+00:06:59,377 --> 00:07:02,487
+Nobody looks after just one person.
+
+58
+00:07:24,000 --> 00:07:28,458
+Sam's car, Dad's medications,
+the kids' passports.
+
+59
+00:07:28,458 --> 00:07:30,420
+Same place. Same calm.
+
+60
+00:07:58,000 --> 00:08:01,287
+And the biggest change: no more forms.
+
+61
+00:08:01,287 --> 00:08:04,487
+Provisum asks one question at a time.
+
+62
+00:08:35,500 --> 00:08:40,615
+Every person gets the documents,
+dates and packets that fit them.
+
+63
+00:08:40,615 --> 00:08:43,291
+A child's binder isn't a parent's.
+
+64
+00:08:58,000 --> 00:08:59,304
+Everything we drew.
+
+65
+00:09:00,000 --> 00:09:03,443
+Built natively. Tested at every text size.
+
+66
+00:09:04,000 --> 00:09:06,844
+And it's all on my phone.
+
+67
+00:09:06,844 --> 00:09:09,460
+Not on anyone's server.
+
+68
+00:09:44,000 --> 00:09:47,166
+Provisum. It's Latin for provided for.
+
+69
+00:09:47,166 --> 00:09:49,583
+For everyone you call family.
