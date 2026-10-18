@@ -312,14 +312,16 @@ type TallOverride = {t: number; centre?: Point; zoom?: number};
 const TALL_OVERRIDES: Partial<Record<ChapterId, readonly TallOverride[]>> = {
   line: [{t: 1.0, centre: [770, 4000], zoom: 0.95}, {t: 6.0, centre: [770, 4000], zoom: 0.95}, {t: 22.0, zoom: FAR_ZOOM.tall}, {t: 26.0, zoom: FAR_ZOOM.tall}, {t: 30.0, zoom: 0.7}],
   theNo: [{t: 1.0, zoom: 0.8}, {t: 9.0, zoom: 0.8}, {t: 27.5, zoom: 0.8}],
-  researchBoard: [{t: 47.0, centre: [16700, 4100], zoom: 0.6}, {t: 61.0, centre: [16700, 4100], zoom: 0.6}],
+  researchBoard: [{t: 47.0, centre: [16200, 4100], zoom: 0.6}, {t: 61.0, centre: [16200, 4100], zoom: 0.6}],
+  filterMachine: [{t: 35.0, centre: [12600, 4000], zoom: 0.6}],
   mayasHouse: [{t: 0.0, zoom: 0.7}, {t: 28.0, zoom: 0.7}, {t: 31.0, centre: [5400, 3500], zoom: 0.5}, {t: 40.0, centre: [5400, 3500], zoom: 0.5}],
   nameAndLook: [{t: 23.0, zoom: 1.9}, {t: 50.0, zoom: 1.9}],
   engineRoom: [
     {t: 7.0, zoom: 0.75}, {t: 16.0, zoom: 0.75}, {t: 18.0, zoom: 0.75}, {t: 42.0, zoom: 0.75},
     {t: 64.0, zoom: 0.75}, {t: 72.0, zoom: 0.75},
   ],
-  village: [{t: 55.0, centre: [28100, 3200], zoom: 0.7}, {t: 63.0, centre: [28100, 3200], zoom: 0.7}],
+  // Tall holds the street framing to 13.0 so the hook's cut to paperToGlass 0.0 (same camera) is not a zoom jump.
+  village: [{t: 10.0, centre: [27600, 3380], zoom: 2.0}, {t: 13.0, centre: [27600, 3380], zoom: 2.0}, {t: 55.0, centre: [28100, 3200], zoom: 0.7}, {t: 63.0, centre: [28100, 3200], zoom: 0.7}],
   providedFor: [
     {t: 2.5, zoom: RETRO_ZOOM.tall}, {t: 4.0, zoom: RETRO_ZOOM.tall}, {t: 10.0, zoom: RETRO_ZOOM.tall},
     {t: 11.0, zoom: FAR_ZOOM.tall}, {t: 12.0, zoom: FAR_ZOOM.tall},
@@ -334,8 +336,17 @@ const applyOverrides = (keys: readonly CameraKey[], overrides: readonly TallOver
     return {...k, ...(o.centre ? {centre: o.centre} : {}), ...(o.zoom !== undefined ? {zoom: o.zoom} : {})};
   });
 
+/** Tall-only keys, replacing the wide key at `replaces` (the camera holds longer in the narrow crop). */
+const TALL_REPLACE: Partial<Record<ChapterId, readonly {replaces: number; keys: readonly CameraKey[]}[]>> = {
+  // Hold on "Every app starts as a line." until 7.5, then follow the pencil (the wide camera follows from 7.0).
+  line: [{replaces: 7.0, keys: [key(7.5, [770, 4000], 0.95), key(8.5, 'head', 1.0, 'easeInOutSine', [300, 0])]}],
+};
+
+const replaceKeys = (id: ChapterId, keys: readonly CameraKey[]): readonly CameraKey[] =>
+  keys.flatMap((k) => TALL_REPLACE[id]?.find((r) => r.replaces === k.t)?.keys ?? [k]);
+
 const TALL: Record<ChapterId, readonly CameraKey[]> = Object.fromEntries(
-  SLOTS4.map((s) => [s.id, applyOverrides(WIDE[s.id], TALL_OVERRIDES[s.id])]),
+  SLOTS4.map((s) => [s.id, replaceKeys(s.id, applyOverrides(WIDE[s.id], TALL_OVERRIDES[s.id]))]),
 ) as Record<ChapterId, readonly CameraKey[]>;
 
 export const CAMERA: Record<FormatName, Record<ChapterId, readonly CameraKey[]>> = {wide: WIDE, tall: TALL};
