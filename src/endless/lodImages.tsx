@@ -32,6 +32,7 @@ export const RegionAlpha: React.FC<{id: ChapterId}> = ({id}) => {
     viewport,
     lod: 'near',
     showBounds: false,
+    regionImage: true,
   };
   return (
     <AbsoluteFill>

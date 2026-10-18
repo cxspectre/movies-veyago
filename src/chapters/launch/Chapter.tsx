@@ -269,7 +269,9 @@ const DAD: HouseDef = {
 /** Village region-local px to launch region-local px. */
 const SHIFT: Point = [VILLAGE_ORIGIN[0] - ORIGIN[0], VILLAGE_ORIGIN[1] - ORIGIN[1]];
 
-const HouseScene: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
+/** `handedOff`: chapter 9 draws Dad's house and window live from 6:55 (and in village.png), so the finished launch image
+ * keeps only the ground line; drawing both doubled the shadow and Maya at the hand-off (QA2). */
+const HouseScene: React.FC<{t: number; zoom: number; handedOff?: boolean}> = ({t, zoom, handedOff = false}) => {
   const draw = launch.smallHouse.draw;
   if (t < draw.from) return null;
   const lit = smooth((t - launch.smallHouse.windowLights) / 0.2);
@@ -282,10 +284,14 @@ const HouseScene: React.FC<{t: number; zoom: number}> = ({t, zoom}) => {
         <path d={ground} fill="none" stroke="#5A5A60" strokeOpacity={0.4} strokeWidth={1.4} strokeLinecap="round" pathLength={1} strokeDasharray={`${win(draw, t)} 1`} />
         <path d={ground} fill="none" stroke={COLORS.graphite} strokeOpacity={0.8} strokeWidth={1} strokeLinecap="round" pathLength={1} strokeDasharray={`${win(draw, t)} 1`} />
       </Layer>
-      <div style={{position: 'absolute', left: SHIFT[0], top: SHIFT[1]}}>
-        <VillageHouse h={DAD} t={t} />
-      </div>
-      <DadWindow origin={ORIGIN} lit={lit} maya={maya} zoom={zoom} />
+      {handedOff ? null : (
+        <>
+          <div style={{position: 'absolute', left: SHIFT[0], top: SHIFT[1]}}>
+            <VillageHouse h={DAD} t={t} />
+          </div>
+          <DadWindow origin={ORIGIN} lit={lit} maya={maya} zoom={zoom} />
+        </>
+      )}
     </>
   );
 };
@@ -306,7 +312,7 @@ export const Art: React.FC = () => {
       <Flier t={t} />
       <Notes t={t} zoom={zoom} />
       <CrossOut t={t} />
-      <HouseScene t={t} zoom={zoom} />
+      <HouseScene t={t} zoom={zoom} handedOff={camera.regionImage === true} />
       {SUPERS.launch.map((s) => (
         <Super key={s.t} {...superFromBeat(s, {sheet: [sx, sy], align: 'centre'}, {size: SUPER_SIZE, maxWidth: 1080})} />
       ))}
