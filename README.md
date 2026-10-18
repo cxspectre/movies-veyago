@@ -33,7 +33,7 @@ Composition ids you will use: `Master4-wide` and `Master4-tall` (the 10-minute f
 - `docs/`: scripts, older bible and decisions, asset notes.
 
 ## How it was made
-The film was planned in a conductor chat and then built by cloud coding sessions, each working from a written brief in `docs/v4/briefs/` and owning a short list of folders. Review passes rendered still frames and fixed what they found. People made the decisions; the sessions wrote and checked the code. Briefs and notes are kept as they were written.
+The film was planned in a conductor chat and then built by cloud coding sessions, each working from a written brief in `docs/v4/briefs/` and owning a short list of folders. Review passes rendered still frames and fixed what they found. People made the decisions; the sessions wrote and checked the code. Briefs and notes are retained as they were written.
 
 ## The rules
 `CONTRACT.md` binds every contributor and session: identity rules, fictional data only, on-screen copy, the one rule of the film (nothing appears on glass that was not first drawn on paper), and the layout and timing contract. Read it first.

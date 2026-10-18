@@ -23,7 +23,7 @@ avoid_words=("receipt" "warranty" "claim" "proof" "archive" "timeline" "scanner"
 avoid_phrase="life admin"
 
 # Text locations to scan (identity check). Binary files are skipped by grep -I.
-scan_targets=("$root/src" "$root/docs" "$root/tools" "$root/public" "$root/CONTRACT.md")
+scan_targets=("$root/src" "$root/docs" "$root/tools" "$root/public" "$root/CONTRACT.md" "$root/README.md")
 excludes=(--exclude-dir=node_modules --exclude-dir=.venv --exclude-dir=out
           --exclude-dir=.git --exclude="$self")
 
