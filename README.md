@@ -42,4 +42,4 @@ The film was planned in a conductor chat and then built by cloud coding sessions
 `node_modules/`, `.venv/`, `out/` (renders), `audio/` (rendered stems, music, voice and foley) and `tools/music/.vendor/` (downloaded sample library).
 
 ## Licence
-No licence has been chosen yet. Until one is added, all rights are reserved. Third-party assets and dependencies are listed in `docs/ASSETS.md`.
+Copyright 2026 Veyago Inc. All rights reserved. No open-source licence has been granted for this repository's code, drawings or film assets. Third-party assets and dependencies are listed in `docs/ASSETS.md`.
