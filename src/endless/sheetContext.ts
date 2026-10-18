@@ -20,6 +20,8 @@ export type SheetState = {
   readonly viewport: SheetRect;
   readonly lod: Lod;
   readonly showBounds: boolean;
+  /** True only while RegionAlpha stills a finished region for its LOD image (src/endless/lodImages.tsx). */
+  readonly regionImage?: boolean;
 };
 
 export const SheetContext = createContext<SheetState | null>(null);
