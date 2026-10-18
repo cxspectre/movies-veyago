@@ -43,9 +43,10 @@ done
 ```
 Reads `silences` and `lengthSec` from each JSON, so the silences are already digital zero in the stem.
 
-## 4. Voices (scratch; reads `docs/SCRIPT-10MIN-v4.md`; needs the Kokoro engine of `tools/vo4`)
+## 4. Voices (scratch; reads `VO4` in `src/beats4.ts`; needs the Kokoro engine of `tools/vo4`)
+The lines, their ids and their start times come from `VO4`, the timeline the picture and the cut-down cue sheets are built on. (`script_lines.py` read the script's own paragraph times, which drift from the beats by up to 16 s and name the clips L001..: do not use it for v4.) A recorded take replaces `audio/v4/vo/clips/<VO4 id>.wav`, for example `Y1.wav`.
 ```sh
-.venv/bin/python tools/vo4/script_lines.py          # -> audio/v4/vo/lines.json
+npx tsx tools/vo4/vo4Lines.ts                         # -> audio/v4/vo/lines.json, from VO4 in src/beats4.ts (ids Y1, F3, M7 ...)
 .venv/bin/python -W ignore tools/vo4/render_vo4.py   # -> audio/v4/vo/clips/<id>.wav, clips.json
 .venv/bin/python tools/vo4/place_vo4.py              # -> audio/v4/vo/stem_{founder,maker,maya,all}.wav, timing.json
 sh tools/vo4/check_audio.sh                          # loudness / format check of every clip and stem
@@ -60,7 +61,7 @@ for id in master4 Hook75 Cut180 Short-line Short-mayasHouse Short-theNo Short-fi
   .venv/bin/python tools/mix/mix.py $id --no-vo    # no VO   -> audio/v4/mix/$id-novo.wav
 done
 ```
-Each run prints one JSON line. Reads: music stem (step 1), foley stem (step 3), the cue JSON (for the silences and, in a cut-down, the VO placements), `audio/v4/vo/stem_all.wav` (master) or the clips (cut-downs), `audio/v4/mix/edl-segments4.json` (shorts slice the master music). Target -16 LUFS, true-peak ceiling -1.5 dBTP. Music ducks 6 dB and foley 2 dB under the voice. Every silence range is forced to **exact zero** on music, foley, VO and the final mix.
+Each run prints one JSON line. Reads: music stem (step 1), foley stem (step 3), the cue JSON (for the silences and, in a cut-down, the VO placements), `audio/v4/vo/stem_all.wav` (master) or the clips (cut-downs), `audio/v4/mix/edl-segments4.json` (shorts slice the master music). Target -16 LUFS, true-peak ceiling -1.5 dBTP (v4 mixes use a 4x-oversampled limiter so the ceiling holds in dBTP; v1 keeps its original limiter). Music ducks 6 dB and foley 2 dB under the voice. Every silence range is forced to **exact zero** on music, foley, VO and the final mix.
 
 ## 6. Checks (do all of them before export)
 1. `silences_exact_zero` is `[true, true, true]` for `master4`, `[true]` for the hook and for the shorts that carry a silence. Any `false` is a bug: stop.

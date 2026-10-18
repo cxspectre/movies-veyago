@@ -177,6 +177,18 @@ def lookahead_limit(x, ceiling_db, look_s=0.005):
     return x * gain[:, None], float(20 * np.log10(max(gain.min(), 1e-9)))
 
 
+def lookahead_limit_tp(x, ceiling_db, look_s=0.005, margin_db=0.05):
+    """The limiter of `lookahead_limit`, but its peak is the 4x-oversampled (true) peak, so the ceiling holds in dBTP."""
+    n = int(look_s * SR)
+    ceiling = 10 ** ((ceiling_db - margin_db) / 20)
+    up = np.abs(resample_poly(x, 4, 1, axis=0)).max(axis=1)
+    up = up[: (len(up) // 4) * 4].reshape(-1, 4).max(axis=1)
+    peak = np.maximum(maximum_filter1d(np.pad(up, (0, x.shape[0] - len(up)), constant_values=0.0), 2 * n + 1), np.abs(x).max(axis=1))
+    gain = np.minimum(1.0, ceiling / np.maximum(peak, 1e-12))
+    gain = uniform_filter1d(minimum_filter1d(gain, 2 * n + 1), 2 * n + 1)
+    return x * gain[:, None], float(20 * np.log10(max(gain.min(), 1e-9)))
+
+
 def true_peak_db(x):
     up = resample_poly(x, 4, 1, axis=0)
     return float(20 * np.log10(max(np.abs(up).max(), 1e-12)))
@@ -213,7 +225,7 @@ def main():
     meter = pyln.Meter(SR)
     before = meter.integrated_loudness(mix)
     mix *= 10 ** ((args.target - before) / 20)
-    mix, max_reduction_db = lookahead_limit(mix, TRUE_PEAK_CEILING_DB)
+    mix, max_reduction_db = (lookahead_limit_tp if v4 else lookahead_limit)(mix, TRUE_PEAK_CEILING_DB)
     mix *= mask[:, None]
     after = meter.integrated_loudness(mix)
 
