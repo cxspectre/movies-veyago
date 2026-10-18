@@ -20,7 +20,7 @@ Every agent on this film reads this file first. It is the shared interface. The 
 - **Never run two `xcodebuild` or simulator-driving jobs at once. Only the footage agent builds or drives simulators.** Check `uptime` first; prefix heavy commands with `nice -n 10`.
 - The footage agent uses only its own simulators (named `Provisum Film …`) and always passes the UDID. Never touch other `PV …` / `Veyago …` simulators or `/tmp/pv-dd/*` DerivedData. Build into `/tmp/pv-dd/film`.
 - Other agents render **stills only** (`npx remotion still … --scale=1` or `0.5`), never full videos, unless the director asks. `Config.setConcurrency(4)` is set; do not raise it.
-- Do not run git commit/push/stash/checkout. `Film/` is excluded from git locally. Do not edit anything outside `Film/` (the app source is read-only for you; the app worktree for 1.2 is `/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12`).
+- Do not run git commit/push/stash/checkout. `Film/` is excluded from git locally. Do not edit anything outside `Film/` (the app source is read-only for you; the app worktree for 1.2 is `~/Developer/Apps/.pv-worktrees/v12`).
 - Installing tools is allowed (npm, brew, pip into a venv under `Film/.venv`). Say what you installed in your report.
 
 ## 3. Layout and ownership (edit only your own paths; additive changes to shared files only)

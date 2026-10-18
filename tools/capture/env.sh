@@ -1,7 +1,7 @@
 # Shared settings for the footage capture scripts. Source this file.
-export PV_SRC="/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12"
+export PV_SRC="$HOME/Developer/Apps/.pv-worktrees/v12"
 export PV_DD="/tmp/pv-dd/film"
-export FILM="/Users/cassiandrefke/Developer/Apps/Provisum/Film"
+export FILM="$HOME/Developer/Apps/Provisum/Film"
 export FOOTAGE="$FILM/public/footage"
 # Raw (unencoded) recordings stay outside the film folder.
 export RAW="/tmp/pv-film-raw"
