@@ -9,6 +9,7 @@ import {endlessPreviews} from './endless/previews';
 import {popupPreviews} from './popup/previews';
 import {kitPreviews} from './kit/previews';
 import {effectsPreviews} from './popup/effects/previews';
+import {edit4Previews, edit4ReviewPreviews} from './edit4/previews';
 
 const FORMAT_NAMES = ['wide', 'tall'] as const;
 
@@ -24,6 +25,9 @@ const FORMAT_NAMES = ['wide', 'tall'] as const;
  */
 export const previews4: readonly PreviewSpec[] = [
   ...endlessPreviews,
+  // G1: the v4 cut-downs (Hook75-tall, Cut180-tall, Short-<id>-tall), src/edit4.
+  ...edit4Previews,
+  ...edit4ReviewPreviews,
   ...popupPreviews,
   ...kitPreviews,
   ...effectsPreviews,
