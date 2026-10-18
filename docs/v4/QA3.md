@@ -60,7 +60,7 @@ end a caption where a super begins.
 | short | verdict | changes (module-local s) |
 |---|---|---|
 | Short-line (30 -> 25.5 s) | good | starts at 4.5 (0.0 black, then empty paper); F1 captioned in two parts (+2.5, +5.5); split at 20.0 so the caption ends before the title super |
-| Short-mayasHouse (45 -> 43.5 s) | good (G2) | Y2 and F2 added with captions; splits 11.5 / 22 / 36. G2: ends at 43.5 (F2 ends about 43.4); 43.5-45 (empty paper) dropped. The house is gone by about 42.5, so 42.5-43.5 is the line leaving, kept for the voice |
+| Short-mayasHouse (45 -> 43.5 s) | good (G2) | Y2 and F2 added with captions; splits 11.5 / 22 / 36. G2: ends at 43.5 (F2 ends about 43.4); 43.5-45 (empty paper) dropped. The house is gone by about 42.5, so 42.5-43.5 is the line leaving, retained for the voice |
 | Short-theNo (40 -> 34 s) | good | 1.0-35.0 (0.0 empty, 36-40 carries the calendar off to empty paper); F4 and F5 added with captions |
 | Short-filterMachine (47 -> 46 s) | good | starts 1.0 (hopper visible); M2 added (+0.5) with captions; the caption ends at 20.0 |
 | Short-researchBoard (48 -> 47 s) | good (G2) | G2: starts 3.0 (the board and its pins; 0-3 is the frame edge), M3 3.0-4.5, M4 runs 4.5-22.0 (0.5 s behind its picture), the end is unchanged (the boxes hold to 58); M4 added under the question supers **without a caption** (four supers on screen); the "gap" caption removed (it repeated the super); M5 now captioned on its own slice |

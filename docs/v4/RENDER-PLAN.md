@@ -41,7 +41,7 @@ Not fixed, listed: a chunk that exists and has the right frame count is reused e
 
 - **Final file, `--crf=14`, 4K, 10:00:** 3-9 GB per format. The paper grain is noisy, so expect the upper half. Chunks add the same again until you delete them, so plan **2x**.
 - **Temp frames:** Remotion writes JPEGs (q95) while a chunk renders: about 1.3-1.7 MB per paper frame, 0.5 MB per glass frame at 4K (measured). The biggest chunks are 2,250-2,400 frames, so **up to about 4 GB** at once, freed after each chunk.
-- **Free space:** 25 GB for one format, **40 GB for both** with chunks kept. The cloud box has 29 GB free, so it cannot do both.
+- **Free space:** 25 GB for one format, **40 GB for both** with chunks retained. The cloud box has 29 GB free, so it cannot do both.
 - **RAM:** 16 GB works at `--concurrency` 4-5. Below that, lower it.
 
 ## Concurrency (recommendation; cloud default of 4 is for 4 cores)
