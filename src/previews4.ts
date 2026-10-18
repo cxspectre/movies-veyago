@@ -9,6 +9,7 @@ import {endlessPreviews} from './endless/previews';
 import {popupPreviews} from './popup/previews';
 import {kitPreviews} from './kit/previews';
 import {effectsPreviews} from './popup/effects/previews';
+import {thumbPreviews} from './thumbs';
 
 const FORMAT_NAMES = ['wide', 'tall'] as const;
 
@@ -27,6 +28,8 @@ export const previews4: readonly PreviewSpec[] = [
   ...popupPreviews,
   ...kitPreviews,
   ...effectsPreviews,
+  // H2: publish-kit thumbnails (Thumb-wide-a|b|c, Cover-tall-a|b|c), src/thumbs
+  ...thumbPreviews,
   ...FORMAT_NAMES.map((format) => ({
     id: `Master4-${format}`,
     component: MasterFilm4,
