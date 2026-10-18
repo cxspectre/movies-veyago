@@ -38,6 +38,8 @@ export const SPLIT = {right: 60, left: -320, slideDur: 1.0};
 export const PIECE_CENTRE_X = CARD.centre[0] - CARD.w / 2 + (CARD.cutX + CARD.w) / 2 + SPLIT.right;
 
 export const CALENDAR = {w: 520, h: 600, centre: [9000, 3200] as Point};
+/** The ring round the month title "September 2026" (page px: PageDrop sets it at 50 px, baseline 98, centred). */
+export const MONTH_RING = {cx: 260, cy: 82, rx: 182, ry: 44};
 export const DATE_ROLL: Point = [9000, 3600];
 export const GUIDELINE_AT: Point = [9000, 4500];
 export const SUPER_AT: Point = [9000, 3500];

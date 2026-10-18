@@ -1,14 +1,15 @@
 // Chapter 3, "The no" (1:15-1:55, local 0-40). BIBLE4 §5.3; the script's "3. The no".
 // Two rejection letters draw themselves and "Rejected" circles itself on each; 4.3(a) rolls; the letters crumple into
 // one ball that opens into the engine cutaway; scissors cut the drawing in two (engine labelled keep, the old half faded and
-// blurred); a calendar page drops with 21 circled; the engine is carried along the pencil line to the next region.
+// blurred); a calendar page drops and its month title is circled; the engine is carried along the pencil line to the next region.
 import React from 'react';
 import {SUPERS, theNo as B} from '../../beats4';
 import {COLORS} from '../../film';
 import {ChapterShell, NumberRoll, Super, superFromBeat, useChapter} from '../../kit';
+import {handCircle} from '../../paper';
 import {CrumpleBall, crumpleRest, PageDrop, ScissorsCut, SHEET_PAPER, UnfoldFromBall} from '../../popup';
 import {EngineArt, LetterArt, OldPanelArt} from './art';
-import {BALL_AT, CALENDAR, CARD, CARD_CUT, CARRY, DATE_ROLL, ENGINE, GUIDELINE_AT, LETTER, local, SPLIT, SUPER_AT, UNFOLD} from './layout';
+import {BALL_AT, CALENDAR, CARD, CARD_CUT, CARRY, DATE_ROLL, ENGINE, GUIDELINE_AT, LETTER, local, MONTH_RING, SPLIT, SUPER_AT, UNFOLD} from './layout';
 
 const ID = 'theNo' as const;
 const clamp01 = (v: number): number => Math.min(1, Math.max(0, v));
@@ -136,6 +137,22 @@ const Card: React.FC<{t: number}> = ({t}) => {
   );
 };
 
+/**
+ * The pencil circles the month title (owner decision 2: the month, not a day), at the beat the day circle used to land.
+ * PageDrop circles only a day, so the ring is drawn over the page here; by 30.0 the page has long settled at its resting
+ * -1.5 degrees (its bounces end 0.7 s after the landing), so the overlay turns with it and nothing else.
+ */
+const MonthRing: React.FC<{t: number}> = ({t}) => {
+  const k = clamp01((t - B.calendar.circle) / 0.5);
+  if (k <= 0) return null;
+  const {cx, cy, rx, ry} = MONTH_RING;
+  return (
+    <svg width={CALENDAR.w} height={CALENDAR.h} viewBox={`0 0 ${CALENDAR.w} ${CALENDAR.h}`} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible', transform: 'rotate(-1.5deg)'}}>
+      <path d={handCircle(cx, cy, rx, ry, 97)} pathLength={1} strokeDasharray="1 1" strokeDashoffset={(1 - k).toFixed(4)} fill="none" stroke={COLORS.accent} strokeWidth={3.2} strokeLinecap="round" />
+    </svg>
+  );
+};
+
 /** A roll is faded in over its own turn, so its zeroed wheels ("00 September 0000") are never seen at full strength. */
 const Emerge: React.FC<{t: number; start: number; duration: number; children: React.ReactNode}> = ({t, start, duration, children}) => (
   <div style={{position: 'absolute', left: 0, top: 0, width: 0, height: 0, overflow: 'visible', opacity: smooth((t - start) / (duration * 0.7))}}>{children}</div>
@@ -155,7 +172,8 @@ export const Art: React.FC = () => {
       <Super {...superFromBeat(SUPERS.theNo[0]!, {sheet: SUPER_AT, align: 'centre'})} />
       {t >= B.calendar.drop ? (
         <div style={{position: 'absolute', left: cx - CALENDAR.w / 2, top: cy - CALENDAR.h / 2, width: CALENDAR.w, height: CALENDAR.h}}>
-          <PageDrop time={t} start={B.calendar.drop} fall={B.calendar.land - B.calendar.drop} month="September 2026" days={30} firstWeekday={1} circled={21} circleAt={B.calendar.circle} />
+          <PageDrop time={t} start={B.calendar.drop} fall={B.calendar.land - B.calendar.drop} month="September 2026" days={30} firstWeekday={1} />
+          <MonthRing t={t} />
         </div>
       ) : null}
       <Emerge t={t} start={B.calendar.date.at} duration={1}>

@@ -31,7 +31,7 @@ export const cues: ModuleCues = [
   {kind: 'slide', t: B.split.from, dur: 1.0, pan: 0.3},
   {kind: 'slide', t: B.split.from + 0.05, dur: 1.0, pan: -0.3},
   {kind: 'stroke', t: B.split.keepLabelAt, dur: 0.6, pressure: 0.7},
-  // the calendar lands, the 21 is circled, the date rolls
+  // the calendar lands, the month title is circled, the month rolls
   {kind: 'hit', t: B.calendar.land, name: 'paper_drop'},
   {kind: 'stroke', t: B.calendar.circle, dur: 0.5, pressure: 0.9},
   roll({start: B.calendar.date.at, duration: 1.0}),

@@ -118,10 +118,10 @@ export const CUT_180: readonly EditSegment4[] = [
     captionTone: 'paper',
     sfxAt: {odometer: 5.0},
   }),
-  seg('theNo', 28.0, 35.0, 'the calendar: 21 September 2026', {
+  seg('theNo', 28.0, 35.0, 'the calendar: September 2026', {
     music: 'one low note on the landing',
     vo: {line: 'F5', at: 3.0},
-    captions: [{at: 3.0, text: 'On the twenty-first of September, we started again.'}],
+    captions: [{at: 3.0, text: 'In September, we started again.'}],
     captionTone: 'paper',
     sfxAt: {paper_drop: 0.5, odometer: 2.5},
   }),
@@ -219,7 +219,7 @@ export const CHAPTER_SHORTS: readonly Edl4[] = [
     seg('theNo', 1.0, 13.0, 'two letters, 4.3(a), the crumple', {music: 'as the master', vo: {line: 'F3', at: 0.0}, ...paper("Our first app was turned down twice. It wasn't different enough. Apple was right.")}),
     seg('theNo', 13.0, 15.0, 'the engine unfolds under the super (no caption)', {music: 'as the master'}),
     seg('theNo', 15.0, 31.0, 'the gears, the scissors, the calendar', {music: 'as the master', vo: {line: 'F4', at: 0.0}, ...paper('So we stopped resubmitting and held on to the one thing that was good.')}),
-    seg('theNo', 31.0, 35.0, '21 September 2026 circled; ends before the carry (36-40 ends on empty paper)', {music: 'as the master', vo: {line: 'F5', at: 0.0}, ...paper('On the twenty-first of September, we started again.')}),
+    seg('theNo', 31.0, 35.0, 'September 2026 circled; ends before the carry (36-40 ends on empty paper)', {music: 'as the master', vo: {line: 'F5', at: 0.0}, ...paper('In September, we started again.')}),
   ]},
   {id: 'Short-filterMachine', format: 'tall', chapter: 'filterMachine', targetSeconds: 46, segments: [
     seg('filterMachine', 1.0, 7.0, 'the machine folds up (0.0 is empty paper)', {music: 'as the master', vo: {line: 'M1', at: 0.0}, ...paper('Before we had one idea, we built the filter that every idea had to pass.')}),

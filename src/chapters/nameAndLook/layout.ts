@@ -13,10 +13,10 @@ export const toRegion = (p: Point): Point => [p[0] - ORIGIN[0], p[1] - ORIGIN[1]
 export const NAMES_SHEET = {centre: [19500, 3700] as Point, w: 520, h: 640, rotate: -3};
 
 /**
- * Seven working names, each crossed out. INVENTED placeholders (claims A10: the other names must be invented or the
- * owner's; none is the first app's name). "On Behalf" is the owner's (A10, needs the owner).
+ * Seven working names, each crossed out. INVENTED (owner decision 10, claims A10 / G15): a dramatisation of the naming,
+ * not checked against trademarks; none is the first app's name. "On Behalf" is the owner's own (spoken in F7).
  */
-export const CROSSED_NAMES = ['Kinfolk', 'Hearth', 'Carebook', 'Homebase', 'Tend', 'Familio', 'Papertrail'] as const;
+export const CROSSED_NAMES = ['Ferngate', 'Brindle', 'Lanternly', 'Mapleside', 'Quillfold', 'Tidewell', 'Oakhaven'] as const;
 export const LAST_NAME = 'On Behalf';
 
 /** PROVISUM: Caveat 700 140 sheet px centred (20000, 3900); the Latin line Caveat 500 44 under it. */

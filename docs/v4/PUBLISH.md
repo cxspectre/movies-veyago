@@ -10,18 +10,18 @@ The captions and clips repeat what the film says. The film still carries these u
 
 | Item | Blocked by |
 |---|---|
-| Master, `Hook75`, `Cut180` | A1, A3, A4, A7 (the first app's two rejections, "Apple was right", the engine, 21 September); B20 and G34 ("0 servers" number roll); G27 (the test-count roll still ends on a placeholder 000); A19 (is 2.0 live); G39 (placeholder Veyago mark); G40 (no credits on screen) |
+| Master, `Hook75`, `Cut180` | A4 (the engine); A19 (is 2.0 live: publishing waits for it). Decided 2026-10-18 (`OWNER-DECISIONS.md`): A1, A3 (owner-confirmed by delegation, not verified against Resolution Center), A7 (`September 2026`, no day), B20 and G34 (the roll reads `0 accounts`), G27 (`4,497 tests`, the real count), G39 (the mark is cut), G40 (the voice credit is in the description, not on screen) |
 | Short-line | G1, G2 |
 | Short-mayasHouse | C1, C2, C3, G3, G4 (fiction; credit it) |
-| Short-theNo | A1, A2, A3, A4, A7, G5 to G8 |
+| Short-theNo | A4, G5, G7, G8 (A1 to A3 and G6 owner-confirmed by delegation 2026-10-18; A7 decided: `September 2026`) |
 | Short-filterMachine | B2, B4, E15, G9, G10 |
 | Short-researchBoard | D1 to D4, D6, B5, B6, G11 to G14 |
-| Short-nameAndLook | A10, B1, B7 to B10, G15 to G18 |
-| Short-engineRoom | B13 to B15, B17 to B24, B26, G22 to G27 (G27: the placeholder test count) |
+| Short-nameAndLook | B1, B7 to B10, G16 to G18 (A10 and G15 decided 2026-10-18: "On Behalf" stays; the seven crossed-out names are invented, see the note under the YouTube description) |
+| Short-engineRoom | B13 to B15, B17 to B24, G22 to G26 (B26 and G27 decided 2026-10-18: `4,497 tests`, re-run on release day if the code changes) |
 | Short-launch | A11 to A16, G28, G29 |
 | Short-village | C1, B33, B34, B35 to B37, G30 to G33 |
-| Short-paperToGlass | B16, B20, B35, B37, G34, G35 ("0 servers" roll) |
-| Short-providedFor | B1, A18, A19, G38, G39 |
+| Short-paperToGlass | B16, B35, B37, G35 (B20 and G34 decided 2026-10-18: the roll reads `0 accounts`) |
+| Short-providedFor | B1, A19 (A18, G38 decided 2026-10-18: keep both lines, publish once 2.0 is live; G39: the mark is cut) |
 
 ## 2. Caption files (sidecar `.srt` / `.vtt`, not burned in)
 
@@ -65,12 +65,13 @@ Provisum is Latin for "provided for." (B1)
 
 Credits
 Made by Veyago.
-Voices: PENDING (the owner decides: if the MAKER and MAYA voices are synthetic, say so here, C4 and G40)
-Maya and her family are fictional. (C1; PENDING: the owner confirms the wording and that it is shown)
+The voices are synthetic. The family is fictional.
 Music and sound: PENDING (the owner's credit line)
 
 Get the app: PENDING (the store link only once Provisum 2 is live, A19; do not post a link before that)
 ```
+The voice line is owner decision 8 (C4, G40, C1). **When uploading, tick YouTube's altered-or-synthetic-content disclosure** (the voices are synthetic).
+The seven crossed-out working names in chapter 6 (Ferngate, Brindle, Lanternly, Mapleside, Quillfold, Tidewell, Oakhaven) are **invented** for the film, a dramatisation of the naming (A10, G15). They were not checked against trademarks; do not name them in any copy.
 The first two lines are the hook (YouTube shows them before "more"). The chapter times and names are `SLOTS4` in `src/film4.ts` and the script's chapter map (E17, verified).
 
 ### Tags
@@ -79,7 +80,7 @@ Dropped on purpose: the first app's name, store results, anything about release,
 
 ### Pinned comment
 ```
-Thanks for watching. Maya and her family in this film are fictional (PENDING: owner confirms). Which part of the line would you have drawn differently? I read every reply.
+Thanks for watching. The voices are synthetic. The family is fictional. Which part of the line would you have drawn differently? I read every reply.
 ```
 (The signature "I" is PENDING: the owner decides whether the account speaks as the founder or as Veyago.)
 
