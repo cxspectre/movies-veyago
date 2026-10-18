@@ -54,22 +54,21 @@ export const SHORT_MAX_SECONDS = 60;
 // ---------------------------------------------------------------------------------------------------------------
 
 export const HOOK_75: readonly EditSegment4[] = [
-  seg('line', 0.0, 7.0, 'the pencil touches; "Every app starts as a line." (the super is the copy)', {
-    music: 'pencil only, the felt piano at +6.0',
-    sfxAt: {pencil_down: 0.5},
+  seg('line', 4.5, 11.5, 'opens on "Every app starts as a line." just written (0.0-4.5 is black, then empty paper: no hook); the line draws on', {
+    music: 'pencil only, the felt piano at +1.5',
   }),
-  seg('mayasHouse', 4.0, 11.0, 'Maya at the table', {
+  seg('mayasHouse', 4.0, 11.5, 'Maya at the table (Y1 ends at 11.5, as in the master)', {
     music: 'felt piano, warm',
     vo: {line: 'Y1', at: 0.0},
     captions: [{at: 0.0, text: "Some weeks I'm the mom, the daughter, and the one who knows where everything is."}],
     captionTone: 'paper',
   }),
-  seg('theNo', 0.0, 10.0, 'two letters, "Rejected" twice, 4.3(a)', {
+  seg('theNo', 0.5, 10.0, 'two letters, "Rejected" twice, 4.3(a)', {
     music: 'B-flat minor, sparse',
     vo: {line: 'F3', at: 0.0},
     captions: [{at: 0.0, text: "Our first app was turned down twice. It wasn't different enough. Apple was right."}],
     captionTone: 'paper',
-    sfxAt: {odometer: 5.0},
+    sfxAt: {odometer: 4.5},
   }),
   seg('filterMachine', 35.0, 47.0, 'the one card lands and unfolds', {
     music: 'the ostinato stops on the landing; felt piano under F6',
@@ -84,7 +83,7 @@ export const HOOK_75: readonly EditSegment4[] = [
   seg('village', 0.0, 13.0, 'the houses pop up; "Version 2: a binder for everyone you call family."', {
     music: 'home key, plucks on each house',
     vo: {line: 'F14', at: 1.0},
-    captions: [{at: 8.0, text: 'Nobody looks after just one person.'}],
+    captions: [{at: 1.0, text: 'Version one was a binder for a parent. Nobody looks after just one person.'}],
     captionTone: 'paper',
   }),
   seg('paperToGlass', 0.0, 8.0, 'the village turns to light; the houses lift', {music: 'swell; the pulse locks at +7.0'}),
@@ -104,7 +103,7 @@ export const HOOK_75: readonly EditSegment4[] = [
 // ---------------------------------------------------------------------------------------------------------------
 
 export const CUT_180: readonly EditSegment4[] = [
-  seg('line', 0.0, 7.0, 'the line starts; the super', {music: 'pencil only, then piano', sfxAt: {pencil_down: 0.5}}),
+  seg('line', 4.5, 11.5, 'opens on the super just written (0.0-4.5 is black, then empty paper); the line draws on', {music: 'pencil only, then piano'}),
   seg('mayasHouse', 4.0, 11.0, 'Maya', {
     music: 'felt piano',
     vo: {line: 'Y1', at: 0.0},
@@ -140,13 +139,11 @@ export const CUT_180: readonly EditSegment4[] = [
     captionTone: 'paper',
     sfxAt: {paper_drop: 0.0},
   }),
-  seg('researchBoard', 30.0, 40.0, 'the string pulls tight; the 2x2; the gap', {
-    music: 'strings; the glissando at +2.0',
-    captions: [{at: 8.0, text: 'The gap: all of it, for everyone, privately.'}],
-    captionTone: 'paper',
+  seg('researchBoard', 32.0, 42.0, 'the string pulls tight; the 2x2; the gap (the super is the copy: written by 41.0)', {
+    music: 'strings; the glissando at +0.0',
     sfxAt: {string: 0.0},
   }),
-  seg('researchBoard', 45.0, 55.0, 'six building blocks', {
+  seg('researchBoard', 45.0, 53.0, 'six building blocks', {
     music: 'plucks on the boxes',
     vo: {line: 'M5', at: 3.0},
     captions: [{at: 3.0, text: 'Six building blocks. Most of the app is one of them, or a mix.'}],
@@ -158,10 +155,10 @@ export const CUT_180: readonly EditSegment4[] = [
     captions: [{at: 2.0, text: 'Provisum. Latin for provided for. What you want everyone you love to be.'}],
     captionTone: 'paper',
   }),
-  seg('nameAndLook', 20.0, 28.0, 'the dive into the screen; the colour tokens', {music: 'the soft pulse', captionTone: 'glass'}),
+  seg('nameAndLook', 20.0, 28.0, 'the dive into the screen; the colour tokens', {music: 'the soft pulse'}),
   seg('engineRoom', 44.0, 54.0, 'the server is drawn and erased; your own iCloud', {
     music: 'a rest for the eraser; the pedal returns',
-    vo: {line: 'M11', at: 0.0},
+    vo: {line: 'M11', at: 0.0, cut: 'drop "Sharing goes straight to the people you invite." (it would run under F10)'},
     captions: [{at: 0.0, text: 'No account. Nothing is collected.'}, {at: 3.0, text: 'Your data lives on your phone and in your own iCloud.'}],
     captionTone: 'paper',
   }),
@@ -172,12 +169,12 @@ export const CUT_180: readonly EditSegment4[] = [
     captionTone: 'paper',
     sfxAt: {fold: 0.0, odometer: 4.0},
   }),
-  seg('launch', 22.0, 31.0, 'two sticky notes', {
+  seg('launch', 23.0, 32.0, 'two sticky notes (F12 ends before the village; the super has faded by 32.0)', {
     music: 'dry rest',
-    vo: {line: 'F12', at: 4.0},
-    captions: [{at: 4.0, text: 'On day one we got the price wrong. The next day we fixed it.'}],
+    vo: {line: 'F12', at: 3.0},
+    captions: [{at: 3.0, text: 'On day one we got the price wrong. The next day we fixed it.'}],
     captionTone: 'paper',
-    sfxAt: {sticky_press: 0.0, sticky_press_2: 5.0},
+    sfxAt: {sticky_press: 4.0},
   }),
   seg('village', 0.0, 9.0, 'the houses pop up', {
     music: 'home key',
@@ -185,11 +182,7 @@ export const CUT_180: readonly EditSegment4[] = [
     captions: [{at: 1.0, text: 'Version one was a binder for a parent. Nobody looks after just one person.'}],
     captionTone: 'paper',
   }),
-  seg('village', 50.0, 60.0, 'the rise: Europe, five bubbles', {
-    music: 'swell',
-    captions: [{at: 7.0, text: 'Five countries. Five languages.'}],
-    captionTone: 'paper',
-  }),
+  seg('village', 50.0, 62.0, 'the rise: Europe, five bubbles (the super is the copy)', {music: 'swell'}),
   seg('paperToGlass', 0.0, 10.0, 'paper to glass', {music: 'swell; the pulse locks at +7.0'}),
   seg('paperToGlass', 42.0, 48.0, 'number rolls', {music: 'dry pulse', captionTone: 'glass'}),
   seg('paperToGlass', 68.0, 80.0, 'the silence; the title', {music: 'hard stop; swell at +2.0; resolve at +5.0', sfxAt: {title_in: 2.0}}),
@@ -209,40 +202,59 @@ export const CUT_180: readonly EditSegment4[] = [
 const paper = (text: string, at = 0.0): Pick<EditProps4, 'captions' | 'captionTone'> => ({captions: [{at, text}], captionTone: 'paper'});
 
 export const CHAPTER_SHORTS: readonly Edl4[] = [
-  {id: 'Short-line', format: 'tall', chapter: 'line', targetSeconds: 30, segments: [
-    seg('line', 0.0, 30.0, 'the whole chapter', {music: 'as the master', vo: {line: 'F1', at: 7.0}, ...paper('This is the story of one app.', 7.0)}),
+  // Contiguous slices of one chapter (a.to === b.from) are invisible joins: they only end a caption or carry the next VO line.
+  // Opens at 4.5 (the super just written): 0.0-0.5 is black and 0.5-4.5 empty paper, so the short runs 25.5 s.
+  {id: 'Short-line', format: 'tall', chapter: 'line', targetSeconds: 25.5, segments: [
+    seg('line', 4.5, 20.0, 'the super, the line and its detours', {music: 'as the master', vo: {line: 'F1', at: 2.5}, captions: [{at: 2.5, text: 'This is the story of one app.'}, {at: 5.5, text: 'From a no, to a launch, to a binder for everyone you call family.'}], captionTone: 'paper'}),
+    seg('line', 20.0, 30.0, 'the title super, the dive (no caption under the super)', {music: 'as the master'}),
   ]},
   {id: 'Short-mayasHouse', format: 'tall', chapter: 'mayasHouse', targetSeconds: 45, segments: [
-    seg('mayasHouse', 0.0, 45.0, 'the whole chapter', {music: 'as the master', vo: {line: 'Y1', at: 4.0}, ...paper("Some weeks I'm the mom, the daughter, and the one who knows where everything is.", 4.0)}),
+    seg('mayasHouse', 0.0, 11.5, 'the house pops up; Maya', {music: 'as the master', vo: {line: 'Y1', at: 4.0}, ...paper("Some weeks I'm the mom, the daughter, and the one who knows where everything is.", 4.0)}),
+    seg('mayasHouse', 11.5, 22.0, 'the papers fly', {music: 'as the master', vo: {line: 'Y2', at: 0.0}, captions: [{at: 0.0, text: "My dad's insurance. The kids' passports."}, {at: 4.0, text: "And Sam's car registration, because he's in Lisbon for a year and I'm the one he trusts."}], captionTone: 'paper'}),
+    seg('mayasHouse', 22.0, 36.0, 'the storm, the freeze, the tree (no caption under the supers)', {music: 'as the master'}),
+    seg('mayasHouse', 36.0, 45.0, 'the plane; the line leaves', {music: 'as the master', vo: {line: 'F2', at: 0.0}, ...paper('We wanted to build something for her. But first, we had to fail at something else.')}),
   ]},
-  {id: 'Short-theNo', format: 'tall', chapter: 'theNo', targetSeconds: 40, segments: [
-    seg('theNo', 0.0, 40.0, 'the whole chapter', {music: 'as the master', vo: {line: 'F3', at: 0.0}, ...paper("Our first app was turned down twice. It wasn't different enough. Apple was right.")}),
+  // 0.0 is empty paper (the letters draw from 0.0) and 36-40 carries the calendar off: 1.0-35.0.
+  {id: 'Short-theNo', format: 'tall', chapter: 'theNo', targetSeconds: 34, segments: [
+    seg('theNo', 1.0, 13.0, 'two letters, 4.3(a), the crumple', {music: 'as the master', vo: {line: 'F3', at: 0.0}, ...paper("Our first app was turned down twice. It wasn't different enough. Apple was right.")}),
+    seg('theNo', 13.0, 15.0, 'the engine unfolds under the super (no caption)', {music: 'as the master'}),
+    seg('theNo', 15.0, 31.0, 'the gears, the scissors, the calendar', {music: 'as the master', vo: {line: 'F4', at: 0.0}, ...paper('So we stopped resubmitting and held on to the one thing that was good.')}),
+    seg('theNo', 31.0, 35.0, '21 September 2026 circled; ends before the carry (36-40 ends on empty paper)', {music: 'as the master', vo: {line: 'F5', at: 0.0}, ...paper('On the twenty-first of September, we started again.')}),
   ]},
-  {id: 'Short-filterMachine', format: 'tall', chapter: 'filterMachine', targetSeconds: 47, segments: [
-    seg('filterMachine', 0.0, 47.0, 'the machine to the one card (the fly-back is dropped)', {music: 'as the master', vo: {line: 'M1', at: 0.0}, ...paper('Before we had one idea, we built the filter that every idea had to pass.')}),
+  {id: 'Short-filterMachine', format: 'tall', chapter: 'filterMachine', targetSeconds: 46, segments: [
+    seg('filterMachine', 1.0, 7.0, 'the machine folds up (0.0 is empty paper)', {music: 'as the master', vo: {line: 'M1', at: 0.0}, ...paper('Before we had one idea, we built the filter that every idea had to pass.')}),
+    seg('filterMachine', 7.0, 20.0, 'the cards fall through the gates', {music: 'as the master', vo: {line: 'M2', at: 0.5}, captions: [{at: 0.5, text: 'Useful for years. Not something the phone already does.'}, {at: 6.0, text: 'Private by design. Buildable in weeks, not years.'}, {at: 10.5, text: 'And a business from day one.'}], captionTone: 'paper'}),
+    seg('filterMachine', 20.0, 35.0, 'the last cards stop; the one card falls (the caption ends with M2)', {music: 'as the master'}),
+    seg('filterMachine', 35.0, 47.0, 'the one card (the fly-back is dropped)', {music: 'as the master', vo: {line: 'F6', at: 0.5}, captions: [{at: 0.5, text: 'One idea made it through all five.'}, {at: 4.0, text: 'We started with the hardest version: looking after a parent.'}], captionTone: 'paper'}),
   ]},
-  {id: 'Short-researchBoard', format: 'tall', chapter: 'researchBoard', targetSeconds: 48, segments: [
-    seg('researchBoard', 0.0, 20.0, 'the four cards', {music: 'as the master', vo: {line: 'M3', at: 0.0}, ...paper('Next, we stopped guessing.')}),
-    seg('researchBoard', 30.0, 58.0, 'the string, the gap, the six boxes', {music: 'as the master', vo: {line: 'M5', at: 18.0}, ...paper('The gap: all of it, for everyone, privately.', 8.0)}),
+  {id: 'Short-researchBoard', format: 'tall', chapter: 'researchBoard', targetSeconds: 47, segments: [
+    seg('researchBoard', 1.0, 4.0, 'the board (0.0 is empty paper)', {music: 'as the master', vo: {line: 'M3', at: 0.0}, ...paper('Next, we stopped guessing.')}),
+    seg('researchBoard', 4.0, 20.0, 'the four cards (the questions are supers: no caption)', {music: 'as the master', vo: {line: 'M4', at: 0.0}}),
+    seg('researchBoard', 30.0, 48.0, 'the string, the gap (the super is the copy)', {music: 'as the master'}),
+    seg('researchBoard', 48.0, 58.0, 'the six boxes', {music: 'as the master', vo: {line: 'M5', at: 0.0}, ...paper('Six building blocks. Most of the app is one of them, or a mix.')}),
   ]},
-  {id: 'Short-nameAndLook', format: 'tall', chapter: 'nameAndLook', targetSeconds: 43, segments: [
-    seg('nameAndLook', 0.0, 13.0, 'the names; PROVISUM', {music: 'as the master', vo: {line: 'F7', at: 0.0}, ...paper('For a few days it was called On Behalf. Then we found a better word.')}),
-    seg('nameAndLook', 20.0, 50.0, 'inside the screen', {music: 'as the master', captionTone: 'glass'}),
+  {id: 'Short-nameAndLook', format: 'tall', chapter: 'nameAndLook', targetSeconds: 42, segments: [
+    seg('nameAndLook', 1.0, 7.0, 'the names (0.0 is empty paper)', {music: 'as the master', vo: {line: 'F7', at: 0.0}, ...paper('For a few days it was called On Behalf. Then we found a better word.')}),
+    seg('nameAndLook', 7.0, 13.0, 'PROVISUM', {music: 'as the master', vo: {line: 'F8', at: 1.0}, ...paper('Provisum. Latin for provided for. What you want everyone you love to be.', 1.0)}),
+    seg('nameAndLook', 20.0, 50.0, 'inside the screen (glass supers: no caption)', {music: 'as the master'}),
   ]},
-  {id: 'Short-engineRoom', format: 'tall', chapter: 'engineRoom', targetSeconds: 41, segments: [
-    seg('engineRoom', 0.0, 6.0, 'the cutaway opens', {music: 'as the master', vo: {line: 'M8', at: 0.0}, ...paper('Native Swift, for iPhone, Apple Watch and widgets. Nothing in between.')}),
-    seg('engineRoom', 16.0, 28.0, 'the data model', {music: 'as the master', vo: {line: 'M9', at: 2.0}, ...paper('Everything belongs to a binder, and a binder belongs to a person.', 2.0)}),
-    seg('engineRoom', 42.0, 62.0, 'the vault', {music: 'as the master', vo: {line: 'M11', at: 2.0}, ...paper('No account. Nothing is collected.', 2.0)}),
-    seg('engineRoom', 72.0, 75.0, 'the cutaway closes', {music: 'as the master'}),
+  {id: 'Short-engineRoom', format: 'tall', chapter: 'engineRoom', targetSeconds: 40, segments: [
+    seg('engineRoom', 1.0, 6.0, 'the cutaway opens (0.0 is empty paper)', {music: 'as the master', vo: {line: 'M8', at: 0.0}, ...paper('Native Swift, for iPhone, Apple Watch and widgets. Nothing in between.')}),
+    seg('engineRoom', 16.0, 28.0, 'the data model', {music: 'as the master', vo: {line: 'M9', at: 2.0}, captions: [{at: 2.0, text: 'Everything belongs to a binder, and a binder belongs to a person:'}, {at: 6.0, text: 'your dad, your daughter, yourself, your partner, a friend, even the dog.'}], captionTone: 'paper'}),
+    seg('engineRoom', 42.0, 56.0, 'the vault', {music: 'as the master', vo: {line: 'M11', at: 2.0}, captions: [{at: 2.0, text: 'No account. Nothing is collected.'}, {at: 5.0, text: 'Your data lives on your phone and in your own iCloud.'}, {at: 9.0, text: 'Sharing goes straight to the people you invite.'}], captionTone: 'paper'}),
+    seg('engineRoom', 56.0, 62.0, 'the safe', {music: 'as the master', vo: {line: 'M12', at: 0.0}, ...paper('The emergency card is encrypted on your iPhone before it goes anywhere.')}),
+    seg('engineRoom', 69.0, 72.0, 'build succeeded; the Simulator (72-75 folds to empty paper)', {music: 'as the master'}),
   ]},
   {id: 'Short-launch', format: 'tall', chapter: 'launch', targetSeconds: 41, segments: [
-    seg('launch', 0.0, 35.0, 'rocket, map, sticky notes', {music: 'as the master', vo: {line: 'F10', at: 0.0}, ...paper('And App Review said yes.')}),
+    seg('launch', 0.0, 15.0, 'rocket, statuses, lift-off', {music: 'as the master', vo: {line: 'F10', at: 0.0}, ...paper('And App Review said yes.')}),
+    seg('launch', 15.0, 22.0, 'the US fills (under the super: no caption)', {music: 'as the master', vo: {line: 'F11', at: 0.0}}),
+    seg('launch', 22.0, 35.0, 'the sticky notes (the super and the notes are the copy)', {music: 'as the master', vo: {line: 'F12', at: 4.0}}),
     seg('launch', 44.0, 50.0, 'Maya in the window', {music: 'as the master', vo: {line: 'Y3', at: 1.0}, ...paper('It was never only my dad.', 1.0)}),
   ]},
   {id: 'Short-village', format: 'tall', chapter: 'village', targetSeconds: 38, segments: [
-    seg('village', 0.0, 13.0, 'the houses pop up', {music: 'as the master', vo: {line: 'F14', at: 1.0}, ...paper('Nobody looks after just one person.', 1.0)}),
+    seg('village', 0.0, 13.0, 'the houses pop up', {music: 'as the master', vo: {line: 'F14', at: 1.0}, ...paper('Version one was a binder for a parent. Nobody looks after just one person.', 1.0)}),
     seg('village', 29.0, 37.0, 'two visits', {music: 'as the master', vo: {line: 'Y4', at: 0.0}, ...paper("Sam's car, Dad's medications, the kids' passports. Same place. Same calm.")}),
-    seg('village', 45.0, 62.0, "Sam's flat; the rise; Europe", {music: 'as the master', ...paper('Five countries. Five languages.', 12.0)}),
+    seg('village', 45.0, 62.0, "Sam's flat; the rise; Europe (the super is the copy)", {music: 'as the master'}),
   ]},
   {id: 'Short-paperToGlass', format: 'tall', chapter: 'paperToGlass', targetSeconds: 43, segments: [
     seg('paperToGlass', 0.0, 25.0, 'paper to glass; nine snaps', {music: 'as the master', captionTone: 'glass'}),
