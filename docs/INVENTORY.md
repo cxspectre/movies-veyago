@@ -1,7 +1,7 @@
 # INVENTORY — facts for the film crew
 
 Owner: inventory and mechanical checks. Sources are read from the 1.2 worktree
-(`/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12`) unless marked 1.1 (`.pv-worktrees/v11`).
+(`~/Developer/Apps/.pv-worktrees/v12`) unless marked 1.1 (`.pv-worktrees/v11`).
 Nothing here was built or run in the Simulator; every fact is from source.
 
 ## 1. Accent colour
@@ -37,9 +37,9 @@ The app's other accent themes (violet, coral, green, graphite) are user choices,
 
 | File in `public/brand/` | Source | Notes |
 |---|---|---|
-| `provisum-app-icon-1024.png` | `/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12/Provisum/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png` | 1024 x 1024, 8-bit RGBA PNG, copied byte for byte. Asset catalog icon (iOS single size). |
-| `veyago-icon.svg` | `/Users/cassiandrefke/Documents/Veyago-main/Logo/appicon/veyago-icon.svg` | The Veyago mark for the end card. 200 x 200 viewBox: rounded square `#09111F` (rx 44), white `#F2F4F7` V-stroke (width 11), parchment dot `#D4C9A8` at the apex. Preferred form. |
-| `veyago-wordmark-transparent.svg` | `/Users/cassiandrefke/Documents/Veyago-main/Logo/appicon/veyago-wordmark-transparent.svg` | Veyago wordmark, transparent background. Use only if the end card needs the name in full. |
+| `provisum-app-icon-1024.png` | `~/Developer/Apps/.pv-worktrees/v12/Provisum/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png` | 1024 x 1024, 8-bit RGBA PNG, copied byte for byte. Asset catalog icon (iOS single size). |
+| `veyago-icon.svg` | `~/Documents/Veyago-main/Logo/appicon/veyago-icon.svg` | The Veyago mark for the end card. 200 x 200 viewBox: rounded square `#09111F` (rx 44), white `#F2F4F7` V-stroke (width 11), parchment dot `#D4C9A8` at the apex. Preferred form. |
+| `veyago-wordmark-transparent.svg` | `~/Documents/Veyago-main/Logo/appicon/veyago-wordmark-transparent.svg` | Veyago wordmark, transparent background. Use only if the end card needs the name in full. |
 
 The Veyago logo is in the Veyago repo's `Logo/` folder. It was not found in the Provisum repo's `Support/AppStore` or `Tools/store_art.py` (no Veyago art there).
 The predecessor folder named in the brief was not opened or searched.

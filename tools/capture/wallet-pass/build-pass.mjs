@@ -6,7 +6,7 @@ import { writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const PASS_SOURCE = '/Users/cassiandrefke/Developer/Websites/veyagocloud/supabase/functions/_shared/wallet-pass.ts';
+const PASS_SOURCE = `${process.env.HOME}/Developer/Websites/veyagocloud/supabase/functions/_shared/wallet-pass.ts`;
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(HERE, '..', '..', '..', 'public', 'footage');
 // Fixed signing day so every build is identical.
