@@ -9,5 +9,5 @@ export const REGION_IMAGE_CROP: Record<string, {x: number; y: number; w: number;
   engineRoom: {x: 532.5, y: 436.5, w: 1331.5, h: 3163.5},
   launch: {x: 372, y: 387, w: 2828, h: 1931.5},
   village: {x: 258, y: 79, w: 1142, h: 719.5},
-  providedFor: {x: 812, y: 585.5, w: 1202.5, h: 575.5},
+  providedFor: {x: 812, y: 585.5, w: 1202.5, h: 463.5},
 };
