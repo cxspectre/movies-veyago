@@ -43,7 +43,7 @@ Total about 42 MB.
 
 ## 2. Setup (how everything was made)
 
-- **Source:** `/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12`, branch release/1.2 at
+- **Source:** `~/Developer/Apps/.pv-worktrees/v12`, branch release/1.2 at
   `3778e86` ("feat: invite family from inside the app ..."), clean, untouched (no edits, no xcodegen).
 - **Build:** `tools/capture/build.sh` (= `nice -n 10 xcodebuild -project …/Provisum.xcodeproj -scheme
   Provisum -destination 'platform=iOS Simulator,id=761ABF75-…' -derivedDataPath /tmp/pv-dd/film build
@@ -180,7 +180,7 @@ the chip-like row on the home is HELPERS (Still right?, Go through the mail, Thi
 
 Wallet is not usable in the Simulator, and the pass is not drawn by the app: the app sends the chosen
 fields to Veyago's `wallet-pass` function, which builds and signs it. Its layout code is
-`/Users/cassiandrefke/Developer/Websites/veyagocloud/supabase/functions/_shared/wallet-pass.ts`
+`~/Developer/Websites/veyagocloud/supabase/functions/_shared/wallet-pass.ts`
 (read-only; the `WalletCard*` files in the app are the *printed* card, not the pass).
 `tools/capture/wallet-pass/build-pass.mjs` copies that file to /tmp, runs `parseCardRequest` +
 `buildPassJson` on the sample card (Eleanor Hughes, A+, born 1946-03-14, Penicillin (hives) and

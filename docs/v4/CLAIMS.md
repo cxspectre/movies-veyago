@@ -2,7 +2,7 @@
 
 Rule (CONTRACT section 13.6): every number, date, status, name and quotation that is shown or spoken has a row here with its source. No row, no pixel. The first app is never named.
 
-Written 2026-10-16 from `docs/SCRIPT-10MIN-v4.md`. App facts were read from the 2.0 release worktree (`/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12`, branch `release/1.2`, marketing version 2.0); `main` of the app repo is 1.1.
+Written 2026-10-16 from `docs/SCRIPT-10MIN-v4.md`. App facts were read from the 2.0 release worktree (`~/Developer/Apps/.pv-worktrees/v12`, branch `release/1.2`, marketing version 2.0); `main` of the app repo is 1.1.
 
 **Who can supply:** owner = Cassian (store history, dates, screenshots of App Store Connect, intent); app = the Provisum source or a Simulator run; repo = this film repo; official = a published form or page. 
 **Status:** verified (checked against the named source on the date above) / needs the owner / cannot be verified: reword (the script text must change; a suggested rewording is in the note).

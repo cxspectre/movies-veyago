@@ -1,7 +1,7 @@
 # settings for the v4 capture scripts (tools/capture4). Source this file.
-export PV_SRC="/Users/cassiandrefke/Developer/Apps/.pv-worktrees/v12"
+export PV_SRC="$HOME/Developer/Apps/.pv-worktrees/v12"
 export PV_DD="/tmp/pv-dd/film"
-export FILM="/Users/cassiandrefke/Developer/Apps/MoviesVeyago"
+export FILM="$HOME/Developer/Apps/MoviesVeyago"
 export FOOTAGE="$FILM/public/footage4"
 # Raw (unencoded) recordings stay outside the film folder.
 export RAW="/tmp/pv-film-raw4"
