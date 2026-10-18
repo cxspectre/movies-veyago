@@ -101,8 +101,8 @@ FOUNDER: So we stopped resubmitting and held on to the one thing that was good.
 
 **1:35** A pair of paper scissors cuts the drawing in two. The engine slides one way, labelled *keep*. The old name, the old idea and the old purpose slide the other way and fade, blurred so nothing is legible.
 
-**1:43** A calendar page drops in, 21 circled. Number roll: *21 September 2026.*
-FOUNDER: On the twenty-first of September, we started again.
+**1:43** A calendar page drops in; the pencil circles the month. Number roll: *September 2026.*
+FOUNDER: In September, we started again.
 
 **1:51** The engine is carried along the pencil line to the next region.
 
@@ -152,7 +152,7 @@ MAKER: Six building blocks. Most of the app is one of them, or a mix.
 
 ## 6. The name and the look (3:55 - 4:50)
 
-**3:55** A sheet of crossed-out names. *On Behalf* gets the last line.
+**3:55** A sheet of crossed-out names (invented for the film). *On Behalf* gets the last line.
 FOUNDER: For a few days it was called On Behalf. Then we found a better word.
 
 **4:00** PROVISUM writes itself in pencil. Below, smaller: *Latin. "Provided for."* The pencil letters lift, gain weight and settle as the logotype.
@@ -195,7 +195,7 @@ SUPER: *No account. Nothing collected.*
 **5:46** The emergency card slides into a small safe; a padlock snaps shut.
 MAKER: The emergency card is encrypted on your iPhone before it goes anywhere.
 
-**5:52** Back up to the top floor: Xcode tests run, a column of green ticks scrolls inside the drawn laptop, a number roll counts the passing tests. Build succeeded; the Simulator boots inside a drawn phone.
+**5:52** Back up to the top floor: Xcode tests run, a column of green ticks scrolls inside the drawn laptop, a number roll counts the passing tests: *4,497 tests*. Build succeeded; the Simulator boots inside a drawn phone.
 FOUNDER: We carried the engine over from our first app, and rebuilt everything around it.
 
 **6:02** The cutaway closes like a book.
@@ -259,7 +259,7 @@ MAKER: Every person gets the documents, dates and packets that fit them. A child
 **8:46** The emergency card flips onto a Watch; a Wallet pass slides out behind.
 SUPER: *Apple Watch. Apple Wallet.*
 
-**8:52** Number rolls on black, one second each: *6 kinds of people* / *5 countries* / *5 languages* / *0 servers*.
+**8:52** Number rolls on black, one second each: *6 kinds of people* / *5 countries* / *5 languages* / *0 accounts*.
 
 **8:58** Real Simulator recordings, 1.5 s each, labelled: inviting a friend to a binder, the family view showing who joined, shared costs, a passport reminder, the scam note, a visit summary, a Belgian binder calling 112, the first onboarding question.
 FOUNDER: Everything we drew.
@@ -282,7 +282,7 @@ SUPER: *A no. Five filters. One idea. A whole village.*
 **9:42** The line's end leads to a real pencil, drawn, lying on the paper. It sets itself down.
 FOUNDER: Provisum. It's Latin for provided for. For everyone you call family.
 
-**9:50** End card on paper: *Provisum 2* / *Free on the App Store* / the Veyago mark. In Cambria: *Made by Veyago. Private by design.*
+**9:50** End card on paper: *Provisum 2* / *Free on the App Store*. In Cambria: *Made by Veyago. Private by design.*
 
 **9:58** Pencil click. Cut.
 

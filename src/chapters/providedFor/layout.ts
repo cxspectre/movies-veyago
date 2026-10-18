@@ -31,9 +31,10 @@ export const CARD = {
 /**
  * The card's type block in SHEET px. The camera after the drift sits at (38300, 3900) wide / (38300, 3950) tall; the card is
  * centred on it as the v1 card is on its frame: the type block a little above the middle (the optical centre, 0.48 H),
- * the mark and the Caladea line near the foot. All of it stays inside the 1080 px central column.
+ * the mark and the Caladea line near the foot. All of it stays inside the 1080 px central column. Without a mark (owner decision 4: cut for now) the Caladea line moves
+ * up into the mark's place, so the stack has no gap where the mark was.
  */
-export const cardLayout = (tall: boolean) => {
+export const cardLayout = (tall: boolean, hasMark: boolean) => {
   const cx = tall ? 37900 : 38300;
   const cy = tall ? 3950 : 3900;
   const H = tall ? 1920 : 1080;
@@ -47,7 +48,8 @@ export const cardLayout = (tall: boolean) => {
   const top = cy - 0.02 * H - blockH / 2;
   const titleBaseline = top + cap * titleSize;
   const lineBaseline = titleBaseline + gap + cap * lineSize;
-  const cambriaBaseline = cy + H / 2 - 96;
-  const markTop = cambriaBaseline - cap * cambriaSize - 40 - markSize;
+  const footBaseline = cy + H / 2 - 96;
+  const markTop = footBaseline - cap * cambriaSize - 40 - markSize;
+  const cambriaBaseline = hasMark ? footBaseline : markTop + cap * cambriaSize;
   return {cx, titleSize, lineSize, markSize, cambriaSize, titleBaseline, lineBaseline, cambriaBaseline, markTop};
 };

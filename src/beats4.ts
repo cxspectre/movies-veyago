@@ -113,7 +113,7 @@ export const VO4: readonly VoLine4[] = [
   vo('F2', 'FOUNDER', 'mayasHouse', 36.0, 'We wanted to build something for her. But first, we had to fail at something else.'),
   vo('F3', 'FOUNDER', 'theNo', 0.0, "Our first app was turned down twice. It wasn't different enough. Apple was right."),
   vo('F4', 'FOUNDER', 'theNo', 15.0, 'So we stopped resubmitting and held on to the one thing that was good.'),
-  vo('F5', 'FOUNDER', 'theNo', 31.0, 'On the twenty-first of September, we started again.'),
+  vo('F5', 'FOUNDER', 'theNo', 31.0, 'In September, we started again.'),
   vo('M1', 'MAKER', 'filterMachine', 0.0, 'Before we had one idea, we built the filter that every idea had to pass.'),
   vo('M2', 'MAKER', 'filterMachine', 7.0, 'Useful for years. Not something the phone already does. Private by design. Buildable in weeks, not years. And a business from day one.'),
   vo('F6', 'FOUNDER', 'filterMachine', 35.5, 'One idea made it through all five. We started with the hardest version: looking after a parent.'),
@@ -275,7 +275,7 @@ export const theNo = {
   gearsTurnFrom: 18.0,
   scissors: {...window(20.0, 23.0), snips: [20.5, 21.5, 22.5] as const},
   split: {...window(23.0, 27.0), keepLabelAt: 24.0, fade: window(25.0, 27.0)},
-  calendar: {drop: 28.0, land: 28.5, circle: 30.0, date: {at: 30.5, text: '21 September 2026'}},
+  calendar: {drop: 28.0, land: 28.5, circle: 30.0, date: {at: 30.5, text: 'September 2026'}},
   carry: window(36.0, 40.0),
 } as const;
 
@@ -293,8 +293,8 @@ const theNoBeats: readonly Beat4[] = [
   ...theNo.scissors.snips.map((t, i) => beat(`snip-${i + 1}`, t, 'the scissors cut', {sfx: 'scissors'})),
   beat('split', 23.0, 'engine slides to "keep"; the old idea fades, blurred', {dur: 4.0}),
   beat('calendar', 28.5, 'the calendar page lands', {sfx: 'paper_drop'}),
-  beat('circle-21', 30.0, 'the 21 is circled'),
-  beat('date', 30.5, 'number roll 21 September 2026', {sfx: 'odometer', dur: 1.0}),
+  beat('circle-month', 30.0, 'the month title is circled'),
+  beat('date', 30.5, 'number roll September 2026', {sfx: 'odometer', dur: 1.0}),
   beat('vo-f5', 31.0, 'F5'),
   beat('carry', 36.0, 'the engine rides the line to the machine (a slide cue)', {dur: 4.0}),
 ];
@@ -640,7 +640,7 @@ export const paperToGlass = {
   family: {hit: 36.0, cardLands: 36.5, wallet: 38.0, settle: window(39.0, 42.0)},
   devicesOut: window(41.5, 42.0),
   numberRolls: [
-    {at: 42.0, text: '6 kinds of people'}, {at: 43.5, text: '5 countries'}, {at: 45.0, text: '5 languages'}, {at: 46.5, text: '0 servers'},
+    {at: 42.0, text: '6 kinds of people'}, {at: 43.5, text: '5 countries'}, {at: 45.0, text: '5 languages'}, {at: 46.5, text: '0 accounts'},
   ] as const,
   recordings: RECORDINGS,
   invite: {mayaIn: window(60.0, 61.0), tap: 61.5, plane: 62.0, farPhoneLights: 64.0, card: 'Maya invited you to "Sam".'},

@@ -27,7 +27,6 @@ import {
   PIPE,
   READ,
   SAFE,
-  SHOW_PLACEHOLDER,
   SERVER,
   SILHOUETTE,
   SIM_AT,
@@ -36,8 +35,7 @@ import {
   SUPER_ROOMS_AT,
   SUPER_VAULT_AT,
   TAB,
-  TEST_COUNT_IS_REAL,
-  TEST_COUNT_PLACEHOLDER,
+  TEST_COUNT,
   TEST_ROLL_AT,
   TRACKS,
   VAULT_SUPER_TEXT,
@@ -137,22 +135,10 @@ const TopFloor: React.FC<{t: number}> = ({t}) => (
   <>
     <XcodeScreen t={t} />
     <ScreenOnPaper device="laptop" source={LAPTOP_SOURCE} at={LAPTOP.at} scale={LAPTOP.scale} drawStart={B.top.laptop.from} drawDuration={B.top.laptop.to - B.top.laptop.from} contentStart={NEVER} seed={71} />
-    {SHOW_PLACEHOLDER || TEST_COUNT_IS_REAL ? <NumberRoll to={TEST_COUNT_PLACEHOLDER} start={B.tests.from} duration={B.tests.to - B.tests.from} at={TEST_ROLL_AT} align="centre" size={64} ink="accent" /> : null}
-    {SHOW_PLACEHOLDER ? <TestPlaceholderTag t={t} /> : null}
+    <NumberRoll to={TEST_COUNT} start={B.tests.from} duration={B.tests.to - B.tests.from} at={TEST_ROLL_AT} align="centre" size={64} ink="accent" />
     <ScreenOnPaper device="phone" source={footageClip(B.simulator.footage)} at={SIM_AT} scale={1} drawStart={B.simulator.from} drawDuration={1} />
   </>
 );
-
-/** A drawn tag that says the number is a placeholder, so nobody ships it by accident. */
-const TestPlaceholderTag: React.FC<{t: number}> = ({t}) => {
-  if (t < B.tests.from) return null;
-  const [x, y] = toRegion([TEST_ROLL_AT[0] + 90, TEST_ROLL_AT[1] - 30]);
-  return (
-    <div style={{position: 'absolute', left: x, top: y, padding: '2px 8px', border: `1.5px dashed ${COLORS.graphiteSoft}`, borderRadius: 4, fontFamily: FONTS.super, fontSize: 18, color: COLORS.graphiteSoft, opacity: smooth((t - B.tests.from) / 0.5)}}>
-      placeholder: the release-day test count
-    </div>
-  );
-};
 
 /** One paper tab: pops out of its navigator row, flies to the margin, pins (Patrick Hand 26, an accent pin). */
 const Tabs: React.FC<{t: number}> = ({t}) => (

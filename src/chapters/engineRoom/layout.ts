@@ -74,14 +74,12 @@ export const VAULT_SUPER_TEXT = 'No account. Nothing collected.';
 export const SAFE = {centre: [23400, 4760] as Point, w: 260, h: 220};
 export const CARD = {w: 180, h: 120, from: [22980, 4760] as Point};
 
-/** The test count is the owner's (claims B26 / CLAIMS-additions: a fresh run on release day). A PLACEHOLDER.
- * With `SHOW_PLACEHOLDER` off (the default) neither the roll nor its tag is drawn; the roll keeps its place, so the
- * real count drops in by setting TEST_COUNT and turning TEST_COUNT_IS_REAL on, with no layout change. */
-export const SHOW_PLACEHOLDER = false;
-export const TEST_COUNT_PLACEHOLDER = '000';
-export const TEST_COUNT_IS_REAL = false;
+/** The passing-test count of the shipped build (owner decision 3, claims B26 / G27): a full unit-test run of
+ * `release/1.2` at 6d5f5eb on 2026-10-18, 4,502 executed, 5 skipped, 0 failures. Re-run on release day if the code changes. */
+export const TEST_COUNT = '4,497 tests';
 /** Readable type on the sheet (the vault is seen at z 0.75, the rest at 0.9: 48 / 42 sheet px give 36 screen px). */
 export const READ = {floor: 48, vault: 48, note: 42};
-export const TEST_ROLL_AT: Point = [23400, 3420];
+/** Above the laptop (the floor line under it, at 3350, would cut through the roll). */
+export const TEST_ROLL_AT: Point = [23400, 2800];
 /** The Simulator boots in a drawn phone 200 x 430 at (23750, 3050). */
 export const SIM_AT: Point = [23750, 3050];
